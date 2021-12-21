@@ -1,6 +1,126 @@
+/* font */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+/* global settings */
+* {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* user */
+/* user-search */
+.wrap-title {
+  position: relative;
+  --user-search-profile: 50px;
+}
+
+.wrap-title .img-profile {
+  width: var(--user-search-profile);
+  height: var(--user-search-profile);
+  margin-right: 12px;
+}
+
+.wrap-title .wrap-txt {
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+}
+
+.wrap-title .wrap-txt .txt-title,
+.wrap-title .wrap-txt .txt-nickname {
+  display: block;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
+.wrap-title .wrap-txt .txt-title {
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 6px;
+}
+
+.wrap-title .wrap-txt .txt-nickname {
+  font-size: 12px;
+  line-height: 15px;
+  color: #767676;
+}
+
+
+/* user-search-more */
+.wrap-title .btn-more {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.wrap-title .img-more {
+  width: 100%;
+}
+
+/* user-search-follow */
+.wrap-title .btn-follow {
+  background-color: #f26e22;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+/* end: user */
 
 /* home */
+/* home-post */
+.article-post {
+  --home-post-profile: 42px;
+}
+
+.article-post .img-profile {
+  width: var(--home-post-profile);
+  height: var(--home-post-profile);
+}
+
+.article-post .wrap-content {
+  margin-top: 16px;
+  padding-left: calc(var(--home-post-profile) + 12px);
+}
+
+.article-post .wrap-content .txt-content {
+  margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.article-post .wrap-content .ul-btns {
+  margin-top: 16px;
+  display: flex;
+  color: #767676;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.article-post .wrap-content .ul-btns .li-btn {
+  margin-right: 16px;
+}
+
+.article-post .wrap-content .ul-btns .li-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.article-post .wrap-content .txt-date {
+  margin-top: 16px;
+  color: #767676;
+  font-size: 10px;
+  line-height: 12px;
+}
+/* end: home */
 
 /* top */
 
