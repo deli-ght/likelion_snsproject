@@ -84,8 +84,6 @@ button {
 
 /* user-search-follow */
 .wrap-title .btn-follow {
-  background-color: var(--orange);
-  color: var(--white);
   position: absolute;
   top: 50%;
   right: 0;
