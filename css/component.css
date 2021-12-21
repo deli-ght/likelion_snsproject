@@ -11,7 +11,7 @@
   --light-gray: #c4c4c4;
   --white-gray: #f2f2f2;
   --white: #ffffff;
-  --black: var(--black);
+  --black: #000000;
 }
 
 /* global settings */
