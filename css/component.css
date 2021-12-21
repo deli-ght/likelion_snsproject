@@ -3,7 +3,7 @@
 
 /* global settings */
 * {
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 button {
@@ -35,7 +35,7 @@ button {
 .wrap-title .wrap-txt .txt-title,
 .wrap-title .wrap-txt .txt-nickname {
   display: block;
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 .wrap-title .wrap-txt .txt-title {
@@ -49,7 +49,6 @@ button {
   line-height: 15px;
   color: #767676;
 }
-
 
 /* user-search-more */
 .wrap-title .btn-more {
@@ -123,12 +122,16 @@ button {
 /* end: home */
 
 /* top */
-.top-basic-nav, .top-search-nav, .top-main-nav, .top-upload-nav, .top-chat-nav {
+.top-basic-nav,
+.top-search-nav,
+.top-main-nav,
+.top-upload-nav,
+.top-chat-nav {
   width: 100%;
   height: 48px;
   position: relative;
-  color: #FFFFFF;
-  background-color: #FFFFFF;
+  color: #ffffff;
+  background-color: #ffffff;
 }
 
 .img-left-arrow {
@@ -156,8 +159,8 @@ button {
   right: 19px;
   box-sizing: border-box;
   padding: 7px 0 7px 16px;
-  background-color: #F2F2F2;
-  color: #C4C4C4;
+  background-color: #f2f2f2;
+  color: #c4c4c4;
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
@@ -192,9 +195,9 @@ button {
   right: 16px;
   font-size: 14px;
   border-radius: 32px;
-  background-color: #FFC7A7;
+  background-color: #ffc7a7;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .txt-chat-nav {
@@ -213,9 +216,160 @@ button {
 /* text-Active-input */
 
 /* product */
+#product {
+  position: relative;
+  width: 140px;
+  height: 132px;
+}
+
+.img-product {
+  position: absolute;
+  width: 140px;
+  height: 90px;
+  left: 0px;
+  top: 0px;
+  border: 0.5px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.p-text {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  position: absolute;
+  color: #000000;
+  left: 2px;
+  top: 96px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17.53px;
+}
+.p-price {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  position: absolute;
+  left: 2px;
+  top: 118px;
+  color: #f26e22;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15.02px;
+}
 
 /* tab-menu */
+#tab-menu {
+  display: flex;
+  width: 390px;
+  height: 60px;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 0.5px solid #c4c4c4;
+}
+
+#tab-menu div {
+  width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-home,
+.img-circle1,
+.img-edit,
+.img-user {
+  width: 18px;
+  height: 18px;
+}
+
+.p-home,
+.p-circle1,
+.p-edit,
+.p-user {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  color: #767676;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 14px;
+}
 
 /* comment */
+#comment {
+  position: relative;
+  width: 390px;
+  height: 61px;
+}
+.img-basic-profile {
+  position: absolute;
+  top: 13px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+}
+
+.input-text {
+  position: absolute;
+  top: 23px;
+  left: 70px;
+  width: 120px;
+  height: 18px;
+  font-size: 14px;
+  border: transparent;
+}
+
+.input-text::placeholder {
+  color: #c4c4c4;
+  line-height: 17.53px;
+}
+
+.p-submit {
+  position: absolute;
+  top: 23px;
+  left: 348px;
+  width: 30px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.53px;
+  color: #c4c4c4;
+  cursor: pointer;
+}
 
 /* delete alert */
+#alert {
+  border-radius: 4px;
+  width: 252px;
+  height: 110px;
+  border: 0.5px solid #dbdbdb;
+  line-height: 62px;
+  text-align: center;
+}
+
+.p-check {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+.div-choice {
+  display: flex;
+}
+
+.p-cancle,
+.p-delete {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  font-weight: 400;
+  text-align: center;
+  width: 50%;
+  line-height: 46px;
+  cursor: pointer;
+}
+
+.p-delete {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  border-left: 0.5px solid #dbdbdb;
+  color: #f26e22;
+}
