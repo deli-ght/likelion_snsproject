@@ -82,13 +82,6 @@ button {
   width: 100%;
 }
 
-/* user-search-follow */
-.user-search .btn-follow {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-}
 /* end: user */
 
 /* home */
@@ -204,19 +197,6 @@ button {
   cursor: pointer;
 }
 
-.top-upload-nav .btn-upload {
-  width: 90px;
-  height: 32px;
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  font-size: 14px;
-  border-radius: 32px;
-  background-color: var(--light-orange);
-  border: none;
-  color: var(--white);
-}
-
 .txt-chat-nav {
   position: absolute;
   top: 15px;
@@ -231,6 +211,8 @@ button {
 /* buttons */
 .btn-button {
   background-color: var(--orange);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .btn-button:disabled {
@@ -264,7 +246,25 @@ button {
   width: 56px;
   height: 28px;
   border-radius: 26px;
+  font-size: 12px;
+  font-weight: 400;
 }
+
+/* 업로드 버튼 */
+.btn-upload {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* 팔로우 버튼 */
+.btn-follow {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
 /* end:button */
 
 /* text-Active-input */
