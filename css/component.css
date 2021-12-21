@@ -15,36 +15,36 @@ button {
 
 /* user */
 /* user-search */
-.user-search {
+.wrap-title {
   position: relative;
   --user-search-profile: 50px;
 }
 
-.user-search .img-profile {
+.wrap-title .img-profile {
   width: var(--user-search-profile);
   height: var(--user-search-profile);
   margin-right: 12px;
 }
 
-.user-search .wrap-txt {
+.wrap-title .wrap-txt {
   display: inline-block;
   position: absolute;
   top: 5px;
 }
 
-.user-search .wrap-txt .txt-title,
-.user-search .wrap-txt .txt-nickname {
+.wrap-title .wrap-txt .txt-title,
+.wrap-title .wrap-txt .txt-nickname {
   display: block;
   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 }
 
-.user-search .wrap-txt .txt-title {
+.wrap-title .wrap-txt .txt-title {
   font-size: 14px;
   line-height: 18px;
   margin-bottom: 6px;
 }
 
-.user-search .wrap-txt .txt-nickname {
+.wrap-title .wrap-txt .txt-nickname {
   font-size: 12px;
   line-height: 15px;
   color: #767676;
@@ -52,7 +52,7 @@ button {
 
 
 /* user-search-more */
-.user-search .btn-more {
+.wrap-title .btn-more {
   position: absolute;
   top: 5px;
   right: 0;
@@ -60,12 +60,12 @@ button {
   height: 18px;
 }
 
-.user-search .img-more {
+.wrap-title .img-more {
   width: 100%;
 }
 
 /* user-search-follow */
-.user-search .btn-follow {
+.wrap-title .btn-follow {
   background-color: #f26e22;
   color: #fff;
   position: absolute;
@@ -77,27 +77,27 @@ button {
 
 /* home */
 /* home-post */
-.home-post {
+.article-post {
   --home-post-profile: 42px;
 }
 
-.home-post .img-profile {
+.article-post .img-profile {
   width: var(--home-post-profile);
   height: var(--home-post-profile);
 }
 
-.home-post .wrap-content {
+.article-post .wrap-content {
   margin-top: 16px;
   padding-left: calc(var(--home-post-profile) + 12px);
 }
 
-.home-post .wrap-content .txt-content {
+.article-post .wrap-content .txt-content {
   margin-bottom: 16px;
   font-size: 14px;
   line-height: 18px;
 }
 
-.home-post .wrap-content .ul-btns {
+.article-post .wrap-content .ul-btns {
   margin-top: 16px;
   display: flex;
   color: #767676;
@@ -105,16 +105,16 @@ button {
   line-height: 12px;
 }
 
-.home-post .wrap-content .ul-btns .li-btn {
+.article-post .wrap-content .ul-btns .li-btn {
   margin-right: 16px;
 }
 
-.home-post .wrap-content .ul-btns .li-btn img {
+.article-post .wrap-content .ul-btns .li-btn img {
   width: 20px;
   height: 20px;
 }
 
-.home-post .wrap-content .txt-date {
+.article-post .wrap-content .txt-date {
   margin-top: 16px;
   color: #767676;
   font-size: 10px;
