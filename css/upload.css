@@ -1,0 +1,49 @@
+body {
+  width: 390px;
+}
+
+.top-upload-nav {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#upload {
+  width: 100%;
+  padding: 20px 16px;
+}
+#upload .img-basic-profile {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 42px;
+}
+
+#upload .input-text {
+  position: relative;
+  top: 0;
+  left: 0;
+  font-size: 14px;
+  line-height: 200%;
+  vertical-align: middle;
+  border: transparent;
+}
+
+.input-text::placeholder {
+  color: #c4c4c4;
+  line-height: 17.53px;
+}
+
+.btn-img-upload {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f26e22;
+}
+
+.btn-img-upload .img-img-upload {
+  width: 28px;
+  height: 28px;
+}
