@@ -1,3 +1,7 @@
+let txtAdded = false;
+let imgAdded = false;
+
+const uploadBtn = document.querySelector(".btn-upload");
 document
   .querySelector(".btn-img-upload")
   .addEventListener("click", () => document.querySelector(".inp-imgs").click());
@@ -8,16 +12,31 @@ document.querySelector(".cont-preview").addEventListener("click", function (e) {
       const parent = e.target.parentElement;
       e.currentTarget.removeChild(parent);
     }
+
+    // 이미지가 모두 삭제되면 플래그 변경
+    if (e.currentTarget.children.length === 0) {
+      imgAdded = false;
+
+      // 이미지는 없지만 텍스트는 추가된 경우 업로드 버튼 활성화
+      if (!txtAdded) {
+        uploadBtn.disabled = true;
+      }
+    }
   }
 });
 
 function previewFiles() {
   const preview = document.querySelector(".cont-preview");
-  const files = document.querySelector(".inp-imgs").files;
+  const inpEl = document.querySelector(".inp-imgs");
+  const files = inpEl.files;
 
   if (files) {
     [].forEach.call(files, readAndPreview);
-    obj.value = "";
+    inpEl.value = "";
+
+    // 추가한 이미지가 있으므로 업로드 버튼 활성화
+    imgAdded = true;
+    uploadBtn.disabled = false;
   }
 
   function readAndPreview(file) {
@@ -54,6 +73,19 @@ function fnChkByte(obj) {
   let currByte = 0,
     endIdx = 0;
 
+  // 입력한 글이 없으면 업로드 버튼 활성화 되지 못함.
+  if (str.length > 0) {
+    txtAdded = true;
+    uploadBtn.disabled = false;
+  } else {
+    txtAdded = false;
+
+    // 텍스트는 없지만 이미지는 추가된 경우 업로드 버튼 활성화
+    if (!imgAdded) {
+      uploadBtn.disabled = true;
+    }
+  }
+
   for (let i = 0; i < str.length; i++) {
     if (escape(str.charAt(i)) > 4) {
       currByte += 2;
@@ -68,7 +100,6 @@ function fnChkByte(obj) {
   }
 
   if (endIdx === 0) {
-    console.log(str);
     obj.innerText = str;
   } else {
     alert(`메세지는 최대 ${maxByte}바이트까지 입력 가능합니다.`);
