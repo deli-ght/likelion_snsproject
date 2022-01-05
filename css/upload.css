@@ -37,7 +37,8 @@ body {
 #upload .input-txt {
   box-sizing: border-box;
   display: inline-block;
-  width: 304px;
+  width: 316px;
+  padding-right: 12px;
   min-height: 50px;
   max-height: 300px;
   overflow-y: scroll;
