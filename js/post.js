@@ -82,7 +82,7 @@ const setReplyElements = (obj) => {
     usernameEl.classList.add("txt-nickname");
     usernameEl.textContent = comt.author.username;
     afterTxt.classList.add("txt-after");
-    afterTxt.textContent = comt.createdAt;
+    afterTxt.textContent = calcAfterTime(comt.createdAt);
     wrapTxtEl.append(usernameEl, afterTxt);
 
     // 더보기 버튼
@@ -99,6 +99,26 @@ const setReplyElements = (obj) => {
     li.appendChild(div);
     replyUl.appendChild(li);
   });
+};
+
+const calcAfterTime = (createdDate) => {
+  const minute = 1000 * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+  const year = day * 365;
+
+  const now = new Date();
+  const diffMs = now.getTime() - new Date(createdDate).getTime();
+
+  if (diffMs >= minute && diffMs < hour) {
+    return `${parseInt(diffMs / minute)}분 전`;
+  } else if (diffMs >= hour && diffMs < day) {
+    return `${parseInt(diffMs / hour)}시간 전`;
+  } else if (diffMs >= day && diffMs < year) {
+    return `${parseInt(diffMs / day)}일 전`;
+  } else {
+    return `${parseInt(diffMs / year)}년 전`;
+  }
 };
 
 const getReply = async (postId) => {
