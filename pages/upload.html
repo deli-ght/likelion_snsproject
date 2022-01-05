@@ -19,12 +19,19 @@
 
   <section id="upload">
     <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
-    <input type="text" class="input-text" placeholder="게시글 입력하기..." />
+    <div class="cont-content">
+      <textarea class="input-txt" placeholder="게시글 입력하기.." onkeyup="fnChkByte(this);resize(this);"></textarea>
+      <div class="cont-preview"></div>
+    </div>
   </section>
 
   <button type="button" class="btn-img-upload">
     <img src="../src/icon-image.png" alt="이미지 업로드" class='img-img-upload'>
+    <input type="file" class="inp-imgs" onChange="previewFiles();" accept="image/*" multiple>
   </button>
+
+  <script src=" ../js/upload.js">
+  </script>
 </body>
 
 </html>

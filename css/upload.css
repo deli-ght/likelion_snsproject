@@ -7,30 +7,77 @@ body {
 }
 
 #upload {
-  width: 100%;
-  padding: 20px 16px;
+  position: relative;
+  padding: 20px 16px 0 16px;
 }
+
+#upload::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 #upload .img-basic-profile {
   position: relative;
   top: 0;
   left: 0;
+  display: block;
   width: 42px;
   height: 42px;
+  float: left;
 }
 
-#upload .input-text {
-  position: relative;
-  top: 0;
-  left: 0;
+#upload .cont-content {
+  max-width: 304px;
+  box-sizing: border-box;
+  display: block;
+  float: right;
+}
+
+#upload .input-txt {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 304px;
+  min-height: 50px;
+  max-height: 300px;
+  overflow-y: scroll;
+  resize: none;
   font-size: 14px;
-  line-height: 200%;
-  vertical-align: middle;
+  line-height: 18px;
   border: transparent;
+  background-color: transparent;
 }
 
-.input-text::placeholder {
-  color: #c4c4c4;
-  line-height: 17.53px;
+.input-txt::-webkit-scrollbar {
+  display: none;
+}
+
+.input-txt:focus {
+  outline: none;
+}
+
+.cont-preview {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-y: scroll;
+}
+
+.cont-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.cont-preview .img-preview:only-child {
+  object-fit: cover;
+  width: 304px;
+  height: 228px;
+}
+.cont-preview .img-preview {
+  object-fit: cover;
+  border-radius: 10%;
+  padding-right: 8px;
+  width: 168px;
+  height: 126px;
 }
 
 .btn-img-upload {
@@ -46,4 +93,8 @@ body {
 .btn-img-upload .img-img-upload {
   width: 28px;
   height: 28px;
+}
+
+.btn-img-upload .inp-imgs {
+  display: none;
 }
