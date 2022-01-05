@@ -2,14 +2,29 @@ document
   .querySelector(".btn-img-upload")
   .addEventListener("click", () => document.querySelector(".inp-imgs").click());
 
+document.querySelector(".cont-preview").addEventListener("click", function (e) {
+  if (e.target.tagName === "BUTTON") {
+    if (confirm("사진을 삭제하시겠습니까?")) {
+      const parent = e.target.parentElement;
+      e.currentTarget.removeChild(parent);
+    }
+  }
+});
+
 function previewFiles() {
-  var preview = document.querySelector(".cont-preview");
-  var files = document.querySelector(".inp-imgs").files;
+  const preview = document.querySelector(".cont-preview");
+  const files = document.querySelector(".inp-imgs").files;
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+    obj.value = "";
+  }
 
   function readAndPreview(file) {
-    // `file.name` 형태의 확장자 규칙에 주의하세요
     if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-      var reader = new FileReader();
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
 
       reader.addEventListener(
         "load",
@@ -25,17 +40,11 @@ function previewFiles() {
           container.appendChild(img);
           container.appendChild(delBtn);
 
-          preview.appendChild(container);
+          preview.insertBefore(container, preview.firstChild);
         },
         false
       );
-
-      reader.readAsDataURL(file);
     }
-  }
-
-  if (files) {
-    [].forEach.call(files, readAndPreview);
   }
 }
 
