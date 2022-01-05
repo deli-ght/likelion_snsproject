@@ -71,17 +71,28 @@ body {
   height: 228px;
 }
 .cont-preview .cont-img {
+  position: relative;
   display: inline-block;
-  padding-right: 8px;
+  margin-right: 8px;
   width: 168px;
   height: 126px;
 }
 
 .cont-preview .cont-img .img-preview {
-  border-radius: 10%;
+  border-radius: 10px;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.cont-preview .cont-img button {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: url(../src/icon-close.png) no-repeat;
+  background-size: cover;
 }
 
 .btn-img-upload {

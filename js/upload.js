@@ -14,10 +14,18 @@ function previewFiles() {
       reader.addEventListener(
         "load",
         function () {
+          const container = document.createElement("div");
           const img = document.createElement("img");
+          const delBtn = document.createElement("button");
+
           img.classList.add("img-preview");
           img.src = this.result;
-          preview.appendChild(img);
+
+          container.classList.add("cont-img");
+          container.appendChild(img);
+          container.appendChild(delBtn);
+
+          preview.appendChild(container);
         },
         false
       );
