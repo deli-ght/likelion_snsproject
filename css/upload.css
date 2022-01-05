@@ -8,7 +8,7 @@ body {
 
 #upload {
   position: relative;
-  padding: 20px 16px 0 16px;
+  padding: 20px 0 0 16px;
 }
 
 #upload::after {
@@ -28,10 +28,10 @@ body {
 }
 
 #upload .cont-content {
-  max-width: 304px;
   box-sizing: border-box;
   display: block;
   float: right;
+  max-width: 316px;
 }
 
 #upload .input-txt {
@@ -58,26 +58,30 @@ body {
 
 .cont-preview {
   margin-top: 12px;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-y: scroll;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
 
 .cont-preview::-webkit-scrollbar {
   display: none;
 }
 
-.cont-preview .img-preview:only-child {
-  object-fit: cover;
+.cont-preview .cont-img:only-child {
   width: 304px;
   height: 228px;
 }
-.cont-preview .img-preview {
-  object-fit: cover;
-  border-radius: 10%;
+.cont-preview .cont-img {
+  display: inline-block;
   padding-right: 8px;
   width: 168px;
   height: 126px;
+}
+
+.cont-preview .cont-img .img-preview {
+  border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .btn-img-upload {
