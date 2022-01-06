@@ -130,7 +130,7 @@ const setReplyElements = (obj) => {
 
     div.append(img, wrapTxtEl, moreBtn, comtTxt);
     li.appendChild(div);
-    replyUl.prepend(li);
+    replyUl.append(li);
   });
 };
 
