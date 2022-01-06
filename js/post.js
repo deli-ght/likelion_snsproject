@@ -55,7 +55,7 @@ const setPostElements = (obj) => {
 
   //post
   homePostCont.querySelector(".txt-content").textContent = obj.post.content;
-  homePostCont.querySelector(".img-content").src = "../src/img-post-sample.png";
+  homePostCont.querySelector(".img-preview").src = "../src/img-post-sample.png";
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
   homePostCont.querySelector(".txt-comments").textContent =
     obj.post.commentCount;
@@ -68,7 +68,7 @@ const setPostElements = (obj) => {
 
   // 본문 이미지
   getImageUrl(imgArr[0])
-    .then((url) => (homePostCont.querySelector(".img-content").src = url))
+    .then((url) => (homePostCont.querySelector(".img-preview").src = url))
     .catch(console.error);
 };
 

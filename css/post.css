@@ -2,16 +2,14 @@ body {
   width: 390px;
 }
 .top-basic-nav,
-.home-post,
 .cont-reply {
   border-bottom: 1px solid #dbdbdb;
 }
 
-.home-post {
-  padding: 20px 12px;
-}
-
 .cont-reply {
+  border-top: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  padding: 0 16px;
   height: 236px;
 }
 
@@ -27,47 +25,48 @@ body {
 }
 
 .cont-reply li {
-  padding: 20px 16px 0 16px;
+  margin: 16px 0;
 }
-.user-reply {
+.cont-reply li .user-reply {
   position: relative;
   --user-reply-profile: 36px;
 }
 
-.user-reply .img-profile {
+.cont-reply li .user-reply .img-profile {
   width: var(--user-reply-profile);
   height: var(--user-reply-profile);
   margin-right: 12px;
+  border-radius: 50%;
 }
 
-.user-reply .wrap-txt {
+.cont-reply li .user-reply .wrap-txt {
   display: inline;
   position: absolute;
   top: 6px;
 }
 
-.user-reply .wrap-txt .txt-after,
-.user-reply .wrap-txt .txt-nickname {
+.cont-reply li .user-reply .wrap-txt .txt-after,
+.cont-reply li .user-reply .wrap-txt .txt-nickname {
   display: inline-block;
   line-height: 18px;
   vertical-align: middle;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
-.user-reply .wrap-txt .txt-nickname {
+.cont-reply li .user-reply .wrap-txt .txt-nickname {
   font-size: 14px;
 }
 
-.user-reply .wrap-txt .txt-after {
+.cont-reply li .user-reply .wrap-txt .txt-after {
   font-size: 10px;
   color: var(--gray);
 }
 
-.user-reply .wrap-txt .txt-after::before {
+.cont-reply li .user-reply .wrap-txt .txt-after::before {
   content: "· ";
 }
 
-.user-reply .btn-more {
+.cont-reply li .user-reply .btn-more {
   position: absolute;
   top: 5px;
   right: 0;
@@ -77,11 +76,11 @@ body {
   background-size: cover;
 }
 
-.user-reply .img-more {
+.cont-reply li .user-reply .img-more {
   width: 100%;
 }
 
-.user-reply .txt-reply {
+.cont-reply li .user-reply .txt-reply {
   padding: 4px 4px 0 48px;
   font-size: 14px;
   line-height: 18px;
