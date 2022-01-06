@@ -1,0 +1,20 @@
+main .wrap-txt {
+  display: block;
+  width: calc(100% - 62px);
+}
+
+main .chat-context {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+main .txt-time {
+  font-size: 10px;
+  color: var(--light-gray);
+}
+
+footer {
+  width: 100%;
+}
