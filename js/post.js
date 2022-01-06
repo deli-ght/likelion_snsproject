@@ -149,8 +149,10 @@ const calcAfterTime = (createdDate) => {
     return `${parseInt(diffMs / hour)}시간 전`;
   } else if (diffMs >= day && diffMs < year) {
     return `${parseInt(diffMs / day)}일 전`;
-  } else {
+  } else if (diffMs >= year) {
     return `${parseInt(diffMs / year)}년 전`;
+  } else {
+    return `0분 전`;
   }
 };
 
