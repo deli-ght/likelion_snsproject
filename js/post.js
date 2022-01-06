@@ -1,9 +1,9 @@
 //refresh-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDEzNzg2ODQsImV4cCI6MTY0MjU4ODI4NH0.oX1QmdQG36F7NqX7CgJGIwfOhzLCXhgSMMqxtyIbciE
-//token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
+//token(ash__h): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
+//token(ash2): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
 const TEST_TOKEN =
   "Bearer " +
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDEzNzg2ODQsImV4cCI6MTY0MjU4ODI4NH0.oX1QmdQG36F7NqX7CgJGIwfOhzLCXhgSMMqxtyIbciE";
-("");
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
 const TEST_POST_ID = "61d576a66b8216fc566876d2";
 const URL = "http://146.56.183.55:5050";
 
@@ -22,17 +22,6 @@ const getPost = async (postId) => {
 
     // 포스트 정보 가져오기
     const postObj = await res.json();
-    // console.log(postObj);
-    // console.log(postObj.post.author.accountname);
-    // console.log(postObj.post.author.username);
-    // console.log(postObj.post.author.image);
-    // console.log(postObj.post.content);
-    // console.log(postObj.post.image);
-    // console.log(postObj.post.hearted);
-    // console.log(postObj.post.heartCount);
-    // console.log(postObj.post.commentCount);
-    // console.log(postObj.post.createdAt);
-
     setPostElements(postObj);
 
     // 댓글 가져오기
@@ -41,27 +30,51 @@ const getPost = async (postId) => {
     console.error;
   }
 };
+const getImageUrl = (filename) => {
+  return fetch(`${URL}/${filename}`, {
+    method: "GET",
+  }).then((res) => res.url);
+};
 
 const setPostElements = (obj) => {
+  const imgArr = obj.post.image.split(",");
+
   const homePostCont = document.querySelector(".home-post");
   // author
-  homePostCont.querySelector(".img-profile").src = obj.post.author.image;
+  homePostCont.querySelector(".img-profile").src = "../src/basic-profile.png"; // 테스트용
+  // homePostCont.querySelector(".img-profile").src = getImage(
+  //   obj.post.author.image
+  // );
+
   homePostCont.querySelector(".txt-title").textContent =
     obj.post.author.username;
-  homePostCont.querySelector(".txt-nickname").textContent =
-    obj.post.author.accountname;
+  homePostCont.querySelector(
+    ".txt-nickname"
+  ).textContent = `@ ${obj.post.author.accountname}`;
 
   //post
   homePostCont.querySelector(".txt-content").textContent = obj.post.content;
+  homePostCont.querySelector(".img-content").src = "../src/img-post-sample.png";
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
   homePostCont.querySelector(".txt-comments").textContent =
     obj.post.commentCount;
+
+  // 프로필이미지 테스트용 1641444666211.png
+  // getImage(obj.post.author.image)
+  getImageUrl("1641444666211.png")
+    .then((url) => (homePostCont.querySelector(".img-profile").src = url))
+    .catch(console.error);
+
+  // 본문 이미지
+  getImageUrl(imgArr[0])
+    .then((url) => (homePostCont.querySelector(".img-content").src = url))
+    .catch(console.error);
 };
 
 const setReplyElements = (obj) => {
   const replyUl = document.querySelector(".cont-reply ul");
 
-  obj.comment.forEach((comt) => {
+  obj.comments.forEach((comt) => {
     const li = document.createElement("li");
     const div = document.createElement("div");
     const img = document.createElement("img");
@@ -70,8 +83,11 @@ const setReplyElements = (obj) => {
 
     // 프로필 이미지
     // img.src = comt.author.image;
-    img.src = "../src/basic-profile.png"; // 테스트용
+    // img.src = "../src/basic-profile.png"; // 테스트용
     img.classList.add("img-profile");
+    getImageUrl("1641444666211.png")
+      .then((url) => (img.src = url))
+      .catch(console.error);
 
     // 이름
     const wrapTxtEl = document.createElement("div");
@@ -97,7 +113,7 @@ const setReplyElements = (obj) => {
 
     div.append(img, wrapTxtEl, moreBtn, comtTxt);
     li.appendChild(div);
-    replyUl.appendChild(li);
+    replyUl.prepend(li);
   });
 };
 
@@ -130,39 +146,10 @@ const getReply = async (postId) => {
     });
 
     const replyObj = await res.json();
-    console.log(replyObj);
-
     setReplyElements(replyObj);
-
-    // replyObj.comments.forEach((reply) => {
-    //   console.log(reply.author.accountname);
-    //   console.log(reply.author.image);
-    //   console.log(reply.content);
-    //   console.log(reply.createdAt);
-    // });
   } catch (err) {
     console.error;
   }
 };
 
-// getPost(TEST_POST_ID);
-setReplyElements({
-  comment: [
-    {
-      id: "1",
-      content: "코멘트 내용입니다.",
-      createdAt: "2021-12-20T06:10:26.803Z",
-      author: {
-        _id: "작성자 id",
-        username: "user",
-        accountname: "user_account",
-        intro: "1",
-        image: "1",
-        following: [],
-        follower: [],
-        followerCount: 0,
-        followingCount: 0,
-      },
-    },
-  ],
-});
+getPost(TEST_POST_ID);

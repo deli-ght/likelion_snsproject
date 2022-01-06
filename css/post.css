@@ -73,6 +73,8 @@ body {
   right: 0;
   width: 18px;
   height: 18px;
+  background: url(../src/s-icon-more-vertical.png) no-repeat;
+  background-size: cover;
 }
 
 .user-reply .img-more {
