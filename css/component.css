@@ -21,7 +21,7 @@
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
 body {
-  background-color: rgb(194, 238, 245);
+  /* background-color: rgb(194, 238, 245); */
 }
 
 button {
@@ -413,7 +413,7 @@ button {
   line-height: 17.53px;
 }
 
-.p-submit {
+/* .p-submit {
   position: absolute;
   top: 23px;
   left: 348px;
@@ -424,8 +424,25 @@ button {
   line-height: 17.53px;
   color: #c4c4c4;
   cursor: pointer;
+} */
+
+/* ash 수정: p-submit -> btn-submit*/
+.btn-submit {
+  position: absolute;
+  top: 23px;
+  left: 348px;
+  width: 30px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.53px;
+  color: #c4c4c4;
 }
 
+/* ash 추가 */
+.btn-submit:hover {
+  color: var(--orange);
+}
 /* delete alert */
 #alert {
   border-radius: 4px;

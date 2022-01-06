@@ -4,7 +4,8 @@
 const TEST_TOKEN =
   "Bearer " +
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
-const TEST_POST_ID = "61d576a66b8216fc566876d2";
+// const TEST_POST_ID = "61d576a66b8216fc566876d2";
+const TEST_POST_ID = "61d6df2b685c75821c469db4";
 const URL = "http://146.56.183.55:5050";
 
 const HEADER = new Headers({
@@ -71,10 +72,26 @@ const setPostElements = (obj) => {
     .catch(console.error);
 };
 
+const removeAllChildren = (parent) => {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+};
+
+const sortDescByDate = (obj) => {
+  return obj.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+};
+
 const setReplyElements = (obj) => {
+  console.log(obj);
   const replyUl = document.querySelector(".cont-reply ul");
 
-  obj.comments.forEach((comt) => {
+  // 기존에 있던 댓글을 모두 없앰
+  removeAllChildren(replyUl);
+
+  obj.forEach((comt) => {
     const li = document.createElement("li");
     const div = document.createElement("div");
     const img = document.createElement("img");
@@ -146,10 +163,44 @@ const getReply = async (postId) => {
     });
 
     const replyObj = await res.json();
-    setReplyElements(replyObj);
+    const sortedReplyObj = sortDescByDate(replyObj.comments);
+    setReplyElements(sortedReplyObj);
   } catch (err) {
     console.error;
   }
 };
 
+const postComment = async (txtComment) => {
+  try {
+    const res = await fetch(`${URL}/post/${TEST_POST_ID}/comments`, {
+      method: "POST",
+      headers: HEADER,
+      body: JSON.stringify({
+        comment: {
+          content: txtComment,
+        },
+      }),
+    });
+
+    getReply(TEST_POST_ID);
+
+    // const data = await res.json();
+    // console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 getPost(TEST_POST_ID);
+
+// Variables
+const submitBtn = document.querySelector(".btn-submit");
+
+// Handlers
+const submitBtnClickHandler = () => {
+  const txtComment = document.querySelector("#comment .input-text");
+  postComment(txtComment.value);
+};
+
+// EventListeners
+submitBtn.addEventListener("click", submitBtnClickHandler);
