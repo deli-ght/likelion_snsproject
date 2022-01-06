@@ -1,7 +1,93 @@
+// ash2
+const TEST_TOKEN =
+  "Bearer " +
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM";
+const URL = "http://146.56.183.55:5050";
+
+const IMAGE_POST_HEADER = new Headers({
+  "Content-type": "multipart/form-data",
+});
+
+const POST_HEADER = new Headers({
+  Authorization: TEST_TOKEN,
+  "Content-type": "application/json",
+});
+
+const dataTransfer = new DataTransfer();
+
 let txtAdded = false;
 let imgAdded = false;
 
 const uploadBtn = document.querySelector(".btn-upload");
+
+const uploadImg = async (formData) => {
+  try {
+    // Display the key/value pairs
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+    const response = await fetch(URL + "/image/uploadfiles", {
+      method: "POST",
+      headers: IMAGE_POST_HEADER,
+      body: formData,
+    });
+    const data = await response.json();
+    console.log("image post res", data);
+
+    // for(let i of data) {
+    //     name.push(i["filename"])
+    // }
+    // if(name.length > 1) {
+    //     return name.join(",")
+    // } else {
+    //     return name[0];
+    // }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const uploadPost = async (contentParam) => {
+  try {
+    const response = await fetch(URL + "/post", {
+      method: "POST",
+      headers: POST_HEADER,
+      body: JSON.stringify({
+        post: {
+          content: contentParam,
+          image: "",
+        },
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    // for(let i of data) {
+    //     name.push(i["filename"])
+    // }
+    // if(name.length > 1) {
+    //     return name.join(",")
+    // } else {
+    //     return name[0];
+    // }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+uploadBtn.addEventListener("click", () => {
+  // 파일 포스트 테스트용
+  let formData = new FormData();
+  [].forEach.call(dataTransfer.files, (file) => {
+    formData.append("image", file, file.name);
+  });
+  uploadImg(formData);
+
+  // const txtContent = document.querySelector(".input-txt");
+  // uploadPost(txtContent.textContent);
+});
+
 document
   .querySelector(".btn-img-upload")
   .addEventListener("click", () => document.querySelector(".inp-imgs").click());
@@ -10,6 +96,7 @@ document.querySelector(".cont-preview").addEventListener("click", function (e) {
   if (e.target.tagName === "BUTTON") {
     if (confirm("사진을 삭제하시겠습니까?")) {
       const parent = e.target.parentElement;
+      removeImgOnDataTransfer(parent.firstChild.getAttribute("filename"));
       e.currentTarget.removeChild(parent);
     }
 
@@ -25,14 +112,58 @@ document.querySelector(".cont-preview").addEventListener("click", function (e) {
   }
 });
 
+function removeImgOnDataTransfer(filename) {
+  // remove(index: number): void;
+  // [].forEach.call(files, readAndPreview);
+
+  [].forEach.call(dataTransfer.files, (file, index) => {
+    if (file.name === filename) dataTransfer.items.remove(index);
+  });
+}
+
+function isValidFile(insertFiles) {
+  // 지금 추가할 파일이 이미 있는 파일인지 확인한다.
+  // 이미 있는 파일은 dataTransfer.files 에 있다.
+  // 현재 추가하려는 파일의 이름과
+  // dataTransfer에 있는 파일의 이름이 같으면
+  // 둘은 같은 파일로 가정하고
+  // 같은 파일을 또 추가하려하면 알림 없이 추가 하지 않는다.
+  const tempDataTransfer = new DataTransfer();
+  for (const file of insertFiles) {
+    let canSave = true;
+    for (const existFile of dataTransfer.files) {
+      if (file.name === existFile.name) {
+        canSave = false;
+        break;
+      }
+    }
+    if (
+      canSave &&
+      dataTransfer.files.length + tempDataTransfer.files.length < 3
+    ) {
+      tempDataTransfer.items.add(file);
+      // dataTransfer.items.add(file);
+    }
+  }
+
+  if (tempDataTransfer.files)
+    [...tempDataTransfer.files].forEach((file) => dataTransfer.items.add(file));
+  return tempDataTransfer.files;
+}
+
 function previewFiles() {
   const preview = document.querySelector(".cont-preview");
   const inpEl = document.querySelector(".inp-imgs");
-  const files = inpEl.files;
+
+  if (dataTransfer.files.length + inpEl.files.length > 3) {
+    alert("사진은 최대 3장 까지 추가 할 수 있습니다.");
+    return;
+  }
+
+  const files = isValidFile(inpEl.files);
 
   if (files) {
     [].forEach.call(files, readAndPreview);
-    inpEl.value = "";
 
     // 추가한 이미지가 있으므로 업로드 버튼 활성화
     imgAdded = true;
@@ -54,6 +185,7 @@ function previewFiles() {
 
           img.classList.add("img-preview");
           img.src = this.result;
+          img.setAttribute("filename", file.name);
 
           container.classList.add("cont-img");
           container.appendChild(img);
