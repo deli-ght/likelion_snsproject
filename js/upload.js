@@ -4,10 +4,6 @@ const TEST_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM";
 const URL = "http://146.56.183.55:5050";
 
-const IMAGE_POST_HEADER = new Headers({
-  "Content-type": "multipart/form-data",
-});
-
 const POST_HEADER = new Headers({
   Authorization: TEST_TOKEN,
   "Content-type": "application/json",
@@ -20,72 +16,60 @@ let imgAdded = false;
 
 const uploadBtn = document.querySelector(".btn-upload");
 
-const uploadImg = async (formData) => {
+const uploadImgs = async (formData) => {
   try {
-    // Display the key/value pairs
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
-
-    const response = await fetch(URL + "/image/uploadfiles", {
+    const response = await fetch(`${URL}/image/uploadfiles`, {
       method: "POST",
-      headers: IMAGE_POST_HEADER,
       body: formData,
     });
-    const data = await response.json();
-    console.log("image post res", data);
 
-    // for(let i of data) {
-    //     name.push(i["filename"])
-    // }
-    // if(name.length > 1) {
-    //     return name.join(",")
-    // } else {
-    //     return name[0];
-    // }
+    const data = await response.json();
+    const filenameArr = [];
+
+    for(let i of data) {
+        filenameArr.push(i["filename"])
+    }
+
+    if(filenameArr.length > 1) {
+        return filenameArr.join(",")
+    } else {
+        return filenameArr[0];
+    }
+
   } catch (err) {
     console.error(err);
   }
 };
 
-const uploadPost = async (contentParam) => {
+const uploadPost = async (txtContent, filename) => {
   try {
-    const response = await fetch(URL + "/post", {
+    const response = await fetch(`${URL}/post`, {
       method: "POST",
       headers: POST_HEADER,
       body: JSON.stringify({
         post: {
-          content: contentParam,
-          image: "",
+          content: txtContent,
+          image: filename,
         },
       }),
     });
 
     const data = await response.json();
     console.log(data);
-    // for(let i of data) {
-    //     name.push(i["filename"])
-    // }
-    // if(name.length > 1) {
-    //     return name.join(",")
-    // } else {
-    //     return name[0];
-    // }
+    
   } catch (err) {
     console.error(err);
   }
 };
 
 uploadBtn.addEventListener("click", () => {
-  // 파일 포스트 테스트용
+  const txtContent = document.querySelector(".input-txt");
   let formData = new FormData();
   [].forEach.call(dataTransfer.files, (file) => {
-    formData.append("image", file, file.name);
+    formData.append("image", file);
   });
-  uploadImg(formData);
-
-  // const txtContent = document.querySelector(".input-txt");
-  // uploadPost(txtContent.textContent);
+  
+  uploadImgs(formData).then(filename => uploadPost(txtContent.textContent, filename));
 });
 
 document
