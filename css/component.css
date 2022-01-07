@@ -160,6 +160,11 @@ button {
   background-size: cover;
 }
 
+.home-post .wrap-content .ul-btns .li-btn .btn-likes.on {
+  background: url(../src/icon-heart-active.png);
+  background-size: cover;
+}
+
 .home-post .wrap-content .ul-btns .li-btn .btn-comments {
   background: url(../src/icon-message-circle.png);
   background-size: cover;
