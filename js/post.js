@@ -69,6 +69,9 @@ const setPostElements = (obj) => {
   //post
   if (obj.post.content)
     homePostCont.querySelector(".txt-content").textContent = obj.post.content;
+
+  if (obj.post.hearted)
+    homePostCont.querySelector(".btn-likes").classList.add("on");
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
   homePostCont.querySelector(".txt-comments").textContent =
     obj.post.commentCount;
@@ -200,6 +203,8 @@ const getReply = async (postId) => {
       ? (sortedReplyObj = sortDescByDate(replyObj.comments))
       : (sortedReplyObj = replyObj.comments);
 
+    document.querySelector(".txt-comments").textContent =
+      replyObj.comments.length;
     setReplyElements(sortedReplyObj);
   } catch (err) {
     console.error;
@@ -227,16 +232,53 @@ const postComment = async (txtComment) => {
   }
 };
 
-getPost(TEST_POST_ID);
+const postLike = async (postId, isLike) => {
+  let action, reqMethod;
+  if (isLike) {
+    // like
+    action = "heart";
+    reqMethod = "POST";
+  } else {
+    // unlike
+    action = "unheart";
+    reqMethod = "DELETE";
+  }
+  try {
+    const res = await fetch(`${URL}/post/${postId}/${action}`, {
+      method: reqMethod,
+      headers: HEADER,
+    });
+
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // Variables
 const submitBtn = document.querySelector(".btn-submit");
+const likeBtn = document.querySelector(".btn-likes");
 
 // Handlers
 const submitBtnClickHandler = () => {
   const txtComment = document.querySelector("#comment .input-text");
+
   postComment(txtComment.value);
+  txtComment.value = "";
+};
+const likeBtnClickHandler = () => {
+  const isLike = likeBtn.classList.contains("on") ? false : true;
+  postLike(TEST_POST_ID, isLike)
+    .then((data) => {
+      likeBtn.classList.toggle("on");
+      document.querySelector(".txt-likes").textContent = data.post.heartCount;
+    })
+    .catch(console.error);
 };
 
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
+likeBtn.addEventListener("click", likeBtnClickHandler);
+
+// init
+getPost(TEST_POST_ID);
