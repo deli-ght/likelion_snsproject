@@ -5,7 +5,9 @@ const TEST_TOKEN =
   "Bearer " +
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
 // const TEST_POST_ID = "61d576a66b8216fc566876d2";
-const TEST_POST_ID = "61d6df2b685c75821c469db4";
+// const TEST_POST_ID = "61d6df2b685c75821c469db4"; // 이미지 1장, 댓글 있음
+const TEST_POST_ID = "61d7e729685c75821c46ab35"; // 이미지 2장, 댓글 없음
+
 const URL = "http://146.56.183.55:5050";
 
 const HEADER = new Headers({
@@ -55,20 +57,31 @@ const setPostElements = (obj) => {
 
   //post
   homePostCont.querySelector(".txt-content").textContent = obj.post.content;
-  homePostCont.querySelector(".img-preview").src = "../src/img-post-sample.png";
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
   homePostCont.querySelector(".txt-comments").textContent =
     obj.post.commentCount;
+
+  // 콘텐츠 이미지 생성하기
+  const imgsContainer = homePostCont.querySelector(".cont-preview");
+  imgArr.forEach((filename) => {
+    const imgContainer = document.createElement("div");
+    const img = document.createElement("img");
+
+    imgContainer.classList.add("cont-img");
+    img.classList.add("img-preview");
+    // 본문 이미지
+    getImageUrl(filename)
+      .then((url) => (img.src = url))
+      .catch(console.error);
+
+    imgContainer.appendChild(img);
+    imgsContainer.appendChild(imgContainer);
+  });
 
   // 프로필이미지 테스트용 1641444666211.png
   // getImage(obj.post.author.image)
   getImageUrl("1641444666211.png")
     .then((url) => (homePostCont.querySelector(".img-profile").src = url))
-    .catch(console.error);
-
-  // 본문 이미지
-  getImageUrl(imgArr[0])
-    .then((url) => (homePostCont.querySelector(".img-preview").src = url))
     .catch(console.error);
 };
 
