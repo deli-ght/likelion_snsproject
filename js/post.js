@@ -6,7 +6,7 @@ const TEST_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
 // const TEST_POST_ID = "61d576a66b8216fc566876d2";
 // const TEST_POST_ID = "61d6df2b685c75821c469db4"; // 이미지 1장, 댓글 있음
-const TEST_POST_ID = "61d7e729685c75821c46ab35"; // 이미지 2장, 댓글 없음
+const TEST_POST_ID = "61d7f550685c75821c46aca5"; // 이미지 2장, 댓글 없음
 
 const URL = "http://146.56.183.55:5050";
 
@@ -98,7 +98,6 @@ const sortDescByDate = (obj) => {
 };
 
 const setReplyElements = (obj) => {
-  console.log(obj);
   const replyUl = document.querySelector(".cont-reply ul");
 
   // 기존에 있던 댓글을 모두 없앰

@@ -16,50 +16,27 @@ let imgAdded = false;
 
 const uploadBtn = document.querySelector(".btn-upload");
 
-const uploadImgs = async (formData) => {
-  try {
-    const response = await fetch(`${URL}/image/uploadfiles`, {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await response.json();
-    const filenameArr = [];
-
-    for(let i of data) {
-        filenameArr.push(i["filename"])
-    }
-
-    if(filenameArr.length > 1) {
-        return filenameArr.join(",")
-    } else {
-        return filenameArr[0];
-    }
-
-  } catch (err) {
-    console.error(err);
-  }
+const uploadImgs = (formData) => {
+  return fetch(`${URL}/image/uploadfiles`, {
+    method: "POST",
+    body: formData,
+  });
 };
 
 const uploadPost = async (txtContent, filename) => {
-  try {
-    const response = await fetch(`${URL}/post`, {
-      method: "POST",
-      headers: POST_HEADER,
-      body: JSON.stringify({
-        post: {
-          content: txtContent,
-          image: filename,
-        },
-      }),
-    });
+  const response = await fetch(`${URL}/post`, {
+    method: "POST",
+    headers: POST_HEADER,
+    body: JSON.stringify({
+      post: {
+        content: txtContent,
+        image: filename,
+      },
+    }),
+  });
 
-    const data = await response.json();
-    console.log(data);
-    
-  } catch (err) {
-    console.error(err);
-  }
+  const data = await response.json();
+  console.log(data);
 };
 
 uploadBtn.addEventListener("click", () => {
@@ -68,8 +45,24 @@ uploadBtn.addEventListener("click", () => {
   [].forEach.call(dataTransfer.files, (file) => {
     formData.append("image", file);
   });
-  
-  uploadImgs(formData).then(filename => uploadPost(txtContent.textContent, filename));
+
+  uploadImgs(formData)
+    .then((res) => res.json())
+    .then((data) => {
+      const filenameArr = [];
+
+      Array.from(data).forEach((imgInfo) => {
+        filenameArr.push(imgInfo.filename);
+      });
+
+      if (filenameArr.length > 1) {
+        return filenameArr.join();
+      } else {
+        return filenameArr[0];
+      }
+    })
+    .then((filename) => uploadPost(txtContent.textContent, filename))
+    .catch(console.error);
 });
 
 document
