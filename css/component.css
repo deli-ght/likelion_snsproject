@@ -112,15 +112,18 @@ button {
   font-size: 14px;
   line-height: 18px;
 }
-.home-post .wrap-content .cont-preview {
+
+.cont-preview {
+  width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
 }
 
-.home-post .wrap-content .cont-preview::-webkit-scrollbar {
+.cont-preview::-webkit-scrollbar {
   display: none;
 }
-.home-post .wrap-content .cont-preview .cont-img {
+
+.cont-preview .cont-img {
   position: relative;
   display: inline-block;
   width: 304px;

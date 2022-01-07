@@ -1,5 +1,5 @@
 body {
-  width: 390px;
+  /* width: 390px; */
 }
 
 .top-upload-nav {
@@ -7,14 +7,11 @@ body {
 }
 
 #upload {
+  box-sizing: border-box;
   position: relative;
+  display: flex;
+  height: 100%;
   padding: 20px 0 0 16px;
-}
-
-#upload::after {
-  content: "";
-  display: block;
-  clear: both;
 }
 
 #upload .img-basic-profile {
@@ -24,21 +21,20 @@ body {
   display: block;
   width: 42px;
   height: 42px;
-  float: left;
+  margin-right: 12px;
 }
 
 #upload .cont-content {
-  box-sizing: border-box;
-  display: block;
-  float: right;
-  max-width: 316px;
+  flex-grow: 1;
+  min-width: 304px;
 }
 
 #upload .input-txt {
   box-sizing: border-box;
-  display: inline-block;
-  width: 316px;
-  padding: 14px 12px 0 0;
+  display: block;
+  margin-top: 14px;
+  padding-right: 12px;
+  width: 100%;
   min-height: 50px;
   max-height: 300px;
   overflow-y: scroll;
@@ -49,28 +45,30 @@ body {
   background-color: transparent;
 }
 
-.input-txt::-webkit-scrollbar {
+#upload .input-txt::-webkit-scrollbar {
   display: none;
 }
 
-.input-txt:focus {
+#upload .input-txt:focus {
   outline: none;
 }
 
-.cont-preview {
+#upload .cont-preview {
+  max-width: 100%;
   margin-top: 12px;
 }
 
-.cont-preview .cont-img:only-child {
+#upload .cont-preview .cont-img:only-child {
   width: 304px;
   height: 228px;
 }
-.cont-preview .cont-img {
+#upload .cont-preview .cont-img {
+  position: relative;
   width: 168px;
   height: 126px;
 }
 
-.cont-preview .cont-img button {
+#upload .cont-preview .cont-img button {
   width: 15px;
   height: 15px;
   position: absolute;
@@ -79,7 +77,6 @@ body {
   background: url(../src/icon-close.png) no-repeat;
   background-size: cover;
 }
-
 .btn-img-upload {
   position: fixed;
   bottom: 16px;
