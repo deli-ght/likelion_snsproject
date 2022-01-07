@@ -1,12 +1,18 @@
 body {
   /* width: 390px; */
-  height: 100vh;
-}
-.top-basic-nav,
-.cont-reply {
-  border-bottom: 1px solid #dbdbdb;
 }
 
+#app {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+.top-basic-nav {
+  border-bottom: 1px solid #dbdbdb;
+}
+.home-post {
+  flex-grow: 1;
+}
 .cont-reply {
   border-top: 1px solid #dbdbdb;
   box-sizing: border-box;
@@ -14,6 +20,9 @@ body {
   height: 236px;
 }
 
+.cont-reply.off {
+  display: none;
+}
 .cont-reply ul {
   height: 100%;
   overflow-y: scroll;
@@ -86,4 +95,8 @@ body {
   font-size: 14px;
   line-height: 18px;
   color: #333333;
+}
+
+#comment {
+  border-top: 1px solid #dbdbdb;
 }
