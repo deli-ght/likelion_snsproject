@@ -22,6 +22,7 @@ body {
   width: 42px;
   height: 42px;
   margin-right: 12px;
+  border-radius: 50%;
 }
 
 #upload .cont-content {
