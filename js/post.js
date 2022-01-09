@@ -281,3 +281,4 @@ likeBtn.addEventListener("click", likeBtnClickHandler);
 
 // init
 getPost(TEST_POST_ID);
+// 이슈 close 테스트
