@@ -257,11 +257,10 @@ const postLike = async (postId, isLike) => {
 // Variables
 const submitBtn = document.querySelector(".btn-submit");
 const likeBtn = document.querySelector(".btn-likes");
+const txtComment = document.querySelector("#comment .input-text");
 
 // Handlers
 const submitBtnClickHandler = () => {
-  const txtComment = document.querySelector("#comment .input-text");
-
   postComment(txtComment.value);
   txtComment.value = "";
 };
@@ -274,10 +273,16 @@ const likeBtnClickHandler = () => {
     })
     .catch(console.error);
 };
-
+const commentChangeHandler = (e) => {
+  if (txtComment.value === "") {
+    submitBtn.disabled = true;
+  } else {
+    submitBtn.disabled = false;
+  }
+};
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
 likeBtn.addEventListener("click", likeBtnClickHandler);
-
+txtComment.addEventListener("input", commentChangeHandler);
 // init
 getPost(TEST_POST_ID);

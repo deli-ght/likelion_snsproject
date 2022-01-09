@@ -158,10 +158,10 @@ body {
   font-size: 14px;
   font-weight: 500;
   line-height: 17.53px;
-  color: #c4c4c4;
+  color: var(--orange);
 }
 
 /* ash 추가 */
-.btn-submit:hover {
-  color: var(--orange);
+.btn-submit:disabled {
+  color: #c4c4c4;
 }
