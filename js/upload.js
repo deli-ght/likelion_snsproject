@@ -150,7 +150,6 @@ function isValidFile(insertFiles) {
 
 function addImgOnPreview() {
   const preview = document.querySelector(".cont-preview");
-
   if (dataTransfer.files.length + inpImgs.files.length > 3) {
     alert("사진은 최대 3장 까지 추가 할 수 있습니다.");
     return;
@@ -170,7 +169,7 @@ function addImgOnPreview() {
     if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
       const reader = new FileReader();
 
-      reader.readAsDataGlobal.URL(file);
+      reader.readAsDataURL(file);
 
       reader.addEventListener(
         "load",
