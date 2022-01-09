@@ -100,3 +100,68 @@ body {
 #comment {
   border-top: 1px solid #dbdbdb;
 }
+
+/* ash 수정 */
+#comment {
+  box-sizing: border-box;
+  padding: 13px 16px;
+  width: 100%;
+  height: 61px;
+  display: flex;
+  align-items: center;
+}
+.img-basic-profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 18px;
+}
+
+.input-text {
+  flex-grow: 1;
+  font-size: 14px;
+  line-height: 18px;
+  height: 18px;
+  border: transparent;
+  margin-right: 18px;
+  overflow-y: scroll;
+  resize: none;
+}
+
+/* .input-text::-webkit-scrollbar {
+  display: none;
+} */
+.input-text::placeholder {
+  color: #c4c4c4;
+}
+
+.input-text:focus {
+  outline: none;
+}
+
+/* .p-submit {
+  position: absolute;
+  top: 23px;
+  left: 348px;
+  width: 30px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.53px;
+  color: #c4c4c4;
+  cursor: pointer;
+} */
+
+/* ash 수정: p-submit -> btn-submit*/
+.btn-submit {
+  width: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17.53px;
+  color: #c4c4c4;
+}
+
+/* ash 추가 */
+.btn-submit:hover {
+  color: var(--orange);
+}
