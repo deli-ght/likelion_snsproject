@@ -11,7 +11,7 @@ body {
   position: relative;
   display: flex;
   height: 100%;
-  padding: 20px 0 0 16px;
+  padding: 1.25em 0 0 1em;
 }
 
 #upload .img-basic-profile {
@@ -21,7 +21,7 @@ body {
   display: block;
   width: 42px;
   height: 42px;
-  margin-right: 12px;
+  margin-right: 0.75em;
   border-radius: 50%;
 }
 
@@ -33,14 +33,14 @@ body {
 #upload .input-txt {
   box-sizing: border-box;
   display: block;
-  margin-top: 12px;
-  padding-right: 12px;
+  margin-top: 0.857em;
+  padding-right: 0.857em;
   width: 100%;
   min-height: 50px;
   max-height: 300px;
   overflow-y: scroll;
   resize: none;
-  font-size: 14px;
+  font-size: var(--font-14px);
   line-height: 18px;
   border: transparent;
   background-color: transparent;
@@ -56,7 +56,7 @@ body {
 
 #upload .cont-preview {
   max-width: 100%;
-  margin-top: 12px;
+  margin-top: 0.75em;
 }
 
 #upload .cont-preview .cont-img:only-child {

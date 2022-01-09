@@ -16,7 +16,7 @@ body {
 .cont-reply {
   border-top: 1px solid #dbdbdb;
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 0 1em;
   height: 236px;
 }
 
@@ -35,7 +35,7 @@ body {
 }
 
 .cont-reply li {
-  margin: 16px 0;
+  margin: 1em 0;
 }
 .cont-reply li .user-reply {
   position: relative;
@@ -45,7 +45,7 @@ body {
 .cont-reply li .user-reply .img-profile {
   width: var(--user-reply-profile);
   height: var(--user-reply-profile);
-  margin-right: 12px;
+  margin-right: 0.75em;
   border-radius: 50%;
 }
 
@@ -64,11 +64,11 @@ body {
 }
 
 .cont-reply li .user-reply .wrap-txt .txt-nickname {
-  font-size: 14px;
+  font-size: var(--font-14px);
 }
 
 .cont-reply li .user-reply .wrap-txt .txt-after {
-  font-size: 10px;
+  font-size: var(--font-10px);
   color: var(--gray);
 }
 
@@ -91,8 +91,8 @@ body {
 }
 
 .cont-reply li .user-reply .txt-reply {
-  padding: 4px 4px 0 48px;
-  font-size: 14px;
+  padding: 0.286em 0.286em 0 3.429em;
+  font-size: var(--font-14px);
   line-height: 18px;
   color: #333333;
 }
@@ -104,7 +104,7 @@ body {
 /* ash 수정 */
 #comment {
   box-sizing: border-box;
-  padding: 13px 16px;
+  padding: 0.813em 1em;
   width: 100%;
   height: 61px;
   display: flex;
@@ -114,16 +114,16 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  margin-right: 18px;
+  margin-right: 1.125em;
 }
 
 .input-text {
   flex-grow: 1;
-  font-size: 14px;
+  font-size: var(--font-14px);
   line-height: 18px;
   height: 18px;
   border: transparent;
-  margin-right: 18px;
+  margin-right: 1.286em;
   overflow-y: scroll;
   resize: none;
 }
@@ -155,7 +155,7 @@ body {
 /* ash 수정: p-submit -> btn-submit*/
 .btn-submit {
   width: 30px;
-  font-size: 14px;
+  font-size: var(--font-14px);
   font-weight: 500;
   line-height: 17.53px;
   color: var(--orange);
