@@ -281,5 +281,3 @@ likeBtn.addEventListener("click", likeBtnClickHandler);
 
 // init
 getPost(TEST_POST_ID);
-
-const test = "칸반보드 테스트 중~";
