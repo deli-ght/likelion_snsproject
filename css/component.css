@@ -12,6 +12,13 @@
   --white-gray: #f2f2f2;
   --white: #ffffff;
   --black: #000000;
+
+  /* font-size */
+  --font-10px: 0.625rem;
+  --font-12px: 0.75rem;
+  --font-14px: 0.875rem;
+  --font-16px: 1rem;
+  --font-18px: 1.125rem;
 }
 
 /* global settings */
@@ -21,7 +28,7 @@
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
 body {
-  /* background-color: rgb(194, 238, 245); */
+  background-color: rgb(194, 238, 245);
 }
 
 button {
@@ -37,14 +44,14 @@ button {
 .user-search {
   --user-search-profile: 50px;
   position: relative;
-  margin: 20px 16px 0 16px;
+  margin: 1.25em 1em 0 1em;
 }
 
 .user-search .img-profile {
   width: var(--user-search-profile);
   height: var(--user-search-profile);
   border-radius: 50%;
-  margin-right: 12px;
+  margin-right: 0.75em;
 }
 
 .user-search .wrap-txt {
@@ -61,12 +68,12 @@ button {
 }
 
 .user-search .wrap-txt .txt-title {
-  font-size: 14px;
+  font-size: var(--font-14px);
   line-height: 18px;
 }
 
 .user-search .wrap-txt .txt-nickname {
-  font-size: 12px;
+  font-size: var(--font-12px);
   line-height: 15px;
   color: var(--gray);
 }
@@ -78,7 +85,7 @@ button {
   background: url(../src/s-icon-more-vertical.png) no-repeat;
   background-size: cover;
   float: right;
-  margin-top: 5px;
+  margin-top: 0.313em;
 }
 /* end: user */
 
@@ -86,7 +93,7 @@ button {
 /* home-post */
 .home-post {
   --home-post-profile: 42px;
-  margin: 20px 16px;
+  margin: 1.25em 1em;
 }
 
 .home-post .img-profile {
@@ -103,13 +110,13 @@ button {
 }
 
 .home-post .wrap-content {
-  margin-top: 16px;
-  padding-left: calc(var(--home-post-profile) + 12px);
+  margin-top: 1em;
+  padding-left: calc(var(--home-post-profile) + 0.75em);
 }
 
 .home-post .wrap-content .txt-content {
-  margin-bottom: 16px;
-  font-size: 14px;
+  margin-bottom: 1.143em;
+  font-size: var(--font-14px);
   line-height: 18px;
 }
 
@@ -128,7 +135,7 @@ button {
   display: inline-block;
   width: 304px;
   height: 228px;
-  margin-right: 8px;
+  margin-right: 0.5em;
 }
 
 .cont-preview .cont-img .img-preview {
@@ -139,15 +146,15 @@ button {
 }
 
 .home-post .wrap-content .ul-btns {
-  margin-top: 16px;
+  margin-top: 1.333em;
   display: flex;
   color: var(--gray);
-  font-size: 12px;
+  font-size: var(--font-12px);
   line-height: 12px;
 }
 
 .home-post .wrap-content .ul-btns .li-btn {
-  margin-right: 16px;
+  margin-right: 1em;
 }
 
 .home-post .wrap-content .ul-btns .li-btn button {
@@ -172,14 +179,14 @@ button {
 
 .home-post .wrap-content .ul-btns .li-btn span {
   display: inline-block;
-  font-size: 12px;
+  font-size: var(--font-12px);
   line-height: 20px;
   vertical-align: top;
   color: var(--gray);
 }
 .home-post .wrap-content .txt-date {
-  margin-top: 16px;
-  font-size: 10px;
+  margin-top: 1.6em;
+  font-size: var(--font-10px);
   line-height: 12px;
   color: var(--gray);
 }
@@ -222,10 +229,10 @@ button {
   top: 8px;
   right: 19px;
   box-sizing: border-box;
-  padding: 7px 0 7px 16px;
+  padding: 0.5em 0 0.5em 1.143em;
   background-color: var(--white-gray);
   color: var(--light-gray);
-  font-size: 14px;
+  font-size: var(--font-14px);
   font-weight: 400;
   line-height: 17px;
   border: none;
@@ -233,7 +240,7 @@ button {
 }
 
 .txt-main-nav {
-  font-size: 18px;
+  font-size: var(--font-18px);
   font-weight: 500;
   line-height: 22px;
   color: var(--black);
@@ -255,7 +262,7 @@ button {
   position: absolute;
   top: 15px;
   left: 48px;
-  font-size: 14px;
+  font-size: var(--font-14px);
   line-height: 18px;
   color: var(--black);
   font-weight: 500;
@@ -265,7 +272,7 @@ button {
 /* buttons */
 .btn-button {
   background-color: var(--orange);
-  font-size: 14px;
+  font-size: var(--font-14px);
   font-weight: 500;
 }
 
@@ -300,7 +307,7 @@ button {
   width: 56px;
   height: 28px;
   border-radius: 26px;
-  font-size: 12px;
+  font-size: var(--font-12px);
   font-weight: 400;
 }
 
@@ -332,14 +339,14 @@ button {
 }
 
 .input-container label {
-  font-size: 12px;
+  font-size: var(--font-12px);
   font-weight: 500;
   line-height: 15.02px;
   color: var(--gray);
 }
 
 .input-container .input-info {
-  font-size: 14px;
+  font-size: var(--font-14px);
   border: none;
   height: 33px;
 }
@@ -355,7 +362,7 @@ button {
   left: 0;
   bottom: -18px;
   color: var(--red);
-  font-size: 12px;
+  font-size: var(--font-12px);
 }
 
 /* end:text-Active-input */
@@ -386,7 +393,7 @@ button {
   top: 96px;
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
+  font-size: var(--font-14px);
   line-height: 17.53px;
 }
 .p-price {
@@ -397,7 +404,7 @@ button {
   color: var(--orange);
   font-weight: 700;
   font-style: normal;
-  font-size: 12px;
+  font-size: var(--font-12px);
   line-height: 15.02px;
 }
 
@@ -434,14 +441,14 @@ button {
   color: var(--gray);
   font-style: normal;
   font-weight: normal;
-  font-size: 10px;
+  font-size: var(--font-10px);
   line-height: 14px;
 }
 
 /* comment */
-/* #comment {
+#comment {
   position: relative;
-  width: 100%;
+  width: 390px;
   height: 61px;
 }
 .img-basic-profile {
@@ -458,74 +465,28 @@ button {
   left: 70px;
   width: 120px;
   height: 18px;
-  font-size: 14px;
+  font-size: var(--font-14px);
   border: transparent;
-}  */
-
-/* ash 수정 */
-#comment {
-  box-sizing: border-box;
-  padding: 13px 16px;
-  width: 100%;
-  height: 61px;
-  display: flex;
-  align-items: center;
-}
-.img-basic-profile {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  margin-right: 18px;
 }
 
-.input-text {
-  flex-grow: 1;
-  font-size: 14px;
-  line-height: 18px;
-  height: 18px;
-  border: transparent;
-  margin-right: 18px;
-  overflow-y: scroll;
-  resize: none;
-}
-
-/* .input-text::-webkit-scrollbar {
-  display: none;
-} */
 .input-text::placeholder {
   color: #c4c4c4;
+  line-height: 17.53px;
 }
 
-.input-text:focus {
-  outline: none;
-}
-
-/* .p-submit {
+.p-submit {
   position: absolute;
   top: 23px;
   left: 348px;
   width: 30px;
   height: 18px;
-  font-size: 14px;
+  font-size: var(--font-14px);
   font-weight: 500;
   line-height: 17.53px;
   color: #c4c4c4;
   cursor: pointer;
-} */
-
-/* ash 수정: p-submit -> btn-submit*/
-.btn-submit {
-  width: 30px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17.53px;
-  color: #c4c4c4;
 }
 
-/* ash 추가 */
-.btn-submit:hover {
-  color: var(--orange);
-}
 /* delete alert */
 #alert {
   border-radius: 4px;
@@ -539,7 +500,7 @@ button {
 .p-check {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   text-align: center;
-  font-size: 16px;
+  font-size: var(--font-16px);
   font-weight: 500;
   width: 100%;
   border-bottom: 0.5px solid #dbdbdb;
