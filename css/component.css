@@ -69,12 +69,10 @@ button {
 
 .user-search .wrap-txt .txt-title {
   font-size: var(--font-14px);
-  line-height: 18px;
 }
 
 .user-search .wrap-txt .txt-nickname {
   font-size: var(--font-12px);
-  line-height: 15px;
   color: var(--gray);
 }
 
@@ -117,7 +115,7 @@ button {
 .home-post .wrap-content .txt-content {
   margin-bottom: 1.143em;
   font-size: var(--font-14px);
-  line-height: 18px;
+  line-height: 1.125rem;
 }
 
 .cont-preview {
@@ -150,16 +148,18 @@ button {
   display: flex;
   color: var(--gray);
   font-size: var(--font-12px);
-  line-height: 12px;
 }
 
 .home-post .wrap-content .ul-btns .li-btn {
   margin-right: 1em;
+  display: flex;
+  align-items: center;
 }
 
 .home-post .wrap-content .ul-btns .li-btn button {
   width: 20px;
   height: 20px;
+  margin-right: 0.375em;
 }
 
 .home-post .wrap-content .ul-btns .li-btn .btn-likes {
@@ -180,14 +180,11 @@ button {
 .home-post .wrap-content .ul-btns .li-btn span {
   display: inline-block;
   font-size: var(--font-12px);
-  line-height: 20px;
-  vertical-align: top;
   color: var(--gray);
 }
 .home-post .wrap-content .txt-date {
   margin-top: 1.6em;
   font-size: var(--font-10px);
-  line-height: 12px;
   color: var(--gray);
 }
 /* end: home */
