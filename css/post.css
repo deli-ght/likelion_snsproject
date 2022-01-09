@@ -58,7 +58,6 @@ body {
 .cont-reply li .user-reply .wrap-txt .txt-after,
 .cont-reply li .user-reply .wrap-txt .txt-nickname {
   display: inline-block;
-  line-height: 18px;
   vertical-align: middle;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
@@ -93,7 +92,6 @@ body {
 .cont-reply li .user-reply .txt-reply {
   padding: 0.286em 0.286em 0 3.429em;
   font-size: var(--font-14px);
-  line-height: 18px;
   color: #333333;
 }
 
@@ -120,7 +118,6 @@ body {
 .input-text {
   flex-grow: 1;
   font-size: var(--font-14px);
-  line-height: 18px;
   height: 18px;
   border: transparent;
   margin-right: 1.286em;
@@ -147,7 +144,6 @@ body {
   height: 18px;
   font-size: 14px;
   font-weight: 500;
-  line-height: 17.53px;
   color: #c4c4c4;
   cursor: pointer;
 } */
@@ -157,7 +153,6 @@ body {
   width: 30px;
   font-size: var(--font-14px);
   font-weight: 500;
-  line-height: 17.53px;
   color: var(--orange);
 }
 
