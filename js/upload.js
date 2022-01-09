@@ -9,13 +9,7 @@ const POST_HEADER = new Headers({
   "Content-type": "application/json",
 });
 
-const dataTransfer = new DataTransfer();
-
-let txtAdded = false;
-let imgAdded = false;
-
-const uploadBtn = document.querySelector(".btn-upload");
-
+// API
 const uploadImgs = (formData) => {
   return fetch(`${URL}/image/uploadfiles`, {
     method: "POST",
@@ -39,8 +33,19 @@ const uploadPost = async (txtContent, filename) => {
   console.log(data);
 };
 
-uploadBtn.addEventListener("click", () => {
-  const txtContent = document.querySelector(".input-txt");
+// variables
+const dataTransfer = new DataTransfer();
+const uploadBtn = document.querySelector(".btn-upload");
+const imgUploadBtn = document.querySelector(".btn-img-upload");
+const inpImgs = document.querySelector(".inp-imgs");
+const previewContainer = document.querySelector(".cont-preview");
+const txtContent = document.querySelector(".input-txt");
+
+let imgAdded = false;
+let txtAdded = false;
+
+// handlers
+const uploadBtnClickHandler = () => {
   let formData = new FormData();
   [].forEach.call(dataTransfer.files, (file) => {
     formData.append("image", file);
@@ -63,13 +68,9 @@ uploadBtn.addEventListener("click", () => {
     })
     .then((filename) => uploadPost(txtContent.textContent, filename))
     .catch(console.error);
-});
+};
 
-document
-  .querySelector(".btn-img-upload")
-  .addEventListener("click", () => document.querySelector(".inp-imgs").click());
-
-document.querySelector(".cont-preview").addEventListener("click", function (e) {
+const imgRemoveHanlder = (e) => {
   if (e.target.tagName === "BUTTON") {
     if (confirm("사진을 삭제하시겠습니까?")) {
       const parent = e.target.parentElement;
@@ -87,8 +88,23 @@ document.querySelector(".cont-preview").addEventListener("click", function (e) {
       }
     }
   }
+};
+
+// event listeners
+inpImgs.addEventListener("change", addImgOnPreview);
+uploadBtn.addEventListener("click", uploadBtnClickHandler);
+imgUploadBtn.addEventListener("click", () =>
+  document.querySelector(".inp-imgs").click()
+);
+previewContainer.addEventListener("click", imgRemoveHanlder);
+txtContent.addEventListener("input", (e) => {
+  const target = e.target;
+  console.log(target.value);
+  fnChkByte(target);
+  resize(target);
 });
 
+// functions
 function removeImgOnDataTransfer(filename) {
   // remove(index: number): void;
   // [].forEach.call(files, readAndPreview);
@@ -128,16 +144,15 @@ function isValidFile(insertFiles) {
   return tempDataTransfer.files;
 }
 
-function previewFiles() {
+function addImgOnPreview() {
   const preview = document.querySelector(".cont-preview");
-  const inpEl = document.querySelector(".inp-imgs");
 
-  if (dataTransfer.files.length + inpEl.files.length > 3) {
+  if (dataTransfer.files.length + inpImgs.files.length > 3) {
     alert("사진은 최대 3장 까지 추가 할 수 있습니다.");
     return;
   }
 
-  const files = isValidFile(inpEl.files);
+  const files = isValidFile(inpImgs.files);
 
   if (files) {
     [].forEach.call(files, readAndPreview);
@@ -209,10 +224,10 @@ function fnChkByte(obj) {
   }
 
   if (endIdx === 0) {
-    obj.innerText = str;
+    obj.value = str;
   } else {
     alert(`메세지는 최대 ${maxByte}바이트까지 입력 가능합니다.`);
-    obj.innerText = str.substring(0, endIdx);
+    obj.value = str.substring(0, endIdx);
   }
 }
 
