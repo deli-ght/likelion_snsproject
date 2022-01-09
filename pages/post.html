@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/component.css">
+  <link rel="stylesheet" href="../css/post.css">
+  <title>Post</title>
+</head>
+
+<body>
+  <section id="app">
+    <!-- 상단바영역 -->
+    <div class="top-basic-nav">
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+      <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    </div>
+
+    <!-- 포스팅콘텐츠영역-->
+    <article class="home-post">
+      <div class="user-search">
+        <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
+        <div class="wrap-txt">
+          <strong class="txt-title">애월읍 위니브 감귤농장</strong>
+          <span class="txt-nickname">@ weniv-Mandarin</span>
+        </div>
+        <button type="button" class="btn-more" value="더보기버튼"></button>
+      </div>
+
+      <div class="wrap-content">
+        <p class="txt-content"></p>
+
+        <div class="cont-preview"></div>
+
+        <ul class="ul-btns">
+          <li class="li-btn">
+            <button type="button" class="btn-likes"></button>
+            <span class="txt-likes"></span>
+          </li>
+          <li class="li-btn">
+            <button type="button" class="btn-comments"></button>
+            <span class="txt-comments"></span>
+          </li>
+        </ul>
+        <p class="txt-date"></p>
+      </div>
+    </article>
+
+    <!-- 댓글영역 -->
+    <section class="cont-reply">
+      <ul>
+        <!-- 동적 추가 영역 -->
+        <!-- <li>
+      <div class="user-reply">
+        <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
+        <div class="wrap-txt">
+          <strong class="txt-nickname">애월읍 위니브 감귤농장</strong>
+          <span class="txt-after">5분 전</span>
+        </div>
+        <button type="button" class="btn-more">
+          <img src="../src/s-icon-more-vertical.png" alt="더보기버튼" class="img-more">
+        </button>
+        <p class="txt-reply">게시글 답글~~!! 최고최고</p>
+      </div>
+    </li> -->
+      </ul>
+    </section>
+
+    <!-- 댓글입력영역 -->
+    <section id="comment">
+      <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
+      <textarea class="input-text" placeholder="댓글 입력하기..."></textarea>
+      <button class="btn-submit">게시</button>
+    </section>
+  </section>
+  <script src="../js/post.js"></script>
+</body>
+
+</html>

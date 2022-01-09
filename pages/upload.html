@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/component.css">
+  <link rel="stylesheet" href="../css/upload.css">
+  <title>Upload</title>
+</head>
+
+<body>
+  <div class="top-upload-nav">
+    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    <button class="btn-upload btn-button btn-ms" disabled>업로드</button>
+  </div>
+
+  <section id="upload">
+    <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
+    <div class="cont-content">
+      <textarea class="input-txt" placeholder="게시글 입력하기.." onkeyup="fnChkByte(this);resize(this);"></textarea>
+      <div class="cont-preview"></div>
+    </div>
+  </section>
+
+  <button type="button" class="btn-img-upload">
+    <input type="file" class="inp-imgs" onChange="previewFiles();" accept="image/*" multiple>
+  </button>
+
+  <script src=" ../js/upload.js">
+  </script>
+</body>
+
+</html>
