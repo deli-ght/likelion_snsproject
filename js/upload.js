@@ -1,26 +1,17 @@
-// ash2
-const TEST_TOKEN =
-  "Bearer " +
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM";
-const URL = "http://146.56.183.55:5050";
-
-const POST_HEADER = new Headers({
-  Authorization: TEST_TOKEN,
-  "Content-type": "application/json",
-});
+import * as Global from "./global.js";
 
 // API
 const uploadImgs = (formData) => {
-  return fetch(`${URL}/image/uploadfiles`, {
+  return fetch(`${Global.URL}/image/uploadfiles`, {
     method: "POST",
     body: formData,
   });
 };
 
 const uploadPost = async (txtContent, filename) => {
-  const response = await fetch(`${URL}/post`, {
+  const response = await fetch(`${Global.URL}/post`, {
     method: "POST",
-    headers: POST_HEADER,
+    headers: Global.HEADER,
     body: JSON.stringify({
       post: {
         content: txtContent,
@@ -31,6 +22,12 @@ const uploadPost = async (txtContent, filename) => {
 
   const data = await response.json();
   console.log(data);
+};
+
+const getImageUrl = (filename) => {
+  return fetch(`${Global.URL}/${filename}`, {
+    method: "GET",
+  }).then((res) => res.url);
 };
 
 // variables
@@ -105,6 +102,13 @@ txtContent.addEventListener("input", (e) => {
 });
 
 // functions
+function init() {
+  const imgLoginUser = document.querySelector("#upload .img-basic-profile");
+  getImageUrl(Global.LOGIN_USER_INFO.user.image)
+    .then((url) => (imgLoginUser.src = url))
+    .catch(console.error);
+}
+
 function removeImgOnDataTransfer(filename) {
   // remove(index: number): void;
   // [].forEach.call(files, readAndPreview);
@@ -166,7 +170,7 @@ function addImgOnPreview() {
     if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
       const reader = new FileReader();
 
-      reader.readAsDataURL(file);
+      reader.readAsDataGlobal.URL(file);
 
       reader.addEventListener(
         "load",
@@ -235,3 +239,6 @@ function resize(obj) {
   obj.style.height = "1px";
   obj.style.height = 12 + obj.scrollHeight + "px";
 }
+
+// start
+init();

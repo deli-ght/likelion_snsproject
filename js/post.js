@@ -1,31 +1,17 @@
-//token(ash__h): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
-//token(ash2): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
-const TEST_TOKEN =
-  "Bearer " +
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
-const TEST_POST_ID = "61d576a66b8216fc566876d2"; // ash__H, 이미지 1장, 댓글 있음
-// const TEST_POST_ID = "61d6df2b685c75821c469db4"; // ash2, 이미지 1장, 댓글 있음
-// const TEST_POST_ID = "61d7f550685c75821c46aca5"; // ash2, 이미지 2장, 댓글 없음
-// const TEST_POST_ID = "61d7fc4a685c75821c46ad08"; // ash2, 글만 있음, 댓글 있음
-const URL = "http://146.56.183.55:5050";
-
-const HEADER = new Headers({
-  Authorization: TEST_TOKEN,
-  "Content-type": "application/json",
-});
+import * as Global from "./global.js";
 
 const getPost = async (postId) => {
   try {
     //GET /post/:post_id
-    const res = await fetch(`${URL}/post/${postId}`, {
+    const res = await fetch(`${Global.URL}/post/${postId}`, {
       method: "GET",
-      headers: HEADER,
+      headers: Global.HEADER,
     });
 
     // 포스트 정보 가져오기
     const postObj = await res.json();
     setPostElements(postObj);
-
+    setLoginUserProfile();
     // 댓글 가져오기
     getReply(postId);
   } catch (err) {
@@ -33,7 +19,7 @@ const getPost = async (postId) => {
   }
 };
 const getImageUrl = (filename) => {
-  return fetch(`${URL}/${filename}`, {
+  return fetch(`${Global.URL}/${filename}`, {
     method: "GET",
   }).then((res) => res.url);
 };
@@ -51,12 +37,17 @@ const formatDate = (dateStr) => {
   return `${year}년 ${month}월 ${day}일`;
 };
 
+const setLoginUserProfile = () => {
+  const imgLoginUser = document.querySelector("#comment .img-basic-profile");
+  getImageUrl(Global.LOGIN_USER_INFO.user.image)
+    .then((url) => (imgLoginUser.src = url))
+    .catch(console.error);
+};
 const setPostElements = (obj) => {
   const homePostCont = document.querySelector(".home-post");
   // author
   homePostCont.querySelector(".img-profile").src = "../src/basic-profile.png"; // 테스트용
-  // 프로필이미지 테스트용 1641444666211.png
-  getImageUrl("1641444666211.png")
+  getImageUrl(obj.post.author.image)
     .then((url) => (homePostCont.querySelector(".img-profile").src = url))
     .catch(console.error);
   homePostCont.querySelector(".txt-title").textContent =
@@ -132,7 +123,7 @@ const setReplyElements = (obj) => {
       // img.src = comt.author.image;
       // img.src = "../src/basic-profile.png"; // 테스트용
       img.classList.add("img-profile");
-      getImageUrl("1641444666211.png")
+      getImageUrl(comt.author.image)
         .then((url) => (img.src = url))
         .catch(console.error);
 
@@ -190,9 +181,9 @@ const calcAfterTime = (createdDate) => {
 const getReply = async (postId) => {
   try {
     //GET /post/:post_id/comments
-    const res = await fetch(`${URL}/post/${postId}/comments`, {
+    const res = await fetch(`${Global.URL}/post/${postId}/comments`, {
       method: "GET",
-      headers: HEADER,
+      headers: Global.HEADER,
     });
 
     const replyObj = await res.json();
@@ -212,17 +203,20 @@ const getReply = async (postId) => {
 
 const postComment = async (txtComment) => {
   try {
-    const res = await fetch(`${URL}/post/${TEST_POST_ID}/comments`, {
-      method: "POST",
-      headers: HEADER,
-      body: JSON.stringify({
-        comment: {
-          content: txtComment,
-        },
-      }),
-    });
+    const res = await fetch(
+      `${Global.URL}/post/${Global.TEST_POST_ID}/comments`,
+      {
+        method: "POST",
+        headers: Global.HEADER,
+        body: JSON.stringify({
+          comment: {
+            content: txtComment,
+          },
+        }),
+      }
+    );
 
-    getReply(TEST_POST_ID);
+    getReply(Global.TEST_POST_ID);
 
     // const data = await res.json();
     // console.log(data);
@@ -243,9 +237,9 @@ const postLike = async (postId, isLike) => {
     reqMethod = "DELETE";
   }
   try {
-    const res = await fetch(`${URL}/post/${postId}/${action}`, {
+    const res = await fetch(`${Global.URL}/post/${postId}/${action}`, {
       method: reqMethod,
-      headers: HEADER,
+      headers: Global.HEADER,
     });
 
     return await res.json();
@@ -266,7 +260,7 @@ const submitBtnClickHandler = () => {
 };
 const likeBtnClickHandler = () => {
   const isLike = likeBtn.classList.contains("on") ? false : true;
-  postLike(TEST_POST_ID, isLike)
+  postLike(Global.TEST_POST_ID, isLike)
     .then((data) => {
       likeBtn.classList.toggle("on");
       document.querySelector(".txt-likes").textContent = data.post.heartCount;
@@ -285,4 +279,4 @@ submitBtn.addEventListener("click", submitBtnClickHandler);
 likeBtn.addEventListener("click", likeBtnClickHandler);
 txtComment.addEventListener("input", commentChangeHandler);
 // init
-getPost(TEST_POST_ID);
+getPost(Global.TEST_POST_ID);
