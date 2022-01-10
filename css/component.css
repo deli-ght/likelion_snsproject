@@ -92,6 +92,9 @@ button {
 .home-post {
   --home-post-profile: 42px;
   margin: 1.25em 1em;
+  max-height: calc(100% - 48px - 61px);
+  display: flex;
+  flex-direction: column;
 }
 
 .home-post .img-profile {
@@ -110,6 +113,12 @@ button {
 .home-post .wrap-content {
   margin-top: 1em;
   padding-left: calc(var(--home-post-profile) + 0.75em);
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.home-post .wrap-content::-webkit-scrollbar {
+  display: none;
 }
 
 .home-post .wrap-content .txt-content {
