@@ -405,83 +405,102 @@ button {
   line-height: 15.02px;
 }
 
-/* tab-menu */
-#tab-menu {
+/* comment */
+
+#comment {
+  width: 100%;
+  height: 61px;
+  background-color: #fff;
   display: flex;
-  width: 390px;
-  height: 60px;
   justify-content: space-evenly;
   align-items: center;
-  border: 0.5px solid #c4c4c4;
-}
-
-#tab-menu div {
-  width: 84px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.img-home,
-.img-circle1,
-.img-edit,
-.img-user {
-  width: 18px;
-  height: 18px;
-}
-
-.p-home,
-.p-circle1,
-.p-edit,
-.p-user {
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-  color: var(--gray);
-  font-style: normal;
-  font-weight: normal;
-  font-size: var(--font-10px);
-  line-height: 14px;
-}
-
-/* comment */
-#comment {
-  position: relative;
-  width: 390px;
-  height: 61px;
 }
 .img-basic-profile {
-  position: absolute;
-  top: 13px;
-  left: 16px;
   width: 36px;
   height: 36px;
 }
 
 .input-text {
-  position: absolute;
-  top: 23px;
-  left: 70px;
-  width: 120px;
-  height: 18px;
-  font-size: var(--font-14px);
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 40%;
+  font-size: 0.875rem;
+  color: #767676;
   border: transparent;
+  outline: none;
+  border: none;
+  line-height: 10px;
+  padding: 0.2em;
+  margin-top: 0.5em;
+  resize: none;
+  line-height: 1rem;
 }
 
 .input-text::placeholder {
   color: #c4c4c4;
-  line-height: 17.53px;
+  line-height: rem;
 }
 
 .p-submit {
-  position: absolute;
-  top: 23px;
-  left: 348px;
-  width: 30px;
-  height: 18px;
   font-size: var(--font-14px);
   font-weight: 500;
   line-height: 17.53px;
   color: #c4c4c4;
   cursor: pointer;
+}
+
+/* 
+
+/* tab-menu */
+#tab-menu {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 0.5px solid #c4c4c4;
+}
+
+#tab-menu button {
+  width: 20%;
+  height: 100%;
+  background-size: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.button-home {
+  background: url("../src/icon-home-fill.png") no-repeat center;
+  background-position: ;
+}
+.button-circle1 {
+  background: url("../src/icon-message-circle-1.png") no-repeat center;
+}
+.button-edit {
+  background: url("../src/icon-edit.png") no-repeat center;
+}
+.button-profile {
+  background: url("../src/icon-user.png") no-repeat center;
+}
+
+#tab-menu button .p-home {
+  color: #f26e22;
+}
+
+#tab-menu button p {
+  position: absolute;
+  bottom: -0.5em;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #767676;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.625rem;
+  line-height: 14px;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 /* delete alert */
