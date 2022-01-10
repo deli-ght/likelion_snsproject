@@ -160,3 +160,39 @@ body {
 .btn-submit:disabled {
   color: #c4c4c4;
 }
+
+#post-modal {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 0.75em;
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  transition: all 0.5s;
+  z-index: 10;
+}
+#post-modal.off {
+  bottom: -20%;
+}
+#post-modal::before {
+  content: "";
+  display: block;
+  margin: 1em auto;
+  width: 50px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: var(--light-gray);
+}
+
+#post-modal li {
+  width: 100%;
+}
+
+#post-modal li button {
+  box-sizing: border-box;
+  padding: 1rem 1.8rem;
+  width: 100%;
+  font-size: var(--font-14px);
+  text-align: left;
+  color: #000;
+}
