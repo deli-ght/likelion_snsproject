@@ -23,23 +23,12 @@ export const HEADER = new Headers({
   "Content-type": "application/json",
 });
 
-export let LOGIN_USER_INFO = {
-  user: {
-    _id: "61d5727c6b8216fc566876a9",
-    username: "ash__h",
-    accountname: "ash__h",
-    intro: "반갑습니다",
-    image: "1641719153648.jpg",
-    following: [
-      "61ca638ab5c6cd18084e447d",
-      "61ca67d620684884d8d9dbe8",
-      "61cac5b7ea18ab64b98b8092",
-      "61cac631ea18ab64b98b80a9",
-      "61cbe6f50ffe50bf512bab10",
-      "61cc16160ffe50bf512bb9f7",
-    ],
-    follower: ["61d578316b8216fc566876ed"],
-    followerCount: 1,
-    followingCount: 6,
-  },
+export let LOGIN_ACCOUNT_NAME = "ash__h";
+
+export const getUser = async (accountname) => {
+  // GET /profile/:accountname
+  return await fetch(`${URL}/profile/${accountname}`, {
+    method: "GET",
+    headers: HEADER,
+  }).then((res) => res.json());
 };

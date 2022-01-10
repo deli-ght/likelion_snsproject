@@ -104,9 +104,12 @@ txtContent.addEventListener("input", (e) => {
 // functions
 function init() {
   const imgLoginUser = document.querySelector("#upload .img-basic-profile");
-  getImageUrl(Global.LOGIN_USER_INFO.user.image)
-    .then((url) => (imgLoginUser.src = url))
-    .catch(console.error);
+
+  Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
+    getImageUrl(data.profile.image)
+      .then((url) => (imgLoginUser.src = url))
+      .catch(console.error);
+  });
 }
 
 function removeImgOnDataTransfer(filename) {

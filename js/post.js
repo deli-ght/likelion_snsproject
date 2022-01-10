@@ -39,10 +39,14 @@ const formatDate = (dateStr) => {
 
 const setLoginUserProfile = () => {
   const imgLoginUser = document.querySelector("#comment .img-basic-profile");
-  getImageUrl(Global.LOGIN_USER_INFO.user.image)
-    .then((url) => (imgLoginUser.src = url))
-    .catch(console.error);
+
+  Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
+    getImageUrl(data.profile.image)
+      .then((url) => (imgLoginUser.src = url))
+      .catch(console.error);
+  });
 };
+
 const setPostElements = (obj) => {
   const homePostCont = document.querySelector(".home-post");
   // author
@@ -252,6 +256,8 @@ const postLike = async (postId, isLike) => {
 const submitBtn = document.querySelector(".btn-submit");
 const likeBtn = document.querySelector(".btn-likes");
 const txtComment = document.querySelector("#comment .input-text");
+const replyUl = document.querySelector(".cont-reply ul");
+const modal = document.querySelector("#post-modal");
 
 // Handlers
 const submitBtnClickHandler = () => {
@@ -274,9 +280,20 @@ const commentChangeHandler = (e) => {
     submitBtn.disabled = false;
   }
 };
+
+const commentMoreBtnClickHandler = (e) => {
+  modal.classList.remove("off");
+  const comment = e.target.parentElement;
+  console.log(comment);
+};
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
 likeBtn.addEventListener("click", likeBtnClickHandler);
 txtComment.addEventListener("input", commentChangeHandler);
+replyUl.addEventListener("click", commentMoreBtnClickHandler);
+modal.addEventListener("click", function (e) {
+  e.target.classList.add("off");
+});
+
 // init
 getPost(Global.TEST_POST_ID);
