@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/join.css">
+    <title>Join_membership</title>
+</head>
+<body>
+    <div class="container">
+        <div class="join-form">
+            <header class="flex-center">
+                <h1 class="txt-login">이메일로 회원가입</h1>
+            </header>
+            <form method="POST" class="form-wrap">
+                <label for="inp-id">이메일</label>
+                <input type="text" maxlength="20" placeholder="이메일 주소를 입력해 주세요." id="inp-id" class="input inp-join-email">
+                <span class="txt-email-validation"></span>
+                <label for="inp-pw" class="label-mt5">비밀번호</label>
+                <input type="password" maxlength="20" placeholder="비밀번호를 설정해 주세요." id=inp-pw class="input inp-join-pw">
+                <span class="txt-pw-validation"></span>
+                <button type="button" class="btn-button btn-large btn-next" disabled>다음</button>
+            </form>
+        </div>
+        <div class="user-info hide-on">
+            <header class="flex-center flex-column">
+                <h1 class="txt-profile">프로필 설정</h1>
+                <h2 class="txt-change">나중에 언제든지 변경할 수 있습니다.</h2>
+            </header>
+            <div class="flex-center">
+                <div class="profile-wrap">
+                    <img src="../src/Ellipse-1.png" alt="기본이미지" class="img-basic">
+                    <input type="file" id="profile-file">
+                    <label for="profile-file"></label>
+                </div>
+            </div>
+            <form method="POST" action="./index.html" class="form-join-wrap">
+                <label for="inp-id">사용자 이름</label>
+                <input type="text" maxlength="10" placeholder="2~10자 이내여야 합니다." id="inp-id" class="input inp-name">
+                <span class="txt-name-validation"></span>
+                <label for="inp-pw" class="label-mt5">계정 ID</label>
+                <input type="text" maxlength="20" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." id=inp-pw class="input sl-ellipsis inp-priId">
+                <span class="txt-pri-validation"></span>
+                <label for="inp-pw" class="label-mt5">소개</label>
+                <input type="text" maxlength="30" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id=inp-pw class="input inp-intro">
+                <span class="txt-intro-validation"></span>
+                <button type="button" class="btn-button btn-large btn-start" disabled>감귤마켓 시작하기</button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/joinMembership.js"></script>
+</body>
+</html>
