@@ -1,60 +1,5 @@
 import * as Global from "./global.js";
 
-const getFeed = async () => {
-  try {
-    // GET /post/feed
-    // // paging limit skip
-    // GET /post/feed/?limit=Number&skip=Number
-    const res = await fetch(`${Global.URL}/post/feed`, {
-      method: "GET",
-      headers: Global.HEADER,
-    });
-
-    // 포스트 정보 가져오기
-    return await res.json();
-  } catch (err) {
-    console.error;
-  }
-};
-
-const getMyPosts = async () => {
-  try {
-    // GET /post/:accountname/userpost
-    // // paging limit skip
-    // GET /post/:accountname/userpost/?limit=Number&skip=Number
-    const res = await fetch(
-      `${Global.URL}/post/${Global.LOGIN_ACCOUNT_NAME}/userpost`,
-      {
-        method: "GET",
-        headers: Global.HEADER,
-      }
-    );
-
-    // 포스트 정보 가져오기
-    return await res.json();
-  } catch (err) {
-    console.error;
-  }
-};
-const getImageUrl = (filename) => {
-  return fetch(`${Global.URL}/${filename}`, {
-    method: "GET",
-  }).then((res) => res.url);
-};
-
-// yyyy년 mm월 dd일
-const formatDate = (dateStr) => {
-  const date = new Date(dateStr);
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-
-  return `${year}년 ${month}월 ${day}일`;
-};
-
 const setPostElements = (posts) => {
   if (posts.length > 0) {
     const postContainer = document.querySelector(".cont-post");
@@ -71,7 +16,7 @@ const setPostElements = (posts) => {
       const profile = document.createElement("img");
       profile.classList.add("img-profile");
       profile.src = "../src/basic-profile.png"; // 테스트용
-      getImageUrl(post.author.image)
+      Global.getImageUrl(post.author.image)
         .then((url) => (profile.src = url))
         .catch(console.error);
 
@@ -107,7 +52,7 @@ const setPostElements = (posts) => {
           imgContainer.classList.add("cont-img");
           img.classList.add("img-preview");
           // 본문 이미지
-          getImageUrl(filename)
+          Global.getImageUrl(filename)
             .then((url) => (img.src = url))
             .catch(console.error);
 
@@ -122,6 +67,7 @@ const setPostElements = (posts) => {
       btnLi1.classList.add("li-btn");
       const btnLike = document.createElement("button");
       btnLike.classList.add("btn-likes");
+      if (post.hearted) btnLike.classList.add("on");
       const txtLike = document.createElement("span");
       txtLike.classList.add("txt-likes");
       txtLike.textContent = post.heartCount;
@@ -139,23 +85,64 @@ const setPostElements = (posts) => {
 
       const txtDate = document.createElement("p");
       txtDate.classList.add("txt-date");
-      txtDate.textContent = formatDate(post.createdAt);
+      txtDate.textContent = Global.formatDate(post.createdAt);
 
       wrapContent.append(txtContent, previewContainer, btnUl, txtDate);
       article.append(userInfo, wrapContent);
 
-      postContainer.prepend(article);
-
       article.addEventListener("click", (e) => {
-        if (e.target.classList.contains("btn-comments")) {
-        }
+        console.log(e.detail);
+        // if (e.detail === 1) {
+        //   // it was a single click
+        //   postClickHandler(e, hiddenId.value);
+        // } else if (e.detail === 2) {
+        //   // it was a double click
+        //   postDblClickHandler(e, hiddenId.value);
+        // }
       });
+
+      postContainer.append(article);
     });
   }
 };
-const init = () => {
-  // getFeed().then((data) => setPostElements(data.posts));
-  getMyPosts().then((data) => setPostElements(data.post));
+
+// variables
+
+// event handlers
+const postClickHandler = (e, postId) => {
+  const target = e.target;
+  if (
+    target.classList.contains("txt-content") ||
+    target.classList.contains("img-preview") ||
+    target.classList.contains("btn-comments")
+  ) {
+    localStorage.setItem("postId", postId);
+    location.href = "./post.html";
+  }
 };
 
+const postDblClickHandler = (e, postId) => {
+  const target = e.target;
+  if (
+    target.classList.contains("txt-content") ||
+    target.classList.contains("img-preview")
+  ) {
+    console.log(target);
+    // const isLike = likeBtn.classList.contains("on") ? false : true;
+    // Global.postLike(postId, isLike)
+    //   .then((data) => {
+    //     likeBtn.classList.toggle("on");
+    //     document.querySelector(".txt-likes").textContent = data.post.heartCount;
+    //   })
+    //   .catch(console.error);
+  }
+};
+
+// functions
+const init = () => {
+  Global.getFeed().then((postObj) => setPostElements(postObj.posts));
+  // Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
+};
+
+// start
 init();

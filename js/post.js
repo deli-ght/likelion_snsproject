@@ -1,47 +1,11 @@
 import * as Global from "./global.js";
 
-const getPost = async (postId) => {
-  try {
-    //GET /post/:post_id
-    const res = await fetch(`${Global.URL}/post/${postId}`, {
-      method: "GET",
-      headers: Global.HEADER,
-    });
-
-    // 포스트 정보 가져오기
-    const postObj = await res.json();
-    setPostElements(postObj);
-    setLoginUserProfile();
-    // 댓글 가져오기
-    getReply(postId);
-  } catch (err) {
-    console.error;
-  }
-};
-const getImageUrl = (filename) => {
-  return fetch(`${Global.URL}/${filename}`, {
-    method: "GET",
-  }).then((res) => res.url);
-};
-
-// yyyy년 mm월 dd일
-const formatDate = (dateStr) => {
-  const date = new Date(dateStr);
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-
-  return `${year}년 ${month}월 ${day}일`;
-};
-
+// functions
 const setLoginUserProfile = () => {
   const imgLoginUser = document.querySelector("#comment .img-basic-profile");
 
   Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
-    getImageUrl(data.profile.image)
+    Global.getImageUrl(data.profile.image)
       .then((url) => (imgLoginUser.src = url))
       .catch(console.error);
   });
@@ -51,7 +15,7 @@ const setPostElements = (obj) => {
   const homePostCont = document.querySelector(".home-post");
   // author
   homePostCont.querySelector(".img-profile").src = "../src/basic-profile.png"; // 테스트용
-  getImageUrl(obj.post.author.image)
+  Global.getImageUrl(obj.post.author.image)
     .then((url) => (homePostCont.querySelector(".img-profile").src = url))
     .catch(console.error);
   homePostCont.querySelector(".txt-title").textContent =
@@ -64,12 +28,13 @@ const setPostElements = (obj) => {
   if (obj.post.content)
     homePostCont.querySelector(".txt-content").textContent = obj.post.content;
 
+  console.log(obj.post.hearted);
   if (obj.post.hearted)
     homePostCont.querySelector(".btn-likes").classList.add("on");
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
   homePostCont.querySelector(".txt-comments").textContent =
     obj.post.commentCount;
-  homePostCont.querySelector(".txt-date").textContent = formatDate(
+  homePostCont.querySelector(".txt-date").textContent = Global.formatDate(
     obj.post.createdAt
   );
   // 콘텐츠 이미지 생성하기
@@ -83,7 +48,7 @@ const setPostElements = (obj) => {
       imgContainer.classList.add("cont-img");
       img.classList.add("img-preview");
       // 본문 이미지
-      getImageUrl(filename)
+      Global.getImageUrl(filename)
         .then((url) => (img.src = url))
         .catch(console.error);
 
@@ -97,12 +62,6 @@ const removeAllChildren = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
-};
-
-const sortDescByDate = (obj) => {
-  return obj.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
 };
 
 const setReplyElements = (obj) => {
@@ -127,7 +86,7 @@ const setReplyElements = (obj) => {
       // img.src = comt.author.image;
       // img.src = "../src/basic-profile.png"; // 테스트용
       img.classList.add("img-profile");
-      getImageUrl(comt.author.image)
+      Global.getImageUrl(comt.author.image)
         .then((url) => (img.src = url))
         .catch(console.error);
 
@@ -182,74 +141,18 @@ const calcAfterTime = (createdDate) => {
   }
 };
 
-const getReply = async (postId) => {
-  try {
-    //GET /post/:post_id/comments
-    const res = await fetch(`${Global.URL}/post/${postId}/comments`, {
-      method: "GET",
-      headers: Global.HEADER,
-    });
+const setComments = (postId) => {
+  Global.getComments(postId).then((commentObj) => {
+    let sortedCommentObj;
 
-    const replyObj = await res.json();
-    let sortedReplyObj;
-
-    replyObj.comments.length > 1
-      ? (sortedReplyObj = sortDescByDate(replyObj.comments))
-      : (sortedReplyObj = replyObj.comments);
+    commentObj.comments.length > 1
+      ? (sortedCommentObj = Global.sortDescByDate(commentObj.comments))
+      : (sortedCommentObj = commentObj.comments);
 
     document.querySelector(".txt-comments").textContent =
-      replyObj.comments.length;
-    setReplyElements(sortedReplyObj);
-  } catch (err) {
-    console.error;
-  }
-};
-
-const postComment = async (txtComment) => {
-  try {
-    const res = await fetch(
-      `${Global.URL}/post/${Global.TEST_POST_ID}/comments`,
-      {
-        method: "POST",
-        headers: Global.HEADER,
-        body: JSON.stringify({
-          comment: {
-            content: txtComment,
-          },
-        }),
-      }
-    );
-
-    getReply(Global.TEST_POST_ID);
-
-    // const data = await res.json();
-    // console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const postLike = async (postId, isLike) => {
-  let action, reqMethod;
-  if (isLike) {
-    // like
-    action = "heart";
-    reqMethod = "POST";
-  } else {
-    // unlike
-    action = "unheart";
-    reqMethod = "DELETE";
-  }
-  try {
-    const res = await fetch(`${Global.URL}/post/${postId}/${action}`, {
-      method: reqMethod,
-      headers: Global.HEADER,
-    });
-
-    return await res.json();
-  } catch (err) {
-    console.error(err);
-  }
+      commentObj.comments.length;
+    setReplyElements(sortedCommentObj);
+  });
 };
 
 // Variables
@@ -261,12 +164,15 @@ const modal = document.querySelector("#post-modal");
 
 // Handlers
 const submitBtnClickHandler = () => {
-  postComment(txtComment.value);
+  console.log("in in");
+  Global.postComment(txtComment.value).then(() =>
+    setComments(localStorage.getItem("postId"))
+  );
   txtComment.value = "";
 };
 const likeBtnClickHandler = () => {
   const isLike = likeBtn.classList.contains("on") ? false : true;
-  postLike(Global.TEST_POST_ID, isLike)
+  Global.postLike(localStorage.getItem("postId"), isLike)
     .then((data) => {
       likeBtn.classList.toggle("on");
       document.querySelector(".txt-likes").textContent = data.post.heartCount;
@@ -284,7 +190,6 @@ const commentChangeHandler = (e) => {
 const commentMoreBtnClickHandler = (e) => {
   modal.classList.remove("off");
   const comment = e.target.parentElement;
-  console.log(comment);
 };
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
@@ -296,4 +201,18 @@ modal.addEventListener("click", function (e) {
 });
 
 // init
-getPost(Global.TEST_POST_ID);
+const init = () => {
+  const postId = localStorage.getItem("postId");
+  if (postId) {
+    Global.getPost(postId).then((postObj) => {
+      setPostElements(postObj);
+      // 유저 프로필 사진세팅 (댓글 인풋)
+      setLoginUserProfile();
+
+      // 댓글관련 세팅
+      setComments(postObj.post.id);
+    });
+  }
+};
+
+init();
