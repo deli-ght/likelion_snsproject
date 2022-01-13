@@ -14,11 +14,8 @@ let txtAdded = false;
 // functions
 const init = () => {
   const imgLoginUser = document.querySelector("#upload .img-basic-profile");
-
   Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
-    Global.getImageUrl(data.profile.image)
-      .then((url) => (imgLoginUser.src = url))
-      .catch(console.error);
+    imgLoginUser.src = data.profile.image;
   });
 };
 
@@ -160,7 +157,7 @@ const uploadBtnClickHandler = () => {
       const filenameArr = [];
 
       Array.from(data).forEach((imgInfo) => {
-        filenameArr.push(imgInfo.filename);
+        filenameArr.push(`${Global.URL}/${imgInfo.filename}`);
       });
 
       if (filenameArr.length > 1) {

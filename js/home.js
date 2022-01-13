@@ -5,8 +5,8 @@ let clickCnt = 0,
 
 // functions
 const init = () => {
-  Global.getFeed().then((postObj) => setPostElements(postObj.posts));
-  // Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
+  // Global.getFeed().then((postObj) => setPostElements(postObj.posts));
+  Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
 };
 
 const setPostElements = (posts) => {
@@ -24,10 +24,7 @@ const setPostElements = (posts) => {
       userInfo.classList.add("user-search");
       const profile = document.createElement("img");
       profile.classList.add("img-profile");
-      profile.src = "../src/basic-profile.png"; // 테스트용
-      Global.getImageUrl(post.author.image)
-        .then((url) => (profile.src = url))
-        .catch(console.error);
+      profile.src = post.author.image; // 테스트용
 
       const wrapText = document.createElement("div");
       wrapText.classList.add("wrap-txt");
@@ -60,10 +57,7 @@ const setPostElements = (posts) => {
 
           imgContainer.classList.add("cont-img");
           img.classList.add("img-preview");
-          // 본문 이미지
-          Global.getImageUrl(filename)
-            .then((url) => (img.src = url))
-            .catch(console.error);
+          img.src = filename;
 
           imgContainer.appendChild(img);
           previewContainer.appendChild(imgContainer);
@@ -167,7 +161,6 @@ const setLike = (postId, currentTarget) => {
 const postClickHandler = (target, currentTarget, postId) => {
   if (
     target.classList.contains("txt-content") ||
-    target.classList.contains("img-preview") ||
     target.classList.contains("btn-comments")
   ) {
     localStorage.setItem("postId", postId);

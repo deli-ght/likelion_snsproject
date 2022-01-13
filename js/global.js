@@ -129,18 +129,6 @@ export const getFeed = async () => {
   }
 };
 
-export const getImageUrl = async (filename) => {
-  try {
-    const res = await fetch(`${URL}/${filename}`, {
-      method: "GET",
-    });
-
-    return res.url;
-  } catch (err) {
-    console.error;
-  }
-};
-
 export const uploadImgs = async (formData) => {
   try {
     const res = await fetch(`${URL}/image/uploadfiles`, {

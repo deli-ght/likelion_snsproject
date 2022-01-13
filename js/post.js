@@ -14,18 +14,14 @@ const setLoginUserProfile = () => {
   const imgLoginUser = document.querySelector("#comment .img-basic-profile");
 
   Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
-    Global.getImageUrl(data.profile.image)
-      .then((url) => (imgLoginUser.src = url))
-      .catch(console.error);
+    imgLoginUser.src = data.profile.image;
   });
 };
 
 const setPostElements = (obj) => {
   // author
   homePostCont.querySelector(".img-profile").src = "../src/basic-profile.png"; // 테스트용
-  Global.getImageUrl(obj.post.author.image)
-    .then((url) => (homePostCont.querySelector(".img-profile").src = url))
-    .catch(console.error);
+  homePostCont.querySelector(".img-profile").src = obj.post.author.image;
   homePostCont.querySelector(".txt-title").textContent =
     obj.post.author.username;
   homePostCont.querySelector(
@@ -54,10 +50,7 @@ const setPostElements = (obj) => {
 
       imgContainer.classList.add("cont-img");
       img.classList.add("img-preview");
-      // 본문 이미지
-      Global.getImageUrl(filename)
-        .then((url) => (img.src = url))
-        .catch(console.error);
+      img.src = filename;
 
       imgContainer.appendChild(img);
       imgsContainer.appendChild(imgContainer);
@@ -93,9 +86,7 @@ const setReplyElements = (obj) => {
       // img.src = comt.author.image;
       // img.src = "../src/basic-profile.png"; // 테스트용
       img.classList.add("img-profile");
-      Global.getImageUrl(comt.author.image)
-        .then((url) => (img.src = url))
-        .catch(console.error);
+      img.src = comt.author.image;
 
       // 이름
       const wrapTxtEl = document.createElement("div");
