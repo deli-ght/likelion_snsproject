@@ -8,6 +8,7 @@ const replyUl = document.querySelector(".cont-reply ul");
 const modal = document.querySelector("#post-modal");
 const homePostCont = document.querySelector(".home-post");
 const postId = localStorage.getItem("postId");
+const backBtn = document.querySelector(".img-left-arrow");
 
 // functions
 const setLoginUserProfile = () => {
@@ -242,6 +243,9 @@ modal.addEventListener("click", function (e) {
 });
 homePostCont.addEventListener("dblclick", (e) => {
   postDblClickHandler(e);
+});
+backBtn.addEventListener("click", () => {
+  location.href = "home.html";
 });
 
 // init
