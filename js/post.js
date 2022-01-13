@@ -1,5 +1,14 @@
 import * as Global from "./global.js";
 
+// Variables
+const submitBtn = document.querySelector(".btn-submit");
+const likeBtn = document.querySelector(".btn-likes");
+const txtComment = document.querySelector("#comment .input-text");
+const replyUl = document.querySelector(".cont-reply ul");
+const modal = document.querySelector("#post-modal");
+const homePostCont = document.querySelector(".home-post");
+const postId = localStorage.getItem("postId");
+
 // functions
 const setLoginUserProfile = () => {
   const imgLoginUser = document.querySelector("#comment .img-basic-profile");
@@ -12,7 +21,6 @@ const setLoginUserProfile = () => {
 };
 
 const setPostElements = (obj) => {
-  const homePostCont = document.querySelector(".home-post");
   // author
   homePostCont.querySelector(".img-profile").src = "../src/basic-profile.png"; // 테스트용
   Global.getImageUrl(obj.post.author.image)
@@ -28,7 +36,6 @@ const setPostElements = (obj) => {
   if (obj.post.content)
     homePostCont.querySelector(".txt-content").textContent = obj.post.content;
 
-  console.log(obj.post.hearted);
   if (obj.post.hearted)
     homePostCont.querySelector(".btn-likes").classList.add("on");
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
@@ -155,12 +162,46 @@ const setComments = (postId) => {
   });
 };
 
-// Variables
-const submitBtn = document.querySelector(".btn-submit");
-const likeBtn = document.querySelector(".btn-likes");
-const txtComment = document.querySelector("#comment .input-text");
-const replyUl = document.querySelector(".cont-reply ul");
-const modal = document.querySelector("#post-modal");
+const setLike = () => {
+  const isLike = likeBtn.classList.contains("on") ? false : true;
+
+  if (isLike) {
+    likeBtn.animate(
+      [
+        //keyframes
+        { transform: "scale(1)" },
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" },
+      ],
+      {
+        // timing options
+        duration: 500,
+        easing: "linear",
+      }
+    );
+  } else {
+    likeBtn.animate(
+      [
+        //keyframes
+        { transform: "scale(1)" },
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" },
+      ],
+      {
+        // timing options
+        duration: 500,
+        easing: "linear",
+      }
+    );
+  }
+
+  Global.postLike(localStorage.getItem("postId"), isLike)
+    .then((data) => {
+      likeBtn.classList.toggle("on");
+      document.querySelector(".txt-likes").textContent = data.post.heartCount;
+    })
+    .catch(console.error);
+};
 
 // Handlers
 const submitBtnClickHandler = () => {
@@ -170,15 +211,11 @@ const submitBtnClickHandler = () => {
   );
   txtComment.value = "";
 };
+
 const likeBtnClickHandler = () => {
-  const isLike = likeBtn.classList.contains("on") ? false : true;
-  Global.postLike(localStorage.getItem("postId"), isLike)
-    .then((data) => {
-      likeBtn.classList.toggle("on");
-      document.querySelector(".txt-likes").textContent = data.post.heartCount;
-    })
-    .catch(console.error);
+  setLike();
 };
+
 const commentChangeHandler = (e) => {
   if (txtComment.value === "") {
     submitBtn.disabled = true;
@@ -191,6 +228,17 @@ const commentMoreBtnClickHandler = (e) => {
   modal.classList.remove("off");
   const comment = e.target.parentElement;
 };
+
+const postDblClickHandler = (e) => {
+  const parent = e.target.parentElement;
+  if (
+    parent.classList.contains("wrap-content") ||
+    parent.classList.contains("cont-img")
+  ) {
+    setLike();
+  }
+};
+
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
 likeBtn.addEventListener("click", likeBtnClickHandler);
@@ -199,10 +247,12 @@ replyUl.addEventListener("click", commentMoreBtnClickHandler);
 modal.addEventListener("click", function (e) {
   e.target.classList.add("off");
 });
+homePostCont.addEventListener("dblclick", (e) => {
+  postDblClickHandler(e);
+});
 
 // init
 const init = () => {
-  const postId = localStorage.getItem("postId");
   if (postId) {
     Global.getPost(postId).then((postObj) => {
       setPostElements(postObj);

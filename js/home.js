@@ -1,4 +1,13 @@
 import * as Global from "./global.js";
+// variables
+let clickCnt = 0,
+  clickTimer;
+
+// functions
+const init = () => {
+  Global.getFeed().then((postObj) => setPostElements(postObj.posts));
+  // Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
+};
 
 const setPostElements = (posts) => {
   if (posts.length > 0) {
@@ -91,14 +100,19 @@ const setPostElements = (posts) => {
       article.append(userInfo, wrapContent);
 
       article.addEventListener("click", (e) => {
-        console.log(e.detail);
-        // if (e.detail === 1) {
-        //   // it was a single click
-        //   postClickHandler(e, hiddenId.value);
-        // } else if (e.detail === 2) {
-        //   // it was a double click
-        //   postDblClickHandler(e, hiddenId.value);
-        // }
+        const currentTarget = e.currentTarget;
+        const target = e.target;
+        clickCnt += 1;
+        if (clickCnt === 1) {
+          clickTimer = setTimeout(() => {
+            clickCnt = 0;
+            postClickHandler(target, currentTarget, hiddenId.value);
+          }, 400);
+        } else if (clickCnt === 2) {
+          clearTimeout(clickTimer);
+          clickCnt = 0;
+          postDblClickHandler(target, currentTarget, hiddenId.value);
+        }
       });
 
       postContainer.append(article);
@@ -106,11 +120,51 @@ const setPostElements = (posts) => {
   }
 };
 
-// variables
+const setLike = (postId, currentTarget) => {
+  const likeBtn = currentTarget.querySelector(".btn-likes");
+  const isLike = likeBtn.classList.contains("on") ? false : true;
+
+  if (isLike) {
+    likeBtn.animate(
+      [
+        //keyframes
+        { transform: "scale(1)" },
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" },
+      ],
+      {
+        // timing options
+        duration: 500,
+        easing: "linear",
+      }
+    );
+  } else {
+    likeBtn.animate(
+      [
+        //keyframes
+        { transform: "scale(1)" },
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" },
+      ],
+      {
+        // timing options
+        duration: 500,
+        easing: "linear",
+      }
+    );
+  }
+
+  Global.postLike(postId, isLike)
+    .then((data) => {
+      likeBtn.classList.toggle("on");
+      currentTarget.querySelector(".txt-likes").textContent =
+        data.post.heartCount;
+    })
+    .catch(console.error);
+};
 
 // event handlers
-const postClickHandler = (e, postId) => {
-  const target = e.target;
+const postClickHandler = (target, currentTarget, postId) => {
   if (
     target.classList.contains("txt-content") ||
     target.classList.contains("img-preview") ||
@@ -119,29 +173,20 @@ const postClickHandler = (e, postId) => {
     localStorage.setItem("postId", postId);
     location.href = "./post.html";
   }
-};
 
-const postDblClickHandler = (e, postId) => {
-  const target = e.target;
-  if (
-    target.classList.contains("txt-content") ||
-    target.classList.contains("img-preview")
-  ) {
-    console.log(target);
-    // const isLike = likeBtn.classList.contains("on") ? false : true;
-    // Global.postLike(postId, isLike)
-    //   .then((data) => {
-    //     likeBtn.classList.toggle("on");
-    //     document.querySelector(".txt-likes").textContent = data.post.heartCount;
-    //   })
-    //   .catch(console.error);
+  if (target.classList.contains("btn-likes")) {
+    setLike(postId, currentTarget);
   }
 };
 
-// functions
-const init = () => {
-  Global.getFeed().then((postObj) => setPostElements(postObj.posts));
-  // Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
+const postDblClickHandler = (target, currentTarget, postId) => {
+  const parent = target.parentElement;
+  if (
+    parent.classList.contains("wrap-content") ||
+    parent.classList.contains("cont-img")
+  ) {
+    setLike(postId, currentTarget);
+  }
 };
 
 // start
