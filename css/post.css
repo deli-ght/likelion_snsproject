@@ -1,3 +1,4 @@
+@import url(./component.css);
 body {
   /* width: 390px; */
 }
@@ -7,6 +8,7 @@ body {
   height: 100vh;
   flex-direction: column;
 }
+
 .top-basic-nav {
   border-bottom: 1px solid #dbdbdb;
 }

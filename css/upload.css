@@ -1,7 +1,4 @@
-body {
-  /* width: 390px; */
-}
-
+@import url(./component.css);
 .top-upload-nav {
   border-bottom: 1px solid #dbdbdb;
 }
