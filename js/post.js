@@ -196,10 +196,12 @@ const setLike = () => {
 
 // Handlers
 const submitBtnClickHandler = () => {
-  console.log("in in");
-  Global.postComment(txtComment.value).then(() =>
-    setComments(localStorage.getItem("postId"))
-  );
+  const postId = localStorage.getItem("postId");
+  Global.postComment(postId, txtComment.value).then(() => {
+    setComments(postId);
+    submitBtn.disabled = true;
+    replyUl.scrollTop = 0;
+  });
   txtComment.value = "";
 };
 
