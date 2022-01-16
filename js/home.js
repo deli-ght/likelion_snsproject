@@ -9,15 +9,15 @@ const alert = document.querySelector("#alert");
 
 // functions
 const init = () => {
-  //Global.setToken();
-  // Global.getFeed().then((postObj) => {
-  //   if (postObj.posts.length > 0) {
-  //     setPostElements(postObj.posts);
-  //   } else {
-  //     location.href = "home-none.html";
-  //   }
-  // });
-  Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
+  Global.setInit();
+  Global.getFeed().then((postObj) => {
+    if (postObj.posts.length > 0) {
+      setPostElements(postObj.posts);
+    } else {
+      location.href = "home-none.html";
+    }
+  });
+  // Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
 };
 
 const setPostElements = (posts) => {

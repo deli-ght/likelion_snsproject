@@ -337,6 +337,7 @@ alert.querySelector(".p-cancle").addEventListener("click", () => {
 });
 // init
 const init = () => {
+  Global.setInit();
   if (postId) {
     Global.getPost(postId).then((postObj) => {
       postUserId = postObj.post.author.accountname;
