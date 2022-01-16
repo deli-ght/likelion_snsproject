@@ -61,19 +61,47 @@ function toggleClassOn() {
     }
 }
 
-async function updateProfile(file) {
+userName.addEventListener('blur', toggleClassOn);
+userIntro.addEventListener('blur', toggleClassOn);
+primaryId.addEventListener('blur', toggleClassOn);
+
+
+async function imageUpload(files){
+    const formData = new FormData();
+    formData.append("image", files[0]);
+    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+        method: "POST",
+        body : formData
+    })
+    const data = await res.json()
+    const productImgName = data["filename"];
+    return productImgName
+}
+
+async function profileImage(e) {
+    const files = e.target.files
+    const result = await imageUpload(files)
+    previewImage.src = "http://146.56.183.55:5050/" + result
+}
+
+inputImage.addEventListener("change", profileImage)
+
+async function updateProfile(){
+    const imageUrl = document.querySelector(".img-basic").src
+    const token = localStorage.getItem("testToken")
+    const accountName = localStorage.getItem("accountName")
     const res = await fetch("http://146.56.183.55:5050/user", {
         method: "PUT",
         headers: {
-            "Authorization" : "Bearer key",
-            "Content-type" : "application / json"
+            "Authorization" : `Bearer ${token}`,
+            "Content-type" : "application/json"
         },
         body : JSON.stringify({
             "user": {
                 "username": userName.value,
                 "accountname": primaryId.value,
                 "intro": userIntro.value,
-                "image": file[0].filename,
+                "image": imageUrl,
             }
         })
     });
@@ -81,41 +109,27 @@ async function updateProfile(file) {
     console.log(json)
 }
 
-uploadButton.addEventListener('click', async function() {
-    const srcImg = previewImage.src.split('/')
-    basicImg = srcImg[srcImg.length - 1]
-    if (!inputImage.files[0]) {
-        let list = new DataTransfer();
-        let file = new File(["name"], basicImg);
-        list.items.add(file);
-        let myFileList = list.files;
-        inputImage.files = myFileList
-    }
-    var formData = new FormData();
-    formData.append('image', inputImage.files[0])
-    await fetch('http://146.56.183.55:5050/image/uploadfiles', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(file => updateProfile(file))
-})
+uploadButton.addEventListener("click", updateProfile)
 
-userName.addEventListener('blur', toggleClassOn);
-userIntro.addEventListener('blur', toggleClassOn);
-primaryId.addEventListener('blur', toggleClassOn);
 
-function readImage(input) {
-    if(input.files && input.files[0]) {
-        const reader = new FileReader()
-        reader.onload = (event) => {
-            const previewImage = document.querySelector(".img-basic")
-            previewImage.src = event.target.result
+// 프로필 정보 가져오기
+async function getProfile() {
+    const token = localStorage.getItem("testToken")
+    const accountName = localStorage.getItem("accountName")
+    const url = `http://146.56.183.55:5050/profile/${accountName}`
+    const res = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Authorization" : `Bearer ${token}`,
+            "Content-type" : "application/json"
         }
-        reader.readAsDataURL(input.files[0])
-    }
+    })
+    const json = await res.json()
+    console.log(json)
+    primaryId.value = json.profile.accountname
+    userName.value = json.profile.username
+    userIntro.value = json.profile.intro
+    previewImage.src = json.profile.image
 }
 
-inputImage.addEventListener("change", (event) => {
-    readImage(event.target)
-})
+getProfile()

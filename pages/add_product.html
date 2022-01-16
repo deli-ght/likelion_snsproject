@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <title>Add Product</title>
+</head>
+<body>
+    <!-- your profile top basic nav -->
+    <section class="top-basic-nav">
+        <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+        <button type="button" class="btn-button btn-ms">저장</button>
+    </section>
+
+    <section id="product_regist">
+        <ul class="ul-products">
+            <li>
+                <p>이미지 등록</p>
+                <input type="file" name="" id="imgbox" class="input-imgbox">
+                <img src="../src/img-button.png" alt="img-button" class="img-button">
+                <label for="imgbox" class="label-imgbox"></label>
+            </li>
+
+            <li>
+                <p>상품 등록</p>
+                <input type="text" placeholder="2~15자 이내여야 합니다." class="input-product">
+                <span class="span-product"></span>
+            </li>
+            
+            <li>
+                <p>가격</p>
+                <input type="text" placeholder="숫자만 입력 가능합니다." class="input-price">
+                <span class="span-price"></span>
+            </li>
+            
+            <li>
+                <p>판매 링크</p>
+                <input type="text" placeholder="URL을 입력해 주세요." class="input-link">
+                <span class="span-link"></span>
+            </li>
+        </ul>
+
+
+    </section>
+
+
+    <script src="../js/add_product.js"></script> 
+</body>
+</html>
