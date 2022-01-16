@@ -1,7 +1,4 @@
 @import url(./component.css);
-body {
-  /* width: 390px; */
-}
 
 #app {
   display: flex;
@@ -163,38 +160,59 @@ body {
   color: #c4c4c4;
 }
 
-#post-modal {
+.post-modal {
   position: fixed;
-  bottom: 0;
   width: 100%;
-  padding-bottom: 0.75em;
-  background-color: #fff;
+  max-height: 0;
+  bottom: 0;
+  padding: 0;
   border-radius: 10px 10px 0 0;
-  transition: all 0.5s;
-  z-index: 10;
+  z-index: 20;
+  background-color: var(--white);
+  overflow: hidden;
+  transition: 0.7s ease-in-out;
 }
-#post-modal.off {
-  bottom: -20%;
-}
-#post-modal::before {
+
+.post-modal::before {
   content: "";
-  display: block;
-  margin: 1em auto;
+  position: absolute;
+  top: 16px;
+  left: 50%;
   width: 50px;
   height: 4px;
-  border-radius: 5px;
+  transform: translateX(-50%);
   background-color: var(--light-gray);
+  border-radius: 5px;
 }
 
-#post-modal li {
+.post-modal button {
   width: 100%;
-}
-
-#post-modal li button {
-  box-sizing: border-box;
-  padding: 1rem 1.8rem;
-  width: 100%;
-  font-size: var(--font-14px);
+  height: 100%;
+  padding: 26px 14px;
+  color: var(--gray);
   text-align: left;
-  color: #000;
+}
+
+.post-modal button.off {
+  display: none;
+}
+
+.show-modal {
+  display: block;
+  padding: 36px 0 5px 0;
+  max-height: 300px;
+}
+
+#alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 20;
+}
+
+#alert.show {
+  display: block;
 }

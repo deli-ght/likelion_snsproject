@@ -1,23 +1,27 @@
+export const URL = "http://146.56.183.55:5050";
+
 export let TOKEN = "";
 
-//token(ash__h): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
-//token(ash2): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
+export const setToken = () => {
+  TOKEN = localStorage.getItem("token");
+};
+//ash__h: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
+//ash2: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
+//ash3: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTNhYWRkODQ4NDMxZTE5MWJjOTZjNCIsImV4cCI6MTY0NzQ5NDUxMiwiaWF0IjoxNjQyMzEwNTEyfQ.ddj-_v4UKQNMQOHPaFaNR8lExHwt_J1H4dZKeRUs2cg
 export let TEST_TOKEN =
   "Bearer " +
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
-// export let TEST_POST_ID = "61d576a66b8216fc566876d2"; // ash__H, 이미지 1장, 댓글 있음
-// export let TEST_POST_ID = "61d6df2b685c75821c469db4"; // ash2, 이미지 1장, 댓글 있음
-export let TEST_POST_ID = "61d7f550685c75821c46aca5"; // ash2, 이미지 2장, 댓글 없음
-// export let TEST_POST_ID = "61d7fc4a685c75821c46ad08"; // ash2, 글만 있음, 댓글 있음
-export const URL = "http://146.56.183.55:5050";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM";
 
 export const HEADER = new Headers({
   Authorization: TEST_TOKEN,
   "Content-type": "application/json",
 });
 
-export let LOGIN_ACCOUNT_NAME = "ash__h";
+export let LOGIN_ACCOUNT_NAME = "ash2";
 
+export const setLoginUser = () => {
+  LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
+};
 export const getUser = async (accountname) => {
   // GET /profile/:accountname
   return await fetch(`${URL}/profile/${accountname}`, {
@@ -78,9 +82,9 @@ export const getComments = async (postId) => {
   }
 };
 
-export const postComment = async (txtComment) => {
+export const postComment = async (postId, txtComment) => {
   try {
-    const res = await fetch(`${URL}/post/${TEST_POST_ID}/comments`, {
+    await fetch(`${URL}/post/${postId}/comments`, {
       method: "POST",
       headers: HEADER,
       body: JSON.stringify({
@@ -89,7 +93,7 @@ export const postComment = async (txtComment) => {
         },
       }),
     });
-    console.log(await res.json());
+    // console.log(await res.json());
   } catch (err) {
     console.error(err);
   }

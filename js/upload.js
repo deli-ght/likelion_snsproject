@@ -7,6 +7,7 @@ const imgUploadBtn = document.querySelector(".btn-img-upload");
 const inpImgs = document.querySelector(".inp-imgs");
 const previewContainer = document.querySelector(".cont-preview");
 const txtContent = document.querySelector("#upload .input-txt");
+const backBtn = document.querySelector(".img-left-arrow");
 
 let imgAdded = false;
 let txtAdded = false;
@@ -166,7 +167,10 @@ const uploadBtnClickHandler = () => {
         return filenameArr[0];
       }
     })
-    .then((filename) => Global.uploadPost(txtContent.value, filename))
+    .then((filename) => {
+      Global.uploadPost(txtContent.value, filename);
+      location.href = "home-feed.html";
+    })
     .catch(console.error);
 };
 
@@ -202,6 +206,8 @@ txtContent.addEventListener("input", (e) => {
   checkByte(target);
   resize(target);
 });
-
+backBtn.addEventListener("click", () => {
+  window.history.back();
+});
 // start
 init();

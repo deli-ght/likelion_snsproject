@@ -95,3 +95,39 @@
 .btn-img-upload .inp-imgs {
   display: none;
 }
+
+.cont-preview {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.cont-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.cont-preview {
+  width: 100%;
+}
+.cont-preview .cont-img {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-right: 0.5em;
+}
+
+.cont-preview .cont-img .img-preview {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-preview {
+  display: block;
+  border-radius: 10px;
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+}

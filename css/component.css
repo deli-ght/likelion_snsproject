@@ -19,6 +19,7 @@
   --font-14px: 0.875rem;
   --font-16px: 1rem;
   --font-18px: 1.125rem;
+  --swiper-theme-color: white;
 }
 
 /* global settings */
@@ -28,7 +29,7 @@
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
 body {
-  background-color: rgb(194, 238, 245);
+  /* background-color: rgb(194, 238, 245); */
 }
 
 button {
@@ -127,30 +128,63 @@ button {
   line-height: 1.125rem;
 }
 
-.cont-preview {
+.swiper {
+  width: 100%;
+  /* width: 500px; */
+}
+.swiper-wrapper {
+  display: -webkit-inline-box;
+  transform: translate3d(0, 0px, 0px);
+}
+
+.swiper-slide {
+  width: 304px;
+  height: 228px;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* .cont-preview {
   width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
-}
+} */
 
-.cont-preview::-webkit-scrollbar {
+/* .cont-preview::-webkit-scrollbar {
   display: none;
-}
+} */
 
+/* .cont-preview {
+  width: 100%;
+  height: 100%;
+}
 .cont-preview .cont-img {
   position: relative;
   display: inline-block;
-  width: 304px;
-  height: 228px;
+  width: 100%;
+  height: 100%;
   margin-right: 0.5em;
-}
+} */
 
-.cont-preview .cont-img .img-preview {
+/* .cont-preview .cont-img .img-preview {
   border-radius: 10px;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
+
+/* .img-preview {
+  display: block;
+  border-radius: 10px;
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+} */
 
 .home-post .wrap-content .ul-btns {
   margin-top: 1.333em;
@@ -572,7 +606,8 @@ button {
 }
 
 .p-cancle,
-.p-delete {
+.p-delete,
+.p-action {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   font-weight: 400;
   text-align: center;
@@ -581,6 +616,7 @@ button {
   cursor: pointer;
 }
 
+.p-action,
 .p-delete {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   border-left: 0.5px solid #dbdbdb;
