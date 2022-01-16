@@ -19,6 +19,7 @@
   --font-14px: 0.875rem;
   --font-16px: 1rem;
   --font-18px: 1.125rem;
+  --swiper-theme-color: white;
 }
 
 /* global settings */
@@ -27,9 +28,9 @@
 }
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
-/* body {
-  background-color: rgb(194, 238, 245);
-} */
+body {
+  /* background-color: rgb(194, 238, 245); */
+}
 
 button {
   border: none;
@@ -69,12 +70,10 @@ button {
 
 .user-search .wrap-txt .txt-title {
   font-size: var(--font-14px);
-  line-height: 18px;
 }
 
 .user-search .wrap-txt .txt-nickname {
   font-size: var(--font-12px);
-  line-height: 15px;
   color: var(--gray);
 }
 
@@ -94,6 +93,9 @@ button {
 .home-post {
   --home-post-profile: 42px;
   margin: 1.25em 1em;
+  max-height: calc(100% - 48px - 61px);
+  display: flex;
+  flex-direction: column;
 }
 
 .home-post .img-profile {
@@ -112,54 +114,95 @@ button {
 .home-post .wrap-content {
   margin-top: 1em;
   padding-left: calc(var(--home-post-profile) + 0.75em);
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.home-post .wrap-content::-webkit-scrollbar {
+  display: none;
 }
 
 .home-post .wrap-content .txt-content {
   margin-bottom: 1.143em;
   font-size: var(--font-14px);
-  line-height: 18px;
+  line-height: 1.125rem;
 }
 
-.cont-preview {
+.swiper {
+  width: 100%;
+  /* width: 500px; */
+}
+.swiper-wrapper {
+  display: -webkit-inline-box;
+  transform: translate3d(0, 0px, 0px);
+}
+
+.swiper-slide {
+  width: 304px;
+  height: 228px;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* .cont-preview {
   width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
-}
+} */
 
-.cont-preview::-webkit-scrollbar {
+/* .cont-preview::-webkit-scrollbar {
   display: none;
-}
+} */
 
+/* .cont-preview {
+  width: 100%;
+  height: 100%;
+}
 .cont-preview .cont-img {
   position: relative;
   display: inline-block;
-  width: 304px;
-  height: 228px;
+  width: 100%;
+  height: 100%;
   margin-right: 0.5em;
-}
+} */
 
-.cont-preview .cont-img .img-preview {
+/* .cont-preview .cont-img .img-preview {
   border-radius: 10px;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
+
+/* .img-preview {
+  display: block;
+  border-radius: 10px;
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+} */
 
 .home-post .wrap-content .ul-btns {
   margin-top: 1.333em;
   display: flex;
   color: var(--gray);
   font-size: var(--font-12px);
-  line-height: 12px;
 }
 
 .home-post .wrap-content .ul-btns .li-btn {
   margin-right: 1em;
+  display: flex;
+  align-items: center;
 }
 
 .home-post .wrap-content .ul-btns .li-btn button {
   width: 20px;
   height: 20px;
+  margin-right: 0.375em;
 }
 
 .home-post .wrap-content .ul-btns .li-btn .btn-likes {
@@ -180,14 +223,11 @@ button {
 .home-post .wrap-content .ul-btns .li-btn span {
   display: inline-block;
   font-size: var(--font-12px);
-  line-height: 20px;
-  vertical-align: top;
   color: var(--gray);
 }
 .home-post .wrap-content .txt-date {
   margin-top: 1.6em;
   font-size: var(--font-10px);
-  line-height: 12px;
   color: var(--gray);
 }
 /* end: home */
@@ -487,6 +527,58 @@ button {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
+/* 
+
+/* tab-menu */
+#tab-menu {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 0.5px solid #c4c4c4;
+}
+
+#tab-menu button {
+  width: 20%;
+  height: 100%;
+  background-size: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.button-home {
+  background: url("../src/icon-home-fill.png") no-repeat center;
+}
+.button-circle1 {
+  background: url("../src/icon-message-circle-1.png") no-repeat center;
+}
+.button-edit {
+  background: url("../src/icon-edit.png") no-repeat center;
+}
+.button-profile {
+  background: url("../src/icon-user.png") no-repeat center;
+}
+
+#tab-menu button .p-home {
+  color: #f26e22;
+}
+
+#tab-menu button p {
+  position: absolute;
+  bottom: -0.5em;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #767676;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.625rem;
+  line-height: 14px;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
 /* delete alert */
 #alert {
   border-radius: 4px;
@@ -511,7 +603,8 @@ button {
 }
 
 .p-cancle,
-.p-delete {
+.p-delete,
+.p-action {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   font-weight: 400;
   text-align: center;
@@ -520,6 +613,7 @@ button {
   cursor: pointer;
 }
 
+.p-action,
 .p-delete {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   border-left: 0.5px solid #dbdbdb;

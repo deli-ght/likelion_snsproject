@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/component.css">
   <link rel="stylesheet" href="../css/post.css">
   <title>Post</title>
 </head>
@@ -33,7 +33,11 @@
       <div class="wrap-content">
         <p class="txt-content"></p>
 
-        <div class="cont-preview"></div>
+        <!-- Swiper -->
+        <div class="swiper">
+          <div class="swiper-wrapper"></div>
+          <div class="swiper-pagination"></div>
+        </div>
 
         <ul class="ul-btns">
           <li class="li-btn">
@@ -73,10 +77,34 @@
     <section id="comment">
       <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
       <textarea class="input-text" placeholder="댓글 입력하기..."></textarea>
-      <button class="btn-submit">게시</button>
+      <button class="btn-submit" disabled>게시</button>
     </section>
   </section>
-  <script src="../js/post.js"></script>
+
+  <div id="comment-modal" class="post-modal">
+    <ul>
+      <li><button type="button" class="btn-report">신고</button></li>
+      <li><button type="button" class="btn-delete">삭제</button></li>
+    </ul>
+  </div>
+
+  <div id="post-modal" class="post-modal">
+    <ul>
+      <li><button type="button" class="btn-report">신고</button></li>
+      <li><button type="button" class="btn-delete">삭제</button></li>
+      <li><button type="button" class="btn-modify">수정</button></li>
+    </ul>
+  </div>
+
+  <section id="alert">
+    <p class="p-check">/p>
+    <div class="div-choice">
+      <p class="p-cancle">취소</p>
+      <p class="p-action"></p>
+    </div>
+  </section>
+
+  <script type="module" src="../js/post.js"></script>
 </body>
 
 </html>
