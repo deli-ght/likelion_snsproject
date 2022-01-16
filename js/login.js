@@ -34,11 +34,15 @@ async function login(){
     });
     const json = await res.json();
     console.log(json)
-    errorMessage = json.message
-    valid.textContent = errorMessage
-    const data = json.user._id
-    if(data) {
-        alert('로그인')
+    if (json.status === 422) {
+        errorMessage = json.message
+        valid.textContent = errorMessage
+    } else {
+        alert(`${json.user.username}님 로그인 성공하셨습니다.`)
+        localStorage.setItem("testToken", json.user.token)
+        localStorage.setItem("accountName", json.user.accountname)
+        console.log(localStorage)
+        location.href = "./profile_mod.html"
     }
 }
 

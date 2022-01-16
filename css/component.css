@@ -1,5 +1,5 @@
 /* font */
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+/* @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css); */
 
 /* variables */
 :root {
@@ -27,9 +27,9 @@
 }
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
-body {
+/* body {
   background-color: rgb(194, 238, 245);
-}
+} */
 
 button {
   border: none;
@@ -203,19 +203,18 @@ button {
   background-color: var(--white);
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid var(--light-gray);
 }
 
 .img-left-arrow {
   width: 22px;
   height: 22px;
-  cursor: pointer;
   margin: 0.81em 0 0.81em 1em;
 }
 
 .img-vertical {
   width: 24px;
   height: 24px;
-  cursor: pointer;
   margin: 0.75em 0.75em 0.75em 0;
 }
 
@@ -240,7 +239,6 @@ button {
 .top-main-nav .img-search {
   width: 24px;
   height: 24px;
-  cursor: pointer;
   margin: 0.75em 1em 0.75em 0;
 }
 
@@ -253,6 +251,10 @@ button {
   margin: 1.07em 0 1.07em 0.71em;
   font-size: 0.875rem;
   color: var(--black);
+}
+
+.space {
+  flex: 1;
 }
 /* end: top */
 
@@ -296,13 +298,6 @@ button {
   border-radius: 26px;
   font-size: var(--font-12px);
   font-weight: 400;
-}
-
-/* 업로드 버튼 */
-.btn-upload {
-  position: absolute;
-  top: 8px;
-  right: 16px;
 }
 
 /* 팔로우 버튼 */

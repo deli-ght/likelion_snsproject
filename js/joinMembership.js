@@ -116,47 +116,6 @@ function toggleClassOn() {
     }
 }
 
-async function joinMemberShip(file) {
-    const res = await fetch("http://146.56.183.55:5050/user", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body : JSON.stringify({
-            "user": {
-                "email": getEmailValue.value,
-                "password": getPwValue.value,
-                "username": userName.value,
-                "accountname": primaryId.value,
-                "intro": userIntro.value,
-                "image": file[0].filename,
-            }
-        })
-    });
-    const json = await res.json();
-    console.log(json)
-}
-
-startButton.addEventListener('click', async function() {
-    const srcImg = previewImage.src.split('/')
-    basicImg = srcImg[srcImg.length - 1]
-    if (!inputImage.files[0]) {
-        let list = new DataTransfer();
-        let file = new File(["name"], basicImg);
-        list.items.add(file);
-        let myFileList = list.files;
-        inputImage.files = myFileList
-    }
-    var formData = new FormData();
-    formData.append('image', inputImage.files[0])
-    await fetch('http://146.56.183.55:5050/image/uploadfiles', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(file => joinMemberShip(file))
-})
-
 getEmailValue.addEventListener('blur', joinToggleClassOn)
 getPwValue.addEventListener('blur', joinToggleClassOn)
 btnNext.addEventListener('click', goUserInfo)
@@ -164,16 +123,55 @@ userName.addEventListener('blur', toggleClassOn);
 userIntro.addEventListener('blur', toggleClassOn);
 primaryId.addEventListener('blur', toggleClassOn);
 
-function readImage(input) {
-    if(input.files && input.files[0]) {
-        const reader = new FileReader()
-        reader.onload = (event) => {
-            previewImage.src = event.target.result
-        }
-                reader.readAsDataURL(input.files[0])
-            }
-        }
-        
-        inputImage.addEventListener("change", (event) => {
-            readImage(event.target)
+
+async function imageUpload(files){
+    const formData = new FormData();
+    formData.append("image", files[0]);
+    const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+        method: "POST",
+        body : formData
+    })
+    const data = await res.json()
+    const productImgName = data["filename"];
+    return productImgName
+}
+
+async function profileImage(e) {
+    const files = e.target.files
+    const result = await imageUpload(files)
+    previewImage.src = "http://146.56.183.55:5050/" + result
+}
+inputImage.addEventListener("change", profileImage)
+
+async function join(){
+    const imageUrl = document.querySelector(".img-basic").src
+    try {
+        const res = await fetch("http://146.56.183.55:5050/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body : JSON.stringify({
+                "user": {
+                    "email": getEmailValue.value,
+                    "password": getPwValue.value,
+                    "username": userName.value,
+                    "accountname": primaryId.value,
+                    "intro": userIntro.value,
+                    "image": imageUrl,
+                }
+            })
         })
+        const json = await res.json();
+        if (res.status === 200) {
+            location.href = "./login.html"
+        }
+        else {
+            console.log(json)
+        }
+    } catch(err) {
+        alert(err)
+    }
+}
+startButton.addEventListener("click", join)
+

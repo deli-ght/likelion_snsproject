@@ -95,20 +95,23 @@
 
 .btn-login-kakao {
     border: 1px solid #F2C942;
-    background: url('../assets/assets/message-circle.png') no-repeat 5% center;
+    background: url('../src/message-circle.png') no-repeat 5% center;
+    background-size: 24px 24px;
     margin-top: 50px;
     padding: 13px 87px;
 }
 
 .btn-login-google {
     border: 1px solid #767676;
-    background: url('../assets/assets/google.png') no-repeat 5% center;
+    background: url('../src/Google__G__Logo\ 1.png') no-repeat 5% center;
+    background-size: 24px 24px;
     padding: 13px 100px;
 }
 
 .btn-login-facebook {
     border: 1px solid #2D9CDB;
-    background: url('../assets/assets/facebook.png') no-repeat 5% center;
+    background: url('../src/facebook.png') no-repeat 5% center;
+    background-size: 24px 24px;
     margin-bottom: 1.25em;
     padding: 13px 87px;
 }
