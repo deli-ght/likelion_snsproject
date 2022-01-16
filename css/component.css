@@ -1,5 +1,5 @@
 /* font */
-/* @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css); */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 /* variables */
 :root {
@@ -223,7 +223,9 @@ button {
   color: var(--light-gray);
   font-size: 0.875rem;
   padding: 0.5em 0 0.5em 0.875em;
-  margin: 0.57em 0.875em 0.57em 0;
+  margin: 0.57em 0.875em 0.57em 2em;
+  /* width: 80%; */
+  flex: 1;
   box-sizing: border-box;
   border: none;
   border-radius: 32px;

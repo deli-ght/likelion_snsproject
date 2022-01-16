@@ -39,7 +39,7 @@ async function login(){
         valid.textContent = errorMessage
     } else {
         alert(`${json.user.username}님 로그인 성공하셨습니다.`)
-        localStorage.setItem("testToken", json.user.token)
+        localStorage.setItem("token", json.user.token)
         localStorage.setItem("accountName", json.user.accountname)
         console.log(localStorage)
         location.href = "./profile_mod.html"
