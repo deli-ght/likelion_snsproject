@@ -1,0 +1,108 @@
+/* util */
+strong[class$="error"] {
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  color: #eb5757;
+  font-size: 12px;
+  line-height: 14px;
+}
+.proerror {
+  display: none;
+}
+.priceerror {
+  display: none;
+}
+
+input {
+  border: none;
+  padding: 10px 0 8px 0;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+}
+input::placeholder {
+  font-size: 14px;
+  line-height: 15px;
+}
+input:focus {
+  border-bottom: 1px solid #f26e22;
+}
+.add_product {
+  width: 390px;
+  height: 844px;
+  /* border: aqua 1px solid; */
+}
+p {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #767676;
+}
+/* top */
+.top-upload-nav {
+  width: 390px;
+  height: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 1px #dbdbdb solid;
+}
+
+.top-upload-nav .arrow {
+  cursor: pointer;
+  margin: 13px 16px;
+  background: url(../img/icon-arrow-left.png);
+  background-size: 22px;
+  width: 22px;
+  height: 22px;
+}
+
+.top-upload-nav .save {
+  margin: 8px 12px;
+  background-color: #f26e22;
+  width: 90px;
+  height: 32px;
+  border: none;
+  border-radius: 32px;
+  color: white;
+  font-size: 14px;
+}
+.top-upload-nav .save:disabled {
+  background-color: #ffc7a7;
+}
+
+/* main */
+.container {
+  padding: 0 34px;
+}
+.container .product-list .list-one p {
+  line-height: 15px;
+  padding: 30px 0 18px;
+}
+#img-b {
+  display: none;
+}
+.container .product-list .list-one .img-box {
+  display: block;
+  width: 322px;
+  height: 204px;
+  background: #f2f2f2;
+  background-size: cover;
+  border: 0.5px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.container .product-list li {
+  position: relative;
+  margin-top: 16px;
+  border-bottom: 1px solid #dbdbdb;
+}
