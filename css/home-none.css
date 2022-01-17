@@ -1,9 +1,16 @@
 @import url(home.css);
+
+#app {
+  flex: flex;
+  flex-direction: column;
+}
+
 main {
   display: flex;
   height: calc(100% - 50px);
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 main .section-main {
@@ -15,6 +22,7 @@ main .section-main {
 }
 
 main .section-main img {
+  flex-grow: 1;
   max-width: 100px;
   margin-bottom: 25px;
 }
