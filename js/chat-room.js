@@ -10,6 +10,8 @@ menu.addEventListener("click", showModal)
 const chatroom = document.querySelector(".main-chat")
 const submitBtn = document.querySelector(".btn-submit")
 
+chatroom.scrollTop = chatroom.scrollHeight
+
 submitBtn.addEventListener("click", sendMessage)
 
 let inputMsg = document.querySelector(".input-text")
@@ -28,16 +30,14 @@ function sendMessage() {
 </div>
   `
     chatroom.appendChild(newMsg)
-    // const sendMsg = document
-    //   .querySelector(".msg-my")
-    //   .focus({ preventScroll: false })
+    chatroom.scrollTop = chatroom.scrollHeight
     inputMsg.value = ""
   }
 }
 
-inputMsg.addEventListener("keydown", function (e) {
-  if (e.keyCode === 13) {
-    e.preventDefault()
+inputMsg.addEventListener("keypress", function (e) {
+  if (e.key === "Enter" && !e.shiftKey) {
     submitBtn.click()
+    e.preventDefault()
   }
 })

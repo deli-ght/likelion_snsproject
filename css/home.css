@@ -37,6 +37,7 @@ main {
   flex-grow: 1;
   overflow-y: scroll;
 }
+
 footer {
   /* position: fixed;
   bottom: 0;
