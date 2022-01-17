@@ -10,14 +10,36 @@ const alert = document.querySelector("#alert");
 // functions
 const init = () => {
   Global.setInit();
-  Global.getFeed().then((postObj) => {
-    if (postObj.posts.length > 0) {
-      setPostElements(postObj.posts);
-    } else {
-      location.href = "home-none.html";
-    }
+  Global.getFeed()
+    .then((postObj) => {
+      if (postObj.posts.length > 0) {
+        setPostElements(postObj.posts);
+      } else {
+        location.href = "home-none.html";
+      }
+    })
+    .then(() => swiperSetting());
+  // Global.getMyPosts()
+  //   .then((postObj) => setPostElements(postObj.post))
+  //   .then(() => swiperSetting());
+};
+
+const swiperSetting = () => {
+  const sliders = document.querySelectorAll(".swiper");
+  const paginations = document.querySelectorAll(".swiper-pagination");
+
+  sliders.forEach((slider, index) => {
+    const swiper = new Swiper(slider, {
+      direction: "horizontal",
+      spaceBetween: 30,
+      observer: true,
+      observeParents: true,
+      pagination: {
+        el: paginations[index],
+        clickable: true,
+      },
+    });
   });
-  // Global.getMyPosts().then((postObj) => setPostElements(postObj.post));
 };
 
 const setPostElements = (posts) => {
@@ -83,17 +105,6 @@ const setPostElements = (posts) => {
     }
     const pagination = document.createElement("div");
     pagination.classList.add("swiper-pagination");
-
-    const swiperSetting = new Swiper(".swiper", {
-      direction: "horizontal",
-      spaceBetween: 30,
-      observer: true,
-      observeParents: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
 
     swiper.append(previewContainer, pagination);
 
