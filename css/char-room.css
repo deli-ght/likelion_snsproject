@@ -1,5 +1,6 @@
 @import url(component.css);
 @import url(home.css);
+
 .post-modal {
   position: absolute;
   width: 100%;
@@ -75,6 +76,7 @@ main .msg-content {
   line-height: 1.5;
   background-color: var(--white);
   border-radius: 0 10px 10px 10px;
+  white-space: pre;
 }
 main .msg-time {
   margin-left: 10px;
@@ -104,11 +106,12 @@ main .msg-mycontent {
   max-width: 80%;
   padding: 12px;
   font-size: 14px;
-  word-break: break-all;
+  word-break: break-word;
   line-height: 1.5;
   background-color: var(--orange);
   color: var(--white);
   border-radius: 10px 0px 10px 10px;
+  white-space: pre-line;
 }
 
 main .msg-mytime {
