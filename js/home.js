@@ -253,6 +253,7 @@ const postModalClickHandler = (e) => {
 // event listeners
 alert.querySelector(".p-cancle").addEventListener("click", () => {
   alert.classList.remove("show");
+  postModal.classList.remove("show-modal");
 });
 
 postModal.addEventListener("click", postModalClickHandler);
