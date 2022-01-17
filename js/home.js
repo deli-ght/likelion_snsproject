@@ -85,11 +85,10 @@ const setPostElements = (posts) => {
     pagination.classList.add("swiper-pagination");
 
     const swiperSetting = new Swiper(".swiper", {
-      direction: "horizontal", // 가로 슬라이드
+      direction: "horizontal",
       spaceBetween: 30,
-      observer: true, // 추가
-      observeParents: true, // 추가
-      slidesPerView: "auto",
+      observer: true,
+      observeParents: true,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,

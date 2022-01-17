@@ -14,6 +14,7 @@ let txtAdded = false;
 
 // functions
 const init = () => {
+  Global.setInit();
   const imgLoginUser = document.querySelector("#upload .img-basic-profile");
   Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
     imgLoginUser.src = data.profile.image;

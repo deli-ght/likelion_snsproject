@@ -10,8 +10,6 @@ export const setInit = () => {
   TEST_TOKEN = "Bearer " + TOKEN;
   LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
 
-  console.log(TOKEN, TEST_TOKEN, LOGIN_ACCOUNT_NAME);
-
   HEADER = new Headers({
     Authorization: TEST_TOKEN,
     "Content-type": "application/json",
