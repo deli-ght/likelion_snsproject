@@ -42,7 +42,6 @@ async function login(){
         localStorage.setItem("token", json.user.token)
         localStorage.setItem("accountName", json.user.accountname)
         console.log(localStorage)
-        location.href = "./profile_mod.html"
     }
 }
 
