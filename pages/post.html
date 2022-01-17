@@ -19,59 +19,46 @@
       <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
     </div>
 
-    <!-- 포스팅콘텐츠영역-->
-    <article class="home-post">
-      <div class="user-search">
-        <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
-        <div class="wrap-txt">
-          <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-          <span class="txt-nickname">@ weniv-Mandarin</span>
-        </div>
-        <button type="button" class="btn-more" value="더보기버튼"></button>
-      </div>
-
-      <div class="wrap-content">
-        <p class="txt-content"></p>
-
-        <!-- Swiper -->
-        <div class="swiper">
-          <div class="swiper-wrapper"></div>
-          <div class="swiper-pagination"></div>
+    <main>
+      <!-- 포스팅콘텐츠영역-->
+      <article class="home-post">
+        <div class="user-search">
+          <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
+          <div class="wrap-txt">
+            <strong class="txt-title">애월읍 위니브 감귤농장</strong>
+            <span class="txt-nickname">@ weniv-Mandarin</span>
+          </div>
+          <button type="button" class="btn-more" value="더보기버튼"></button>
         </div>
 
-        <ul class="ul-btns">
-          <li class="li-btn">
-            <button type="button" class="btn-likes"></button>
-            <span class="txt-likes"></span>
-          </li>
-          <li class="li-btn">
-            <button type="button" class="btn-comments"></button>
-            <span class="txt-comments"></span>
-          </li>
-        </ul>
-        <p class="txt-date"></p>
-      </div>
-    </article>
+        <div class="wrap-content">
+          <p class="txt-content"></p>
 
-    <!-- 댓글영역 -->
-    <section class="cont-reply">
-      <ul>
-        <!-- 동적 추가 영역 -->
-        <!-- <li>
-      <div class="user-reply">
-        <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
-        <div class="wrap-txt">
-          <strong class="txt-nickname">애월읍 위니브 감귤농장</strong>
-          <span class="txt-after">5분 전</span>
+          <!-- Swiper -->
+          <div class="swiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <ul class="ul-btns">
+            <li class="li-btn">
+              <button type="button" class="btn-likes"></button>
+              <span class="txt-likes"></span>
+            </li>
+            <li class="li-btn">
+              <button type="button" class="btn-comments"></button>
+              <span class="txt-comments"></span>
+            </li>
+          </ul>
+          <p class="txt-date"></p>
         </div>
-        <button type="button" class="btn-more">
-          <img src="../src/s-icon-more-vertical.png" alt="더보기버튼" class="img-more">
-        </button>
-        <p class="txt-reply">게시글 답글~~!! 최고최고</p>
-      </div>
-    </li> -->
-      </ul>
-    </section>
+      </article>
+
+      <!-- 댓글영역 -->
+      <section class="cont-reply">
+        <ul></ul>
+      </section>
+    </main>
 
     <!-- 댓글입력영역 -->
     <section id="comment">
@@ -96,13 +83,16 @@
     </ul>
   </div>
 
-  <section id="alert">
-    <p class="p-check">/p>
-    <div class="div-choice">
-      <p class="p-cancle">취소</p>
-      <p class="p-action"></p>
-    </div>
-  </section>
+  <div class="cont-alert">
+    <section id="alert">
+      <p class="p-check"></p>
+      <div class="div-choice">
+        <p class="p-cancle">취소</p>
+        <p class="p-action"></p>
+      </div>
+    </section>
+    <div class="backdrop"></div>
+  </div>
 
   <script type="module" src="../js/post.js"></script>
 </body>
