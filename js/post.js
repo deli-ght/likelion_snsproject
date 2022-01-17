@@ -1,64 +1,45 @@
-//token(ash__h): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
-//token(ash2): eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
-const TEST_TOKEN =
-  "Bearer " +
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g";
-const TEST_POST_ID = "61d576a66b8216fc566876d2"; // ash__H, 이미지 1장, 댓글 있음
-// const TEST_POST_ID = "61d6df2b685c75821c469db4"; // ash2, 이미지 1장, 댓글 있음
-// const TEST_POST_ID = "61d7f550685c75821c46aca5"; // ash2, 이미지 2장, 댓글 없음
-// const TEST_POST_ID = "61d7fc4a685c75821c46ad08"; // ash2, 글만 있음, 댓글 있음
-const URL = "http://146.56.183.55:5050";
+import * as Global from "./global.js";
+import Swiper from "https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js";
 
-const HEADER = new Headers({
-  Authorization: TEST_TOKEN,
-  "Content-type": "application/json",
+// Variables
+const submitBtn = document.querySelector(".btn-submit");
+const likeBtn = document.querySelector(".btn-likes");
+const txtComment = document.querySelector("#comment .input-text");
+const replyUl = document.querySelector(".cont-reply ul");
+const commentModal = document.querySelector("#comment-modal");
+const postModal = document.querySelector("#post-modal");
+const homePostCont = document.querySelector(".home-post");
+const backBtn = document.querySelector(".img-left-arrow");
+const moreBtn = document.querySelector(".btn-more");
+const alert = document.querySelector("#alert");
+
+const postId = localStorage.getItem("postId");
+let postUserId = "";
+
+const swiper = new Swiper(".swiper", {
+  direction: "horizontal", // 가로 슬라이드
+  spaceBetween: 30,
+  observer: true, // 추가
+  observeParents: true, // 추가
+  slidesPerView: "auto",
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
 });
+// functions
+const setLoginUserProfile = () => {
+  const imgLoginUser = document.querySelector("#comment .img-basic-profile");
 
-const getPost = async (postId) => {
-  try {
-    //GET /post/:post_id
-    const res = await fetch(`${URL}/post/${postId}`, {
-      method: "GET",
-      headers: HEADER,
-    });
-
-    // 포스트 정보 가져오기
-    const postObj = await res.json();
-    setPostElements(postObj);
-
-    // 댓글 가져오기
-    getReply(postId);
-  } catch (err) {
-    console.error;
-  }
-};
-const getImageUrl = (filename) => {
-  return fetch(`${URL}/${filename}`, {
-    method: "GET",
-  }).then((res) => res.url);
-};
-
-// yyyy년 mm월 dd일
-const formatDate = (dateStr) => {
-  const date = new Date(dateStr);
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
-
-  return `${year}년 ${month}월 ${day}일`;
+  Global.getUser(Global.LOGIN_ACCOUNT_NAME).then((data) => {
+    imgLoginUser.src = data.profile.image;
+  });
 };
 
 const setPostElements = (obj) => {
-  const homePostCont = document.querySelector(".home-post");
   // author
   homePostCont.querySelector(".img-profile").src = "../src/basic-profile.png"; // 테스트용
-  // 프로필이미지 테스트용 1641444666211.png
-  getImageUrl("1641444666211.png")
-    .then((url) => (homePostCont.querySelector(".img-profile").src = url))
-    .catch(console.error);
+  homePostCont.querySelector(".img-profile").src = obj.post.author.image;
   homePostCont.querySelector(".txt-title").textContent =
     obj.post.author.username;
   homePostCont.querySelector(
@@ -74,23 +55,22 @@ const setPostElements = (obj) => {
   homePostCont.querySelector(".txt-likes").textContent = obj.post.heartCount;
   homePostCont.querySelector(".txt-comments").textContent =
     obj.post.commentCount;
-  homePostCont.querySelector(".txt-date").textContent = formatDate(
+  homePostCont.querySelector(".txt-date").textContent = Global.formatDate(
     obj.post.createdAt
   );
   // 콘텐츠 이미지 생성하기
   if (obj.post.image) {
     const imgArr = obj.post.image.split(",");
-    const imgsContainer = homePostCont.querySelector(".cont-preview");
+    const imgsContainer = homePostCont.querySelector(".swiper-wrapper");
     imgArr.forEach((filename) => {
       const imgContainer = document.createElement("div");
       const img = document.createElement("img");
 
       imgContainer.classList.add("cont-img");
+      imgContainer.classList.add("swiper-slide");
       img.classList.add("img-preview");
-      // 본문 이미지
-      getImageUrl(filename)
-        .then((url) => (img.src = url))
-        .catch(console.error);
+
+      img.src = filename;
 
       imgContainer.appendChild(img);
       imgsContainer.appendChild(imgContainer);
@@ -102,12 +82,6 @@ const removeAllChildren = (parent) => {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
-};
-
-const sortDescByDate = (obj) => {
-  return obj.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
 };
 
 const setReplyElements = (obj) => {
@@ -132,9 +106,7 @@ const setReplyElements = (obj) => {
       // img.src = comt.author.image;
       // img.src = "../src/basic-profile.png"; // 테스트용
       img.classList.add("img-profile");
-      getImageUrl("1641444666211.png")
-        .then((url) => (img.src = url))
-        .catch(console.error);
+      img.src = comt.author.image;
 
       // 이름
       const wrapTxtEl = document.createElement("div");
@@ -187,87 +159,54 @@ const calcAfterTime = (createdDate) => {
   }
 };
 
-const getReply = async (postId) => {
-  try {
-    //GET /post/:post_id/comments
-    const res = await fetch(`${URL}/post/${postId}/comments`, {
-      method: "GET",
-      headers: HEADER,
-    });
+const setComments = (postId) => {
+  Global.getComments(postId).then((commentObj) => {
+    let sortedCommentObj;
 
-    const replyObj = await res.json();
-    let sortedReplyObj;
-
-    replyObj.comments.length > 1
-      ? (sortedReplyObj = sortDescByDate(replyObj.comments))
-      : (sortedReplyObj = replyObj.comments);
+    commentObj.comments.length > 1
+      ? (sortedCommentObj = Global.sortDescByDate(commentObj.comments))
+      : (sortedCommentObj = commentObj.comments);
 
     document.querySelector(".txt-comments").textContent =
-      replyObj.comments.length;
-    setReplyElements(sortedReplyObj);
-  } catch (err) {
-    console.error;
-  }
+      commentObj.comments.length;
+    setReplyElements(sortedCommentObj);
+  });
 };
 
-const postComment = async (txtComment) => {
-  try {
-    const res = await fetch(`${URL}/post/${TEST_POST_ID}/comments`, {
-      method: "POST",
-      headers: HEADER,
-      body: JSON.stringify({
-        comment: {
-          content: txtComment,
-        },
-      }),
-    });
-
-    getReply(TEST_POST_ID);
-
-    // const data = await res.json();
-    // console.log(data);
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const postLike = async (postId, isLike) => {
-  let action, reqMethod;
-  if (isLike) {
-    // like
-    action = "heart";
-    reqMethod = "POST";
-  } else {
-    // unlike
-    action = "unheart";
-    reqMethod = "DELETE";
-  }
-  try {
-    const res = await fetch(`${URL}/post/${postId}/${action}`, {
-      method: reqMethod,
-      headers: HEADER,
-    });
-
-    return await res.json();
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-// Variables
-const submitBtn = document.querySelector(".btn-submit");
-const likeBtn = document.querySelector(".btn-likes");
-
-// Handlers
-const submitBtnClickHandler = () => {
-  const txtComment = document.querySelector("#comment .input-text");
-
-  postComment(txtComment.value);
-  txtComment.value = "";
-};
-const likeBtnClickHandler = () => {
+const setLike = () => {
   const isLike = likeBtn.classList.contains("on") ? false : true;
-  postLike(TEST_POST_ID, isLike)
+
+  if (isLike) {
+    likeBtn.animate(
+      [
+        //keyframes
+        { transform: "scale(1)" },
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" },
+      ],
+      {
+        // timing options
+        duration: 500,
+        easing: "linear",
+      }
+    );
+  } else {
+    likeBtn.animate(
+      [
+        //keyframes
+        { transform: "scale(1)" },
+        { transform: "scale(1.2)" },
+        { transform: "scale(1)" },
+      ],
+      {
+        // timing options
+        duration: 500,
+        easing: "linear",
+      }
+    );
+  }
+
+  Global.postLike(localStorage.getItem("postId"), isLike)
     .then((data) => {
       likeBtn.classList.toggle("on");
       document.querySelector(".txt-likes").textContent = data.post.heartCount;
@@ -275,9 +214,141 @@ const likeBtnClickHandler = () => {
     .catch(console.error);
 };
 
+// Handlers
+const submitBtnClickHandler = () => {
+  const postId = localStorage.getItem("postId");
+  Global.postComment(postId, txtComment.value).then(() => {
+    setComments(postId);
+    submitBtn.disabled = true;
+    replyUl.scrollTop = 0;
+  });
+  txtComment.value = "";
+};
+
+const likeBtnClickHandler = () => {
+  setLike();
+};
+
+const commentChangeHandler = (e) => {
+  if (txtComment.value === "") {
+    submitBtn.disabled = true;
+  } else {
+    submitBtn.disabled = false;
+  }
+};
+
+const postDblClickHandler = (e) => {
+  const parent = e.target.parentElement;
+  if (
+    parent.classList.contains("wrap-content") ||
+    parent.classList.contains("cont-img")
+  ) {
+    setLike();
+  }
+};
+
+const commentMoreBtnClickHandler = (e) => {
+  const commentUserId =
+    e.target.parentElement.querySelector(".txt-nickname").textContent;
+
+  if (e.target.classList.contains("btn-more")) {
+    commentModal.classList.add("show-modal");
+    if (commentUserId === Global.LOGIN_ACCOUNT_NAME) {
+      commentModal.querySelector(".btn-report").classList.add("off");
+      commentModal.querySelector(".btn-delete").classList.remove("off");
+    } else {
+      commentModal.querySelector(".btn-report").classList.remove("off");
+      commentModal.querySelector(".btn-delete").classList.add("off");
+    }
+  }
+};
+const postMoreBtnClickHandler = () => {
+  if (postUserId === Global.LOGIN_ACCOUNT_NAME) {
+    postModal.querySelector(".btn-report").classList.add("off");
+    postModal.querySelector(".btn-delete").classList.remove("off");
+    postModal.querySelector(".btn-modify").classList.remove("off");
+  } else {
+    postModal.querySelector(".btn-report").classList.remove("off");
+    postModal.querySelector(".btn-delete").classList.add("off");
+    postModal.querySelector(".btn-modify").classList.add("off");
+  }
+
+  postModal.classList.add("show-modal");
+};
+
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
 likeBtn.addEventListener("click", likeBtnClickHandler);
+txtComment.addEventListener("input", commentChangeHandler);
+replyUl.addEventListener("click", commentMoreBtnClickHandler);
+homePostCont.addEventListener("dblclick", (e) => {
+  postDblClickHandler(e);
+});
+backBtn.addEventListener("click", () => {
+  location.href = "home-feed.html";
+});
+moreBtn.addEventListener("click", postMoreBtnClickHandler);
+postModal.addEventListener("click", (e) => {
+  const title = alert.querySelector(".p-check");
+  const action = alert.querySelector(".p-action");
 
+  if (e.target.classList.contains("post-modal")) {
+    postModal.classList.remove("show-modal");
+  }
+
+  if (e.target.classList.contains("btn-delete")) {
+    console.log("삭제");
+    alert.classList.add("show");
+    title.textContent = "게시물을 삭제 하시겠습니까?";
+    action.textContent = "삭제";
+  }
+  if (e.target.classList.contains("btn-report")) {
+    console.log("신고");
+    alert.classList.add("show");
+    title.textContent = "게시물을 신고 하시겠습니까?";
+    action.textContent = "신고";
+  }
+});
+
+commentModal.addEventListener("click", (e) => {
+  const title = alert.querySelector(".p-check");
+  const action = alert.querySelector(".p-action");
+
+  if (e.target.classList.contains("post-modal")) {
+    commentModal.classList.remove("show-modal");
+  }
+
+  if (e.target.classList.contains("btn-delete")) {
+    console.log("삭제");
+    alert.classList.add("show");
+    title.textContent = "댓글을 삭제 하시겠습니까?";
+    action.textContent = "삭제";
+  }
+  if (e.target.classList.contains("btn-report")) {
+    console.log("신고");
+    alert.classList.add("show");
+    title.textContent = "댓글을 신고 하시겠습니까?";
+    action.textContent = "신고";
+  }
+});
+
+alert.querySelector(".p-cancle").addEventListener("click", () => {
+  alert.classList.remove("show");
+});
 // init
-getPost(TEST_POST_ID);
+const init = () => {
+  Global.setInit();
+  if (postId) {
+    Global.getPost(postId).then((postObj) => {
+      postUserId = postObj.post.author.accountname;
+      setPostElements(postObj);
+      // 유저 프로필 사진세팅 (댓글 인풋)
+      setLoginUserProfile();
+
+      // 댓글관련 세팅
+      setComments(postObj.post.id);
+    });
+  }
+};
+
+init();

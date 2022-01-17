@@ -1,22 +1,22 @@
-const getEmailValue = document.querySelector('.inp-login-email')
-const getPwValue = document.querySelector('.inp-login-pw')
-const btnLogin = document.querySelector('.btn-login')
-const valid = document.querySelector('.txt-validation')
-let errorMessage = ''
+const getEmailValue = document.querySelector(".inp-login-email");
+const getPwValue = document.querySelector(".inp-login-pw");
+const btnLogin = document.querySelector(".btn-login");
+const valid = document.querySelector(".txt-validation");
+let errorMessage = "";
 
 function checkIsProperLength() {
-    if (getEmailValue.value.length >= 1 && getPwValue.value.length >= 1) {
-        return true
-    } 
-    return false
+  if (getEmailValue.value.length >= 1 && getPwValue.value.length >= 1) {
+    return true;
+  }
+  return false;
 }
 
 function toggleClassOn() {
-    if (checkIsProperLength()) {
-        btnLogin.classList.add('on')
-    } else if(!checkIsProperLength()) {
-        btnLogin.classList.remove('on')
-    }
+  if (checkIsProperLength()) {
+    btnLogin.classList.add("on");
+  } else if (!checkIsProperLength()) {
+    btnLogin.classList.remove("on");
+  }
 }
 
 async function login(){
@@ -45,4 +45,4 @@ async function login(){
     }
 }
 
-btnLogin.addEventListener('click', login);
+btnLogin.addEventListener("click", login);

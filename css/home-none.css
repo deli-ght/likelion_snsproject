@@ -1,0 +1,42 @@
+@import url(home.css);
+
+#app {
+  flex: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  height: calc(100% - 50px);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+main .section-main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .section-main img {
+  flex-grow: 1;
+  max-width: 100px;
+  margin-bottom: 25px;
+}
+
+main .img-error {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+main .section-main p {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+main .section-main button {
+  width: 30%;
+}

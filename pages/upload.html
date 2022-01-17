@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/component.css">
   <link rel="stylesheet" href="../css/upload.css">
   <title>Upload</title>
 </head>
@@ -20,16 +19,16 @@
   <section id="upload">
     <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
     <div class="cont-content">
-      <textarea class="input-txt" placeholder="게시글 입력하기.." onkeyup="fnChkByte(this);resize(this);"></textarea>
+      <textarea class="input-txt" placeholder="게시글 입력하기.."></textarea>
       <div class="cont-preview"></div>
     </div>
   </section>
 
   <button type="button" class="btn-img-upload">
-    <input type="file" class="inp-imgs" onChange="previewFiles();" accept="image/*" multiple>
+    <input type="file" class="inp-imgs" accept="image/*" multiple>
   </button>
 
-  <script src=" ../js/upload.js">
+  <script type="module" src=" ../js/upload.js">
   </script>
 </body>
 

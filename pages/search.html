@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/userlist.css">
+  <title>Search</title>
+</head>
+
+<body>
+  <section id="app">
+    <!-- class : tag-function -->
+    <header>
+      <div class="top-search-nav">
+        <button type="button" onclick="location.href='home-feed.html'"><img src="../src/icon-arrow-left.png" alt="뒤로가기"
+            class="img-left-arrow"></button>
+
+        <input type="text" placeholder="계정 검색" class="inp-search">
+      </div>
+    </header>
+    <main class="main-result">
+    </main>
+    <footer>
+      <section id="tab-menu">
+
+        <button class="button-home" onclick="location.href='home-feed.html'">
+          <p class="p-home">홈</p>
+        </button>
+
+        <button class="button-circle1" onclick="location.href='chat-list.html'">
+          <p class="p-circle1">채팅</p>
+        </button>
+        <button class="button-edit" onclick="location.href='upload.html'">
+          <p class="p-edit">게시물 작성</p>
+        </button>
+        <button class="button-profile">
+          <p class="p-user">프로필</p>
+        </button>
+      </section>
+    </footer>
+  </section>
+  <script src="../js/search.js"></script>
+</body>
+
+</html>

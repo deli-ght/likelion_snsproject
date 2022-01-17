@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/char-room.css">
+  <title>Chat room</title>
+</head>
+
+<body>
+  <section id="app">
+    <!-- class : tag-function -->
+    <header>
+      <!-- nav -->
+      <div class="top-chat-nav">
+        <button type="button" onclick="location.href='chat-list.html'"><img src="../src/icon-arrow-left.png" alt="뒤로가기"
+            class="img-left-arrow"></button>
+        <strong class="txt-chat-nav">애월읍 위니브 감귤농장</strong>
+        <button type="button" class="btn-vertical"><img src="../src/s-icon-more-vertical.png" alt="기타이미지"
+            class="img-vertical"></button>
+      </div>
+    </header>
+    <div class="post-modal">
+      <ul>
+        <li><button class="btn-exit">채팅방 나가기</button></li>
+      </ul>
+    </div>
+    <main class="main-chat">
+      <div class="msg-yours">
+        <div class="msg-container">
+          <img class="msg-img" src="../src/symbol-logo-1.png" alt="" srcset="">
+          <span class="msg-time">12:39</span>
+        </div>
+      </div>
+      <div class="msg-my">
+        <div class="msg-mycontainer">
+          <p class="msg-mycontent"> Lorem ipsum</p>
+          <span class="msg-mytime">12:39</span>
+        </div>
+      </div>
+      <div class="msg-my">
+        <div class="msg-mycontainer">
+          <p class="msg-mycontent"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quaerat quae a dolore
+            veritatis aliquam, reiciendis, incidunt est voluptas sequi error nesciunt fugit perspiciatis molestiae,
+            saepe
+            qui nam soluta blanditiis!
+            Odio dolorem ex reiciendis minima assumenda, sed nulla eveniet debitis, et facere recusandae libero
+            voluptatibus ad soluta cumque dicta sapiente accusamus nihil accusantium pariatur? Corporis voluptatibus
+            officiis quas a maxime!
+            Fugiat ratione rem, molestias consequatur culpa vel reprehenderit architecto dicta eum voluptas quibusdam
+            repellat nam. Nobis assumenda voluptas tenetur odit expedita dolores, possimus enim fuga, minus consectetur
+            dolorum, facilis distinctio?
+            Accusamus nam harum corrupti quas facere quo ullam inventore nemo reiciendis minima vitae impedit fuga
+            obcaecati veniam voluptatibus, distinctio cum iusto eius? Minima illum consequuntur quisquam eligendi,
+            assumenda aspernatur adipisci?
+            Sunt numquam explicabo aperiam a suscipit voluptatibus cum sapiente ipsam voluptate, ex provident quas sequi
+            dicta qui iusto accusamus asperiores, reiciendis harum vero atque quisquam ipsum. Aperiam delectus illum
+            quas.
+            Lorem ipsum</p>
+          <span class="msg-mytime">12:39</span>
+        </div>
+      </div>
+      <div class="msg-my">
+        <div class="msg-mycontainer">
+          <img class="msg-myimg" src="../src/symbol-logo.png" alt="" srcset="">
+          <span class="msg-mytime">12:39</span>
+        </div>
+      </div>
+      <div class="msg-my">
+        <div class="msg-mycontainer">
+          <img class="msg-myimg" src="../src/icon-heart.png" alt="" srcset="">
+          <span class="msg-mytime">12:39</span>
+        </div>
+      </div>
+      <div class="msg-yours">
+        <div class="msg-container">
+          <img class="img-msg" src="../src/basic-profile.png" alt="">
+          <div class="msg-content">dfdfdfdfdfdfdfdfdfdfdfdfdfdfd</div>
+          <span class="msg-time">12:39</span>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <section id="comment">
+        <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
+        <textarea class="input-text" placeholder="댓글 입력하기..."></textarea>
+        <button type="button" class="btn-submit">
+          <p class="p-submit">게시</p>
+        </button>
+      </section>
+    </footer>
+  </section>
+  <script type="module" src="../js/chat-room.js"></script>
+</body>
+
+</html>

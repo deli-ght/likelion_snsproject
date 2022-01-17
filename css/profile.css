@@ -1,0 +1,687 @@
+/* font */
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+/* variables */
+:root {
+  /* colors */
+  --red: #eb5757;
+  --orange: #f26e22;
+  --light-orange: #ffc7a7;
+  --gray: #767676;
+  --light-gray: #c4c4c4;
+  --white-gray: #f2f2f2;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* font-size */
+  --font-10px: 0.625rem;
+  --font-12px: 0.75rem;
+  --font-14px: 0.875rem;
+  --font-16px: 1rem;
+  --font-18px: 1.125rem;
+}
+* {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+/* class : tag-function */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+main {
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* buttons */
+.btn-button {
+  background-color: var(--orange);
+  font-size: var(--font-14px);
+  font-weight: 500;
+  top: 0.75rem;
+  right: 0.75rem;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+}
+
+.btn-button.btn-ms {
+  position: absolute;
+}
+.btn-button:disabled {
+  background-color: var(--light-orange);
+}
+
+.btn-ms {
+  width: 90px;
+  height: 32px;
+  border-radius: 32px;
+}
+
+/* top menu */
+.top-basic-nav {
+  position: fixed;
+  top: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 3rem;
+  color: #fff;
+  background-color: #fff;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+.img-left-arrow {
+  width: 1.375rem;
+  height: 1.375rem;
+  position: absolute;
+  top: 0.812rem;
+  left: 1rem;
+  cursor: pointer;
+}
+.img-vertical {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  cursor: pointer;
+}
+
+/* your profile 팔로우 */
+#profiles {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1.875em;
+}
+
+.profile .followers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.followers_count {
+  font-size: var(--font-18px);
+  font-weight: 700;
+}
+
+.followers_text {
+  font-size: var(--font-10px);
+  font-weight: 400;
+  margin-top: 0.6em;
+}
+
+.img-profile {
+  width: 6.875rem;
+  height: 6.875rem;
+  cursor: pointer;
+}
+
+.profile .followings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.followings_count {
+  font-size: var(--font-18px);
+  font-weight: 700;
+  color: #767676;
+}
+
+.followings_text {
+  font-size: var(--font-10px);
+  font-weight: 400;
+  color: #767676;
+  margin-top: 0.6em;
+}
+
+.wrap-txt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.txt-title {
+  font-size: var(--font-16px);
+  font-weight: 700;
+  margin-top: 1em;
+}
+
+.txt-nickname {
+  font-size: var(--font-12px);
+  font-weight: 400;
+  color: #767676;
+  margin-top: 0.5em;
+}
+
+.sub_title {
+  margin: 0 auto;
+  font-size: var(--font-14px);
+  font-weight: 400;
+  color: #767676;
+  margin-top: 1.142em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-follow.btn-button.btn-small,
+.btn-medium.btn-active,
+.button-profileupdate,
+.button-regist {
+  width: 7.5rem;
+  height: 2.125rem;
+  background-color: #f26e22;
+  color: white;
+  font-size: var(--font-14px);
+  font-weight: 500;
+  border-radius: 30px;
+  margin: 1.714em 0.714em;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-medium.btn-active,
+.button-profileupdate,
+.button-regist {
+  border: 1px solid #dbdbdb;
+  color: #767676;
+  background-color: #fff;
+}
+
+.button-regist {
+  width: 100px;
+}
+
+.img-comment,
+.img-share {
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+}
+
+/* empty space */
+
+#empty {
+  width: 100%;
+  height: 31.25rem;
+  background-color: #e4e4e4;
+}
+
+/* selling */
+
+#selling {
+  margin-top: 0.5em;
+  width: 100%;
+}
+.selling_title {
+  font-size: var(--font-16px);
+  font-weight: 700;
+  margin-left: 0.5em;
+}
+
+.products {
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.products::-webkit-scrollbar {
+  display: none;
+}
+.product {
+  flex: 0 0 auto;
+  margin-top: 1em;
+  margin: 0.5em;
+  position: relative;
+  width: 8.75rem;
+  height: 8.25rem;
+}
+
+.img-product {
+  flex: 0 0 auto;
+  position: absolute;
+  width: 8.75rem;
+  height: 5.625rem;
+  left: 0;
+  top: 0;
+  border: 0.5px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.p-text {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  position: absolute;
+  color: black;
+  left: 0.125rem;
+  top: 6rem;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--font-14px);
+  line-height: 17.53px;
+  cursor: pointer;
+}
+.p-price {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+  position: absolute;
+  left: 0.125rem;
+  top: 7.375rem;
+  color: #f26e22;
+  font-weight: 700;
+  font-style: normal;
+  font-size: var(--font-12px);
+  line-height: 15.02px;
+  cursor: pointer;
+}
+
+/* top post nav */
+#photo {
+  width: 100%;
+}
+
+.nav-top-post {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 0.5px solid #dbdbdb;
+}
+
+.img-post-album {
+  width: 1.625rem;
+  height: 1.625rem;
+  cursor: pointer;
+}
+.img-post-list {
+  width: 1.625rem;
+  height: 1.625rem;
+  cursor: pointer;
+  margin: 0 0.5em;
+}
+
+/* posts */
+
+#posts {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-between;
+}
+
+#posts li {
+  margin: 0.2em;
+  cursor: pointer;
+}
+
+#post li:nth-child(3n + 1) {
+  margin-left: 0;
+}
+
+#post li:nth-child(3n) {
+  margin-right: 0;
+}
+
+/* comment */
+
+#comment {
+  width: 100%;
+  height: 61px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.img-basic-profile {
+  width: 36px;
+  height: 36px;
+}
+
+.input-text {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  height: 40%;
+  font-size: var(--font-14px);
+  color: #767676;
+  border: transparent;
+  outline: none;
+  border: none;
+  line-height: 10px;
+  padding: 0.2em;
+  margin-top: 0.5em;
+  resize: none;
+  line-height: 1rem;
+}
+
+.input-text::placeholder {
+  color: #c4c4c4;
+  line-height: rem;
+}
+
+.p-submit {
+  font-size: var(--font-14px);
+  font-weight: 500;
+  line-height: 17.53px;
+  color: #c4c4c4;
+  cursor: pointer;
+}
+
+/* 
+
+/* tab-menu */
+#tab-menu {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #fff;
+  border-top: 0.5px solid #c4c4c4;
+}
+
+#tab-menu button {
+  width: 20%;
+  height: 100%;
+  background-size: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.button-home {
+  background: url("../src/icon-home-fill.png") no-repeat center;
+}
+.button-circle1 {
+  background: url("../src/icon-message-circle-1.png") no-repeat center;
+}
+.button-edit {
+  background: url("../src/icon-edit.png") no-repeat center;
+}
+.button-profile {
+  background: url("../src/icon-user.png") no-repeat center;
+}
+
+#tab-menu button .p-home {
+  color: #f26e22;
+}
+
+#tab-menu button p {
+  position: absolute;
+  bottom: -0.5em;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #767676;
+  font-style: normal;
+  font-weight: normal;
+  font-size: var(--font-10px);
+  line-height: 14px;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+/* user */
+/* user-search */
+.user-search {
+  --user-search-profile: 50px;
+  position: relative;
+  margin: 1.25em 1em 0 1em;
+}
+
+.user-search .img-profile {
+  width: var(--user-search-profile);
+  height: var(--user-search-profile);
+  border-radius: 50%;
+  margin-right: 0.75em;
+}
+
+.user-search .wrap-txt {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: fit-content;
+  height: var(--user-search-profile);
+}
+
+.user-search .wrap-txt .txt-title,
+.user-search .wrap-txt .txt-nickname {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+.user-search .wrap-txt .txt-title {
+  font-size: var(--font-14px);
+  line-height: 18px;
+}
+
+.user-search .wrap-txt .txt-nickname {
+  font-size: var(--font-12px);
+  line-height: 15px;
+  color: var(--gray);
+}
+/* user-search-more */
+.user-search .btn-more {
+  width: 18px;
+  height: 18px;
+  background: url(../src/s-icon-more-vertical.png) no-repeat;
+  background-size: cover;
+  border: none;
+  float: right;
+  margin-top: 0.313em;
+}
+
+/* home-post */
+.home-post {
+  --home-post-profile: 42px;
+  margin: 1.25em 1em;
+}
+
+.home-post .img-profile {
+  width: var(--home-post-profile);
+  height: var(--home-post-profile);
+  border-radius: 50%;
+}
+.home-post .user-search {
+  margin: 0;
+}
+
+.home-post .wrap-txt {
+  height: var(--home-post-profile);
+}
+
+.home-post .wrap-content {
+  margin-top: 1em;
+  padding-left: calc(var(--home-post-profile) + 0.75em);
+}
+
+.home-post .wrap-content .txt-content {
+  margin-bottom: 1.143em;
+  font-size: var(--font-14px);
+  line-height: 18px;
+}
+
+.cont-preview {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.cont-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.cont-preview .cont-img {
+  position: relative;
+  display: inline-block;
+  width: 304px;
+  height: 228px;
+  margin-right: 0.5em;
+}
+
+.cont-preview .cont-img .img-preview {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-post .wrap-content .ul-btns {
+  margin-top: 1.333em;
+  display: flex;
+  color: var(--gray);
+  font-size: var(--font-12px);
+  line-height: 12px;
+}
+
+.home-post .wrap-content .ul-btns .li-btn {
+  margin-right: 1em;
+}
+
+.home-post .wrap-content .ul-btns .li-btn button {
+  width: 20px;
+  height: 20px;
+}
+
+.home-post .wrap-content .ul-btns .li-btn .btn-likes {
+  background: url(../src/icon-heart.png);
+  background-size: cover;
+  border: none;
+}
+
+.home-post .wrap-content .ul-btns .li-btn .btn-likes.on {
+  background: url(../src/icon-heart-active.png);
+  background-size: cover;
+}
+
+.home-post .wrap-content .ul-btns .li-btn .btn-comments {
+  background: url(../src/icon-message-circle.png);
+  background-size: cover;
+  border: none;
+}
+
+.home-post .wrap-content .ul-btns .li-btn span {
+  display: inline-block;
+  font-size: var(--font-12px);
+  line-height: 20px;
+  vertical-align: top;
+  color: var(--gray);
+}
+.home-post .wrap-content .txt-date {
+  margin-top: 1.6em;
+  font-size: var(--font-10px);
+  line-height: 12px;
+  color: var(--gray);
+}
+
+/* Add Producuts */
+.top-upload-nav {
+  width: 100%;
+  color: var(--white);
+  background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-join-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2.215em;
+  color: #767676;
+  font-size: 0.75rem;
+}
+
+/* 상품등록 */
+
+#product_regist {
+  box-sizing: border-box;
+  padding: 8%;
+  width: 100%;
+}
+
+.ul-products li {
+  margin-bottom: 1.5em;
+}
+
+.ul-products li:nth-child(1) {
+  position: relative;
+  z-index: 99;
+}
+
+.ul-products p {
+  font-size: var(--font-14px);
+  margin-bottom: 1.1em;
+  color: #767676;
+}
+
+.input-imgbox {
+  display: none;
+}
+
+.label-imgbox {
+  display: block;
+  width: 100%;
+  height: 40vh;
+  background: #f2f2f2;
+  background-size: cover;
+  border: 0.5px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.img-button {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  width: 36px;
+  height: 36px;
+  z-index: 1;
+}
+
+.ul-products li input {
+  width: 100%;
+  border: transparent;
+  border-bottom: 0.5px solid #dbdbdb;
+  outline: none;
+}
+
+.ul-products li input::placeholder {
+  color: #dbdbdb;
+}
+
+.span-product,
+.span-price,
+.span-link {
+  color: #eb5757;
+  font-size: var(--font-12px);
+  font-weight: 400;
+}
+
+#home-post {
+  margin-bottom: 5em;
+  width: 100%;
+}

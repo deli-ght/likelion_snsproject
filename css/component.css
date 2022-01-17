@@ -19,6 +19,7 @@
   --font-14px: 0.875rem;
   --font-16px: 1rem;
   --font-18px: 1.125rem;
+  --swiper-theme-color: white;
 }
 
 /* global settings */
@@ -27,9 +28,9 @@
 }
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
-/* body {
-  background-color: rgb(194, 238, 245);
-} */
+body {
+  /* background-color: rgb(194, 238, 245); */
+}
 
 button {
   border: none;
@@ -69,12 +70,10 @@ button {
 
 .user-search .wrap-txt .txt-title {
   font-size: var(--font-14px);
-  line-height: 18px;
 }
 
 .user-search .wrap-txt .txt-nickname {
   font-size: var(--font-12px);
-  line-height: 15px;
   color: var(--gray);
 }
 
@@ -94,6 +93,9 @@ button {
 .home-post {
   --home-post-profile: 42px;
   margin: 1.25em 1em;
+  max-height: calc(100% - 48px - 61px);
+  display: flex;
+  flex-direction: column;
 }
 
 .home-post .img-profile {
@@ -112,54 +114,95 @@ button {
 .home-post .wrap-content {
   margin-top: 1em;
   padding-left: calc(var(--home-post-profile) + 0.75em);
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.home-post .wrap-content::-webkit-scrollbar {
+  display: none;
 }
 
 .home-post .wrap-content .txt-content {
   margin-bottom: 1.143em;
   font-size: var(--font-14px);
-  line-height: 18px;
+  line-height: 1.125rem;
 }
 
-.cont-preview {
+.swiper {
+  width: 100%;
+  /* width: 500px; */
+}
+.swiper-wrapper {
+  display: -webkit-inline-box;
+  transform: translate3d(0, 0px, 0px);
+}
+
+.swiper-slide {
+  width: 304px;
+  height: 228px;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* .cont-preview {
   width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
-}
+} */
 
-.cont-preview::-webkit-scrollbar {
+/* .cont-preview::-webkit-scrollbar {
   display: none;
-}
+} */
 
+/* .cont-preview {
+  width: 100%;
+  height: 100%;
+}
 .cont-preview .cont-img {
   position: relative;
   display: inline-block;
-  width: 304px;
-  height: 228px;
+  width: 100%;
+  height: 100%;
   margin-right: 0.5em;
-}
+} */
 
-.cont-preview .cont-img .img-preview {
+/* .cont-preview .cont-img .img-preview {
   border-radius: 10px;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
+
+/* .img-preview {
+  display: block;
+  border-radius: 10px;
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+} */
 
 .home-post .wrap-content .ul-btns {
   margin-top: 1.333em;
   display: flex;
   color: var(--gray);
   font-size: var(--font-12px);
-  line-height: 12px;
 }
 
 .home-post .wrap-content .ul-btns .li-btn {
   margin-right: 1em;
+  display: flex;
+  align-items: center;
 }
 
 .home-post .wrap-content .ul-btns .li-btn button {
   width: 20px;
   height: 20px;
+  margin-right: 0.375em;
 }
 
 .home-post .wrap-content .ul-btns .li-btn .btn-likes {
@@ -180,14 +223,11 @@ button {
 .home-post .wrap-content .ul-btns .li-btn span {
   display: inline-block;
   font-size: var(--font-12px);
-  line-height: 20px;
-  vertical-align: top;
   color: var(--gray);
 }
 .home-post .wrap-content .txt-date {
   margin-top: 1.6em;
   font-size: var(--font-10px);
-  line-height: 12px;
   color: var(--gray);
 }
 /* end: home */
@@ -271,13 +311,11 @@ button {
 }
 
 .btn-large {
-  width: 322px;
   height: 44px;
   border-radius: 44px;
 }
 
 .btn-medium {
-  width: 120px;
   height: 34px;
   border-radius: 30px;
 }
@@ -294,7 +332,6 @@ button {
 }
 
 .btn-small {
-  width: 56px;
   height: 28px;
   border-radius: 26px;
   font-size: var(--font-12px);
@@ -395,10 +432,11 @@ button {
 
 #comment {
   width: 100%;
-  height: 61px;
+  height: 60px;
+  padding: 0 20px;
   background-color: #fff;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 .img-basic-profile {
@@ -409,7 +447,7 @@ button {
 .input-text {
   display: flex;
   align-items: center;
-  width: 60%;
+  width: calc(100% - 126px);
   height: 40%;
   font-size: 0.875rem;
   color: #767676;
@@ -429,14 +467,14 @@ button {
 }
 
 .p-submit {
+  width: 50px;
   font-size: var(--font-14px);
   font-weight: 500;
-  line-height: 17.53px;
+  line-height: 1.5;
   color: #c4c4c4;
   cursor: pointer;
+  text-align: center;
 }
-
-/* 
 
 /* tab-menu */
 #tab-menu {
@@ -458,7 +496,7 @@ button {
 }
 
 .button-home {
-  background: url("../src/icon-home-fill.png") no-repeat center;
+  background: url("../src/icon-home.png") no-repeat center;
 }
 .button-circle1 {
   background: url("../src/icon-message-circle-1.png") no-repeat center;
@@ -470,7 +508,18 @@ button {
   background: url("../src/icon-user.png") no-repeat center;
 }
 
-#tab-menu button .p-home {
+.button-home.active {
+  background: url("../src/icon-home-fill.png") no-repeat center;
+}
+.button-circle1.active {
+  background: url("../src/icon-message-circle-fill.png") no-repeat center;
+}
+
+.button-profile.active {
+  background: url("../src/icon-user-fill.png") no-repeat center;
+}
+
+#tab-menu button.active p {
   color: #f26e22;
 }
 
@@ -512,7 +561,8 @@ button {
 }
 
 .p-cancle,
-.p-delete {
+.p-delete,
+.p-action {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   font-weight: 400;
   text-align: center;
@@ -521,6 +571,7 @@ button {
   cursor: pointer;
 }
 
+.p-action,
 .p-delete {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   border-left: 0.5px solid #dbdbdb;
