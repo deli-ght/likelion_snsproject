@@ -129,8 +129,8 @@ button {
 }
 
 .swiper {
-  width: 100%;
-  /* width: 500px; */
+  margin: 0;
+  width: 304px;
 }
 .swiper-wrapper {
   display: -webkit-inline-box;

@@ -276,6 +276,27 @@ const postMoreBtnClickHandler = () => {
   postModal.classList.add("show-modal");
 };
 
+const modalClickHandler = (e, keyword) => {
+  const title = alert.querySelector(".p-check");
+  const action = alert.querySelector(".p-action");
+
+  if (e.target.classList.contains("post-modal")) {
+    postModal.classList.remove("show-modal");
+    commentModal.classList.remove("show-modal");
+  }
+
+  if (e.target.classList.contains("btn-delete")) {
+    alert.classList.add("show");
+    title.textContent = `${keyword}을 삭제 하시겠습니까?`;
+    action.textContent = "삭제";
+  }
+  if (e.target.classList.contains("btn-report")) {
+    alert.classList.add("show");
+    title.textContent = `${keyword}을 신고 하시겠습니까?`;
+    action.textContent = "신고";
+  }
+};
+
 // EventListeners
 submitBtn.addEventListener("click", submitBtnClickHandler);
 likeBtn.addEventListener("click", likeBtnClickHandler);
@@ -289,52 +310,19 @@ backBtn.addEventListener("click", () => {
 });
 moreBtn.addEventListener("click", postMoreBtnClickHandler);
 postModal.addEventListener("click", (e) => {
-  const title = alert.querySelector(".p-check");
-  const action = alert.querySelector(".p-action");
-
-  if (e.target.classList.contains("post-modal")) {
-    postModal.classList.remove("show-modal");
-  }
-
-  if (e.target.classList.contains("btn-delete")) {
-    console.log("삭제");
-    alert.classList.add("show");
-    title.textContent = "게시물을 삭제 하시겠습니까?";
-    action.textContent = "삭제";
-  }
-  if (e.target.classList.contains("btn-report")) {
-    console.log("신고");
-    alert.classList.add("show");
-    title.textContent = "게시물을 신고 하시겠습니까?";
-    action.textContent = "신고";
-  }
+  modalClickHandler(e, "게시물");
 });
 
 commentModal.addEventListener("click", (e) => {
-  const title = alert.querySelector(".p-check");
-  const action = alert.querySelector(".p-action");
-
-  if (e.target.classList.contains("post-modal")) {
-    commentModal.classList.remove("show-modal");
-  }
-
-  if (e.target.classList.contains("btn-delete")) {
-    console.log("삭제");
-    alert.classList.add("show");
-    title.textContent = "댓글을 삭제 하시겠습니까?";
-    action.textContent = "삭제";
-  }
-  if (e.target.classList.contains("btn-report")) {
-    console.log("신고");
-    alert.classList.add("show");
-    title.textContent = "댓글을 신고 하시겠습니까?";
-    action.textContent = "신고";
-  }
+  modalClickHandler(e, "댓글");
 });
 
 alert.querySelector(".p-cancle").addEventListener("click", () => {
   alert.classList.remove("show");
+  postModal.classList.remove("show-modal");
+  commentModal.classList.remove("show-modal");
 });
+
 // init
 const init = () => {
   Global.setInit();
