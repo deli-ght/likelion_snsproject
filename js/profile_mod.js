@@ -88,8 +88,7 @@ inputImage.addEventListener("change", profileImage)
 
 async function updateProfile(){
     const imageUrl = document.querySelector(".img-basic").src
-    const token = localStorage.getItem("testToken")
-    const accountName = localStorage.getItem("accountName")
+    const token = localStorage.getItem("token")
     const res = await fetch("http://146.56.183.55:5050/user", {
         method: "PUT",
         headers: {
@@ -114,7 +113,7 @@ uploadButton.addEventListener("click", updateProfile)
 
 // 프로필 정보 가져오기
 async function getProfile() {
-    const token = localStorage.getItem("testToken")
+    const token = localStorage.getItem("token")
     const accountName = localStorage.getItem("accountName")
     const url = `http://146.56.183.55:5050/profile/${accountName}`
     const res = await fetch(url, {

@@ -126,15 +126,12 @@
 }
 
 .login-email {
-  margin-right: 1em;
-  position: relative;
+    margin-right: 0.4em;
 }
 
 .login-email::after {
-  content: "|";
-  position: absolute;
-  top: 0px;
-  left: 8em;
+    content: '|';
+    margin-left: 0.75em;
 }
 
 /* 로그인 사용자 입력 페이지, 이메일 회원가입 페이지 */

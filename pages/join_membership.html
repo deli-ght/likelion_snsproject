@@ -10,45 +10,47 @@
 </head>
 <body>
     <div class="container">
-        <div class="join-form">
+        <section class="join-form">
             <header class="flex-center">
                 <h1 class="txt-login">이메일로 회원가입</h1>
             </header>
             <form method="POST" class="form-wrap">
-                <label for="inp-id">이메일</label>
-                <input type="text" maxlength="20" placeholder="이메일 주소를 입력해 주세요." id="inp-id" class="input inp-join-email">
+                <label for="user-email">이메일</label>
+                <input type="text" maxlength="20" placeholder="이메일 주소를 입력해 주세요." id="user-email" class="input inp-join-email">
                 <span class="txt-email-validation"></span>
-                <label for="inp-pw" class="label-mt5">비밀번호</label>
-                <input type="password" maxlength="20" placeholder="비밀번호를 설정해 주세요." id=inp-pw class="input inp-join-pw">
+                <label for="user-pw" class="label-mt5">비밀번호</label>
+                <input type="password" maxlength="20" placeholder="비밀번호를 설정해 주세요." id="user-pw" class="input inp-join-pw">
                 <span class="txt-pw-validation"></span>
                 <button type="button" class="btn-button btn-large btn-next" disabled>다음</button>
             </form>
-        </div>
-        <div class="user-info hide-on">
+        </section>
+        <section class="user-info hide-on">
             <header class="flex-center flex-column">
-                <h1 class="txt-profile">프로필 설정</h1>
-                <h2 class="txt-change">나중에 언제든지 변경할 수 있습니다.</h2>
+                <h2 class="txt-profile">프로필 설정</h2>
+                <p class="txt-change">나중에 언제든지 변경할 수 있습니다.</p>
             </header>
             <div class="flex-center">
                 <div class="profile-wrap">
-                    <img src="http://146.56.183.55:5050/Ellipse.png" alt="기본이미지" class="img-basic">
+                    <img src="../src/basic-profile-img-.png" alt="프로필이미지" class="img-basic">
                     <input type="file" id="profile-file">
-                    <label for="profile-file"></label>
+                    <label for="profile-file">
+                        <span class="blind">attach files</span>
+                    </label>
                 </div>
             </div>
             <form method="POST" action="./index.html" class="form-join-wrap">
-                <label for="inp-id">사용자 이름</label>
-                <input type="text" maxlength="10" placeholder="2~10자 이내여야 합니다." id="inp-id" class="input inp-name">
+                <label for="user-name">사용자 이름</label>
+                <input type="text" maxlength="10" placeholder="2~10자 이내여야 합니다." id="user-name" class="input inp-name">
                 <span class="txt-name-validation"></span>
-                <label for="inp-pw" class="label-mt5">계정 ID</label>
-                <input type="text" maxlength="20" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." id=inp-pw class="input sl-ellipsis inp-priId">
+                <label for="user-accountname" class="label-mt5">계정 ID</label>
+                <input type="text" maxlength="20" placeholder="영문, 숫자, 특수문자(.),(_)만 사용 가능합니다." id="user-accountname" class="input sl-ellipsis inp-priId">
                 <span class="txt-pri-validation"></span>
-                <label for="inp-pw" class="label-mt5">소개</label>
-                <input type="text" maxlength="30" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id=inp-pw class="input inp-intro">
+                <label for="user-intro" class="label-mt5">소개</label>
+                <input type="text" maxlength="30" placeholder="자신과 판매할 상품에 대해 소개해 주세요!" id="user-intro" class="input inp-intro">
                 <span class="txt-intro-validation"></span>
                 <button type="button" class="btn-button btn-large btn-start" disabled>감귤마켓 시작하기</button>
             </form>
-        </div>
+        </section>
     </div>
     <script src="../js/joinMembership.js"></script>
 </body>
