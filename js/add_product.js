@@ -38,6 +38,7 @@ price.addEventListener('blur', (e)=>{
     }else if(e.target.value.length==0){
         price_alert.textContent = '값을 입력해주세요'
     }else{
+        price_alert.textContent = ''
         check2 = true
     }
     check();
@@ -115,7 +116,7 @@ saveBtn.onclick = async () =>{
     })
     const json = await res.json();
     console.log(json);
-    location.href="../pages/yourprofile.html"
+    location.href="../pages/myprofile.html"
 
 }
 

@@ -2,28 +2,31 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/reset.css">
-  <link rel="stylesheet" href="../css/profile.css">
-  <title>yourprofile</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/yourprofile.css">
+    <title>your profile</title>
 </head>
 
 <body>
-  <!-- your profile top basic nav -->
-  <section class="top-basic-nav">
-    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
-    <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
-  </section>
 
 
-  <!-- profile (팔로우)-->
-  <section id="profiles">
+    <!-- your profile top basic nav -->
+    <section class="top-basic-nav">
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+      <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    </section>
+    
 
-  </section>
-
-
+        <!-- profile (팔로우)-->
+    <section id="profiles">
+      
+    </section>
+  
+ 
 
   <!-- 판매중인 상품 (애월읍 감귤) -->
   <section id="selling">
@@ -37,56 +40,39 @@
   <!--  your profile 메뉴 (앨범 모양)-->
   <section id="photo">
     <nav class="nav-top-post">
-      <img src="../src/icon-post-album-on.png" alt="앨범메뉴" class="img-post-album">
-      <img src="../src/icon-post-list-off.png" alt="리스트메뉴" class="img-post-list">
+      <img src="../src/icon-post-list-on.png" alt="리스트메뉴" class="img-post-list">
+      <img src="../src/icon-post-album-off.png" alt="앨범메뉴" class="img-post-album">
     </nav>
   </section>
 
-  <!-- user-search-more-->
 
-  <div id="home-post">
 
-  </div>
+  <!-- 게시글 -->
+    <div id="home-post">
+      
+    </div>
 
-  <!-- <article class="home-post">
-      <div class="user-search">
-        <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
-        <div class="wrap-txt">
-          <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-          <span class="txt-nickname">@ weniv-Mandarin</span>
-        </div>
-        <button type="button" class="btn-more" value="더보기버튼"></button>
+    <!-- 게시물 3x3 -->
+    <ul id="posts">
+    </ul>
+
+    
+    
+    <!-- logout alert -->
+    <section id="logout">
+      <p class="p-check">로그아웃 하시겠어요?</p>
+      <div class="div-choice">
+        <p class="p-cancle">취소</p>
+        <p class="p-logout">로그아웃</p>
       </div>
-  
-      <div class="wrap-content">
-        <p class="txt-content">
-          옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
-        </p>
-  
-        <div class="cont-preview">
-          <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
-          <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
-          <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
-        </div>
-  
-        <ul class="ul-btns">
-          <li class="li-btn">
-            <button type="button" class="btn-likes"></button>
-            <span class="txt-likes">50</span>
-          </li>
-          <li class="li-btn">
-            <button type="button" class="btn-comments"></button>
-            <span class="txt-comments">12</span>
-          </li>
-        </ul>
-        <p class="txt-date">2021년 12월 21일</p>
-      </div>
-    </article> -->
-
-  <!-- tab-menu -->
-  <section id="tab-menu">
-
-    <button class="button-home" onclick="location.href='home-feed.html'">
+    </section>
+    
+   
+    
+    <!-- tab-menu -->
+    <section id="tab-menu">
+    
+    <button class="button-home">
       <p class="p-home">홈</p>
     </button>
 
@@ -97,12 +83,21 @@
       <p class="p-edit">게시물 작성</p>
     </button>
     <button class="button-profile">
-      <p class="p-profile">프로필</p>
+      <p class="p-user">프로필</p>
     </button>
 
+    <!-- logout modal -->
+    <div class="loginfo">
+      <section id="loginfo">
+        <div class="div-first"><button class="logout-div-button"></button></div>
+        <div class="div-info">설정 및 개인정보</div>
+        <div class="div-logout">로그아웃</div>
+      </section>
+    </div>
+    
   </section>
 
-  <script src="../js/yourprofile.js"></script>
+  <script src ="../js/yourprofile.js"></script>
 </body>
 
 </html>

@@ -37,36 +37,12 @@ const userinf = async () => {
         </div>
 
         <p class="sub_title">${json.profile.intro}</p>
-
-
+        
         <div class="buttons">
-            <img class="img-comment" src="../src/message-btn.png" alt="댓글 버튼">
-            <button type="button" class="btn-follow btn-button btn-small">팔로우</button>
-            <img class="img-share" src="../src/share-btn.png" alt="공유 버튼">
+            <button type="button" class="button-profileupdate">프로필 수정</button>
+            <button type="button" class="button-regist">상품 등록</button>
         </div>
-
-
     `
-    function ch(){ 
-        const fo = profiles.querySelector('.btn-follow');
-        fo.onclick = (e)=> {
-            const btn = e.target;
-            if(btn.textContent=="팔로우"){
-                btn.style.backgroundColor="#fff";
-                btn.textContent = "언팔로우";
-                btn.style.color="#767676";
-                btn.style.borderWidth="0.5px";
-                btn.style.borderStyle = "solid";
-                btn.style.borderColor = "#767676";
-    
-            }else{
-                btn.style.backgroundColor="#F26E22";
-                btn.style.color="#fff";
-                btn.textContent = "팔로우"
-                btn.style.borderColor = "#fff";
-            }
-        }
-    }
 
     // 팔로워 이동
     const followerBtn = document.querySelector('.followers');
@@ -74,9 +50,25 @@ const userinf = async () => {
         location.href="followers.html";
     })
 
-    ch()
-
+    // 상품 등록 이동
+    const addProduct = document.querySelector('.button-regist');
+    addProduct.addEventListener('click',() =>{
+        location.href="add_product.html";
+    })
+    
+    //프로필수정
+    const profileUpdate = document.querySelector('.button-profileupdate');
+    profileUpdate.addEventListener('click',()=>{
+        location.href ="profile_mod.html";
+    })
+    // followingBtn = document.querySelector('.followings');
+    // followingBtn.addEventListener('click',() =>{
+    //     location.href="followings.html";
+    // })
+   
 }
+
+
 
 
 // 판매중인 상품
@@ -84,7 +76,7 @@ const selling = document.querySelector('#selling');
 const products = document.querySelector('.products');
 const url = "http://146.56.183.55:5050";
 const check = async () => {
-    const res = await fetch(url + "/product/admin", {
+    const res = await fetch(url + "/product/" + localStorage.getItem("accountName"), {
     method : "GET",
     headers:{
         "Authorization" : "Bearer "+localStorage.getItem("token"),
@@ -110,7 +102,6 @@ const check = async () => {
     
 }
 
-
 // 게시글 리스트
 const homepost = document.querySelector('#home-post');
 const listBtn = document.querySelector('.img-post-list');
@@ -125,7 +116,7 @@ listBtn.addEventListener('click',() =>{
 
 
 const home = async () => {
-    const res = await fetch(url+"/post/admin/userpost",{
+    const res = await fetch(url+"/post/" + localStorage.getItem("accountName") +"/userpost",{
         headers : {
             "Authorization" : "Bearer "+localStorage.getItem("token"),
             "Content-Type": "application/json"
@@ -142,6 +133,8 @@ const home = async () => {
         photo.style.display = "block";
     }
     homepost.innerHTML = '';
+    
+
 
     for (const data of json.post) {
 
@@ -180,10 +173,89 @@ const home = async () => {
         <p class="txt-date">${date[0].slice(1,5)}년 ${date[1]}월 ${date[2].slice(1,2)}일</p>
     </div>
     </article>
-  ` 
+  `
+  
+}
+
+
+// 게시글 더보기 버튼
+const moreBtn = document.querySelectorAll('.btn-more');
+
+// 수정삭제 모달 - 삭제버튼
+const modalDel = document.querySelector('.div-delete');
+
+
+// 삭제 모달 - 삭제버튼
+const delModal = document.querySelector('#alert');
+
+
+// 삭제모달 - 취소
+const cancleBtn = document.querySelector('.p-cancle');
+
+
+
+// 더보기 눌렀을 시 모달창
+for(const more of moreBtn){
+    more.addEventListener('click',()=>{
+        const delBtn = document.querySelector('.p-delete');
+        updelModal.style.display='block';
+        homepost.style.opacity='0.15';
+
+        // 수정삭제 모달에서 삭제 누르면 삭제 모달
+        modalDel.addEventListener('click',()=>{
+            updelModal.style.display="none";
+            delModal.style.display = "block";
+        })
+
+        // 삭제확인 모달에서 취소 
+        cancleBtn.addEventListener('click',()=>{
+            updelModal.style.display="block";
+            delModal.style.display='none';
+        })
+
+        delBtn.onclick = async ()=>{
+            await fetch(url +'/post/' + more.id, {
+                method : "DELETE",
+                headers: {
+                    "Authorization" : "Bearer " +localStorage.getItem('token'),
+                    "Content-type" : "application/json"
+                }
+            }).then((res)=>{
+                return res.json()
+            }).then((res)=>{
+                updelModal.style.display="none";
+                delModal.style.display = "none";
+                homepost.style.opacity='1';
+                home();
+                console.log(res);
+            }).catch((res) =>{
+                console.log(res);
+            })
+        }
+    })
 }
 
 }
+
+
+
+
+const updelModal = document.querySelector('#updel');
+const modalBar = document.querySelector('.updel-div-button');
+
+updelModal.style.display= 'none'; // 모달창 display none
+
+// 모달 bar 누르면 돌아오기
+modalBar.addEventListener('click',()=>{
+    homepost.style.opacity='1';
+    updelModal.style.display='none';
+})
+
+
+
+
+
+
 
 
 // 앨범 3x3
@@ -212,6 +284,27 @@ const album = async () => {
         `
     }
 }
+
+// 하단 탭 메뉴
+
+const homeBtn = document.querySelector('.button-home');
+const chatBtn = document.querySelector('.button-circle1');
+const editBtn = document.querySelector('.button-edit');
+const profileBtn = document.querySelector('.button-profile');
+
+
+
+homeBtn.addEventListener('click', () =>{    
+    location.href="yourprofile.html"
+})
+
+chatBtn.addEventListener('click', () =>{
+    location.href="chat-list.html"
+})
+
+editBtn.addEventListener('click', () =>{
+    location.href="upload.html"
+})
 
 
 //로그아웃
@@ -246,26 +339,6 @@ logbar.addEventListener('click',()=>{
     loginfo.style.display = "none";
 })
 
-
-// 하단 탭 메뉴
-
-const homeBtn = document.querySelector('.button-home');
-const chatBtn = document.querySelector('.button-circle1');
-const editBtn = document.querySelector('.button-edit');
-const profileBtn = document.querySelector('.button-profile');
-
-
-chatBtn.addEventListener('click', () =>{
-    location.href="chat-list.html";
-})
-
-editBtn.addEventListener('click', () =>{
-    location.href="upload.html";
-})
-
-profileBtn.addEventListener('click',() =>{
-    location.href="myprofile.html";
-})
 
 
 check();

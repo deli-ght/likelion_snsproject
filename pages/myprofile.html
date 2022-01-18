@@ -2,144 +2,91 @@
 <html lang="ko">
 
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/profile.css">
   <title>my profile</title>
+=======
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/myprofile.css">
+    <title>my profile</title>
+>>>>>>> 71718e8 (profile 최종)
 </head>
 
 <body>
-  <!-- your profile top basic nav -->
-  <section class="top-basic-nav">
-    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
-    <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
-  </section>
 
-  <!-- profile (프로필수정, 상품등록)-->
-  <section id="profiles">
-    <div class="profile">
 
-      <div class="followers" onclick="()=>init('follower')">
-        <p class="followers_count">2950</p>
-        <p class="followers_text">followers</p>
-      </div>
+    <!-- your profile top basic nav -->
+    <section class="top-basic-nav">
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+      <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    </section>
+    
 
-      <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
-
-      <div class="followings" onclick="()=>init('following')">
-        <p class="followings_count">128</p>
-        <p class="followings_text">followings</p>
-      </div>
-
-    </div>
-
-    <div class="wrap-txt">
-      <p class="txt-title">애월읍 위니브 감귤농장</p>
-      <p class="txt-nickname">@weniv_Mandarin</p>
-    </div>
-
-    <p class="sub_title">애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
-
-    <div class="buttons">
-      <button type="button" class="button-profileupdate">프로필 수정</button>
-      <button type="button" class="button-regist">상품 등록</button>
-    </div>
-
-  </section>
-
+        <!-- profile (팔로우)-->
+    <section id="profiles">
+      
+    </section>
+  
+ 
 
   <!-- 판매중인 상품 (애월읍 감귤) -->
   <section id="selling">
     <p class="selling_title">판매 중인 상품</p>
 
-    <ul class="products">
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
-      <li class="product">
-        <img class="img-product" src="../src/img-product-sample.png" alt="애월읍 노지 감귤">
-        <p class="p-text">애월읍 노지 감귤</p>
-        <p class="p-price">35,000원</p>
-      </li>
-
+    <ul class="products">    
     </ul>
   </section>
 
 
-  <!--  your profile 메뉴 (앨범 모양)-->
+    <!--  your profile 메뉴 (앨범 모양)-->
   <section id="photo">
     <nav class="nav-top-post">
-      <img src="../src/icon-post-album-on.png" alt="앨범메뉴" class="img-post-album">
-      <img src="../src/icon-post-list-off.png" alt="리스트메뉴" class="img-post-list">
+      <img src="../src/icon-post-list-on.png" alt="리스트메뉴" class="img-post-list">
+      <img src="../src/icon-post-album-off.png" alt="앨범메뉴" class="img-post-album">
     </nav>
   </section>
 
+
+
+  <!-- 게시글 -->
+    <div id="home-post">
+      
+    </div>
+
+
+  
+  
+  <!-- delete alert -->
+  <section id="alert">
+    <p class="p-check">게시글을 삭제할까요?</p>
+    <div class="div-choice">
+      <p class="p-cancle">취소</p>
+      <p class="p-delete">삭제</p>
+    </div>
+  </section>
+
+    <!-- 게시물 3x3 -->
+    <ul id="posts">
+<<<<<<< HEAD
+
+    </ul>
+
+    
+    
+
+
+
+
   <!-- user-search-more-->
+
 
   <article class="home-post">
     <div class="user-search">
@@ -147,20 +94,23 @@
       <div class="wrap-txt">
         <strong class="txt-title">애월읍 위니브 감귤농장</strong>
         <span class="txt-nickname">@ weniv-Mandarin</span>
-      </div>
-      <button type="button" class="btn-more" value="더보기버튼"></button>
-    </div>
 
-    <div class="wrap-content">
-      <p class="txt-content">
-        옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
-      </p>
+    </article> -->
+=======
 
-      <div class="cont-preview">
-        <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
-        <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
-        <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
+    </ul>
+
+  
+  <!--로그아웃 하시겠어요?  -->
+    <section id="logout">
+      <p class="p-check">로그아웃 하시겠어요?</p>
+      <div class="div-choice">
+        <p class="p-cancle">취소</p>
+        <p class="p-logout">로그아웃</p>
       </div>
+    </section>
+    
+>>>>>>> 71718e8 (profile 최종)
 
       <ul class="ul-btns">
         <li class="li-btn">
@@ -192,33 +142,28 @@
     <button class="button-profile">
       <p class="p-user">프로필</p>
     </button>
+<<<<<<< HEAD
+=======
+    
+      <!-- updel modal -->
+    <section id ="updel">
+      <div class="div-first"><button class="updel-div-button"></button></div>
+      <div class="div-delete">삭제</div>
+      <div class="div-update">수정</div>
+    </section>
+
+    <div class="loginfo">
+      <section id="loginfo">
+        <div class="div-first"><button class="logout-div-button"></button></div>
+        <div class="div-info">설정 및 개인정보</div>
+        <div class="div-logout">로그아웃</div>
+      </section>
+    </div>
+>>>>>>> 71718e8 (profile 최종)
 
   </section>
 
-  <script>
-    const btnRegist = document.querySelector('.button-regist');
-    btnRegist.addEventListener('click', () => {
-      location.href = "add_product.html";
-    })
-
-    const btnUpdate = document.querySelector('.button-profileupdate');
-    btnUpdate.addEventListener('click', () => {
-      location.href = "profile_mod.html";
-    })
-
-    followerBtn = document.querySelector('.followers');
-    followerBtn.addEventListener('click', () => {
-      location.href = "followers.html";
-    })
-
-    followerBtn = document.querySelector('.followings');
-    followerBtn.addEventListener('click', () => {
-      location.href = "following.html";
-    })
-
-  </script>
-  <script src="../js/followers.js"></script>
-  <!-- <script src ="../js/myprofile.js"></script> -->
+  <script src ="../js/myprofile.js"></script>
 </body>
 
 </html>
