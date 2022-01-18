@@ -9,12 +9,17 @@
 main {
   flex-grow: 1;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 main::-webkit-scrollbar {
   display: none;
 }
 
+main .home-post {
+  flex-grow: 1;
+}
 .top-basic-nav {
   border-bottom: 1px solid #dbdbdb;
 }

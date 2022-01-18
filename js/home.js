@@ -4,13 +4,15 @@ import Swiper from "https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js"
 // variables
 let clickCnt = 0,
   clickTimer;
+let loadFeedCnt = 0;
 const postModal = document.querySelector("#post-modal");
 const alert = document.querySelector("#alert");
+const postContainer = document.querySelector(".cont-post");
 
 // functions
 const init = () => {
   Global.setInit();
-  Global.getFeed()
+  Global.getFeed(10, 0)
     .then((postObj) => {
       if (postObj.posts.length > 0) {
         setPostElements(postObj.posts);
@@ -18,15 +20,23 @@ const init = () => {
         location.href = "home-none.html";
       }
     })
-    .then(() => swiperSetting());
-  // Global.getMyPosts()
-  //   .then((postObj) => setPostElements(postObj.post))
-  //   .then(() => swiperSetting());
+    .then(() => swiperSetting(loadFeedCnt));
+  // Global.getMyPosts(10, 0)
+  //   .then((postObj) => {
+  //     if (postObj.post.length > 0) {
+  //       setPostElements(postObj.post);
+  //     }
+  //   })
+  //   .then(() => swiperSetting(loadFeedCnt));
 };
 
 const swiperSetting = () => {
-  const sliders = document.querySelectorAll(".swiper");
-  const paginations = document.querySelectorAll(".swiper-pagination");
+  const sliders = Array.from(document.querySelectorAll(".swiper")).slice(
+    loadFeedCnt * 10
+  );
+  const paginations = Array.from(
+    document.querySelectorAll(".swiper-pagination")
+  ).slice(loadFeedCnt * 10);
 
   sliders.forEach((slider, index) => {
     const swiper = new Swiper(slider, {
@@ -261,11 +271,36 @@ const postModalClickHandler = (e) => {
     action.textContent = "신고";
   }
 };
+
+const postScrollHandler = () => {
+  const isEndReached =
+    parseInt(postContainer.scrollHeight - postContainer.scrollTop) <=
+    parseInt(postContainer.clientHeight);
+
+  if (isEndReached) {
+    loadFeedCnt += 1;
+    Global.getFeed(10, 10 * loadFeedCnt)
+      .then((postObj) => {
+        if (postObj.posts.length > 0) {
+          setPostElements(postObj.posts);
+        }
+      })
+      .then(() => swiperSetting(loadFeedCnt));
+    // Global.getMyPosts(10, 10 * loadFeedCnt)
+    //   .then((postObj) => {
+    //     if (postObj.post.length > 0) {
+    //       setPostElements(postObj.post);
+    //     }
+    //   })
+    //   .then(() => swiperSetting(loadFeedCnt));
+  }
+};
 // event listeners
 alert.querySelector(".p-cancle").addEventListener("click", () => {
   alert.classList.remove("show");
   postModal.classList.remove("show-modal");
 });
+postContainer.addEventListener("scroll", postScrollHandler);
 
 postModal.addEventListener("click", postModalClickHandler);
 // start
