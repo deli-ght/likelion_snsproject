@@ -21,14 +21,14 @@
   <section id="profiles">
     <div class="profile">
 
-      <div class="followers">
+      <div class="followers" onclick="()=>init('follower')">
         <p class="followers_count">2950</p>
         <p class="followers_text">followers</p>
       </div>
 
       <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
 
-      <div class="followings">
+      <div class="followings" onclick="()=>init('following')">
         <p class="followings_count">128</p>
         <p class="followings_text">followings</p>
       </div>
@@ -212,6 +212,7 @@
     })
 
   </script>
+  <script src="../js/followers.js"></script>
   <!-- <script src ="../js/myprofile.js"></script> -->
 </body>
 

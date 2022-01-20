@@ -1,21 +1,21 @@
-const getEmailValue = document.querySelector(".inp-login-email");
-const getPwValue = document.querySelector(".inp-login-pw");
-const btnLogin = document.querySelector(".btn-login");
-const valid = document.querySelector(".txt-validation");
-let errorMessage = "";
+const getEmailValue = document.querySelector(".inp-login-email")
+const getPwValue = document.querySelector(".inp-login-pw")
+const btnLogin = document.querySelector(".btn-login")
+const valid = document.querySelector(".txt-validation")
+let errorMessage = ""
 
 function checkIsProperLength() {
   if (getEmailValue.value.length >= 1 && getPwValue.value.length >= 1) {
-    return true;
+    return true
   }
-  return false;
+  return false
 }
 
 function toggleClassOn() {
   if (checkIsProperLength()) {
-    btnLogin.classList.add("on");
+    btnLogin.classList.add("on")
   } else if (!checkIsProperLength()) {
-    btnLogin.classList.remove("on");
+    btnLogin.classList.remove("on")
   }
 }
 
@@ -31,19 +31,20 @@ async function login() {
         password: getPwValue.value,
       },
     }),
-  });
-  const json = await res.json();
-  console.log(json);
+  })
+  const json = await res.json()
+  console.log(json)
   if (json.status === 422) {
-    errorMessage = json.message;
-    valid.textContent = errorMessage;
+    errorMessage = json.message
+    valid.textContent = errorMessage
   } else {
-    alert(`${json.user.username}님 로그인 성공하셨습니다.`);
-    localStorage.setItem("token", json.user.token);
-    localStorage.setItem("accountName", json.user.accountname);
-    console.log(localStorage);
-    location.href = "home-feed.html";
+    alert(`${json.user.username}님 로그인 성공하셨습니다.`)
+    localStorage.setItem("token", json.user.token)
+    localStorage.setItem("accountName", json.user.accountname)
+    localStorage.setItem("token", json.user.token)
+    localStorage.setItem("id", json.user._id)
+    location.href = "home-feed.html"
   }
 }
 
-btnLogin.addEventListener("click", login);
+btnLogin.addEventListener("click", login)
