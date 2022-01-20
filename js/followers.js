@@ -1,3 +1,5 @@
+import { Follow, Unfollow } from "./follow.js"
+
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
 const URL = "http://146.56.183.55:5050"
 
@@ -7,7 +9,8 @@ const GET_HEADER = new Headers({
 })
 
 const getUserInfo = async () => {
-  const response = await fetch(`${URL}/user`, {
+  let username = localStorage.getItem("currentUser")
+  const response = await fetch(`${`${URL}/profile/${username}/follower`}`, {
     method: "GET",
     headers: GET_HEADER,
   })
@@ -16,12 +19,10 @@ const getUserInfo = async () => {
   return data
 }
 
-const searchinput = document.querySelector(".inp-search")
-const main = document.querySelector(".main-result")
-
-const showResult = async (event) => {
-  const data = await getUserInfo()
-  let result = data.filter((e) => e.accountname.includes(event.target.value))
+const showFollowers = async () => {
+  let result = await getUserInfo()
+  let myid = localStorage.getItem("id")
+  const main = document.querySelector(".main-result")
   main.innerHTML = ""
   result.forEach((r) => {
     let newResult = document.createElement("div")
@@ -35,17 +36,27 @@ const showResult = async (event) => {
       <strong class="txt-title">${r.username}</strong>
       <span class="txt-nickname">@ ${r.accountname}</span>
     </div>`
+
+    let followBtn = document.createElement("button")
+    followBtn.setAttribute("type", "button")
+    followBtn.classList.add("btn-button", "btn-small", "btn-follow")
+    if (r.follower.includes(myid)) {
+      followBtn.classList.add("btn-disabled")
+      followBtn.textContent = "언팔로우"
+      followBtn.addEventListener("click", (e) => Unfollow(e, r.accountname))
+    } else {
+      followBtn.classList.remove("btn-disabled")
+      followBtn.textContent = "팔로우"
+      followBtn.addEventListener("click", (e) => Follow(e, r.accountname))
+    }
+    newResult.appendChild(followBtn)
     main.appendChild(newResult)
   })
-}
-
-searchinput.addEventListener("keydown", showResult)
-
-function checkImgErr(image) {
-  image.src = "../src/basic-profile.png"
 }
 
 function movePage(accountName) {
   localStorage.setItem("currentUser", accountName)
   location.href = "../pages/yourprofile_feed.html"
 }
+
+showFollowers()
