@@ -9,6 +9,10 @@ main .user-search {
   margin: 16px auto;
 }
 
+main .span_search {
+  color: var(--orange);
+}
+
 main .btn-small {
   width: 20%;
 }

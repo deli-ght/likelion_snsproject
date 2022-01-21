@@ -33,7 +33,10 @@ const showResult = async (event) => {
     } alt="사용자 프로필사진" onerror="checkImgErr(this)" class="img-profile">
     <div class="wrap-txt">
       <strong class="txt-title">${r.username}</strong>
-      <span class="txt-nickname">@ ${r.accountname}</span>
+      <span class="txt-nickname">@ ${r.accountname.replace(
+        event.target.value,
+        `<span class="span_search">${event.target.value}</span>`
+      )}</span>
     </div>`
     main.appendChild(newResult)
   })
