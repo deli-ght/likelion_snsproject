@@ -55,15 +55,45 @@ function joinToggleClassOn() {
     }
 }
 
-function goUserInfo() {
-    if (checkIsProperRegex() && checkIsProperPwLength()) {
-        joinForm.classList.toggle('hide-on')
-        userContainer.classList.toggle('hide-on')
-    } 
-    else {
+function goUserInfo(json) {
+    if (json.message === '사용 가능한 이메일 입니다.') {
+        if (checkIsProperRegex() && checkIsProperPwLength()) {
+            joinForm.classList.toggle('hide-on')
+            userContainer.classList.toggle('hide-on')
+        } 
+        else {
+            return
+        }
+    } else {
         return
     }
-}   
+}
+
+async function emailValid() {
+    try {
+        const res = await fetch("http://146.56.183.55:5050/user/emailvalid", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body : JSON.stringify({
+                "user": {
+                    "email": getEmailValue.value,
+                }
+            })
+        })
+        const json = await res.json();
+        console.log(json)
+        console.log(json.message)
+        if (json.message === "사용 가능한 이메일 입니다.") { 
+            goUserInfo(json)
+        } else {
+            validPwText.textContent = '이미 가입된 이메일 주소 입니다.'
+        }
+    } catch(err) {
+        alert(err)
+    }
+}
 
 function checkNameInput() {
     try {
@@ -118,7 +148,7 @@ function toggleClassOn() {
 
 getEmailValue.addEventListener('blur', joinToggleClassOn)
 getPwValue.addEventListener('blur', joinToggleClassOn)
-btnNext.addEventListener('click', goUserInfo)
+btnNext.addEventListener('click', emailValid)
 userName.addEventListener('blur', toggleClassOn);
 userIntro.addEventListener('blur', toggleClassOn);
 primaryId.addEventListener('blur', toggleClassOn);
