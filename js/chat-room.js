@@ -22,7 +22,7 @@ function sendMessage() {
   newMsg.classList.add("msg-my")
 
   let data = new Date()
-  if (inputMsg.value != "") {
+  if (inputMsg.value) {
     newMsg.innerHTML = `
   <div class="msg-mycontainer">
   <p class="msg-mycontent"> ${inputMsg.value}</p>
@@ -38,6 +38,15 @@ function sendMessage() {
 inputMsg.addEventListener("keypress", function (e) {
   if (e.key === "Enter" && !e.shiftKey) {
     submitBtn.click()
+    submitBtn.disabled = true
     e.preventDefault()
+  }
+})
+
+inputMsg.addEventListener("input", function () {
+  if (inputMsg.value) {
+    submitBtn.disabled = false
+  } else {
+    submitBtn.disabled = true
   }
 })

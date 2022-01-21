@@ -123,3 +123,11 @@ main .msg-mytime {
 footer {
   width: 100%;
 }
+
+.btn-submit p {
+  color: var(--orange);
+}
+
+.btn-submit:disabled p {
+  color: var(--light-gray);
+}
