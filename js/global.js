@@ -102,15 +102,18 @@ export const postComment = async (postId, txtComment) => {
   }
 };
 
-export const getMyPosts = async () => {
+export const getMyPosts = async (limit, skip) => {
   try {
     // GET /post/:accountname/userpost
     // // paging limit skip
     // GET /post/:accountname/userpost/?limit=Number&skip=Number
-    const res = await fetch(`${URL}/post/${LOGIN_ACCOUNT_NAME}/userpost`, {
-      method: "GET",
-      headers: HEADER,
-    });
+    const res = await fetch(
+      `${URL}/post/${LOGIN_ACCOUNT_NAME}/userpost?limit=${limit}&skip=${skip}`,
+      {
+        method: "GET",
+        headers: HEADER,
+      }
+    );
 
     // 포스트 정보 가져오기
     return await res.json();
@@ -119,12 +122,12 @@ export const getMyPosts = async () => {
   }
 };
 
-export const getFeed = async () => {
+export const getFeed = async (limit, skip) => {
   try {
     // GET /post/feed
     // // paging limit skip
     // GET /post/feed/?limit=Number&skip=Number
-    const res = await fetch(`${URL}/post/feed`, {
+    const res = await fetch(`${URL}/post/feed?limit=${limit}&skip=${skip}`, {
       method: "GET",
       headers: HEADER,
     });

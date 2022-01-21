@@ -15,6 +15,18 @@ main .txt-time {
   color: var(--light-gray);
 }
 
+main .is-read::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--orange);
+}
+
 footer {
   width: 100%;
 }
