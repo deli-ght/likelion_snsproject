@@ -1,3 +1,5 @@
+import { Follow, Unfollow } from "./follow.js"
+
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
 const URL = "http://146.56.183.55:5050"
 
@@ -34,17 +36,21 @@ const showFollowings = async () => {
       <strong class="txt-title">${r.username}</strong>
       <span class="txt-nickname">@ ${r.accountname}</span>
     </div>`
-
-    let followBtn = document.createElement("button")
-    followBtn.setAttribute("type", "button")
-    followBtn.classList.add("btn-button", "btn-small", "btn-follow")
-    if (r.follower.includes(myid)) {
-      followBtn.classList.add("btn-disabled")
-      followBtn.textContent = "언팔로우"
-    } else {
-      followBtn.textContent = "팔로우"
+    if (r._id != myid) {
+      let followBtn = document.createElement("button")
+      followBtn.setAttribute("type", "button")
+      followBtn.classList.add("btn-button", "btn-small", "btn-follow")
+      if (r.follower.includes(myid)) {
+        followBtn.classList.add("btn-disabled")
+        followBtn.textContent = "언팔로우"
+        followBtn.addEventListener("click", (e) => Unfollow(e, r.accountname))
+      } else {
+        followBtn.classList.remove("btn-disabled")
+        followBtn.textContent = "팔로우"
+        followBtn.addEventListener("click", (e) => Follow(e, r.accountname))
+      }
+      newResult.appendChild(followBtn)
     }
-    newResult.appendChild(followBtn)
     main.appendChild(newResult)
   })
 }
