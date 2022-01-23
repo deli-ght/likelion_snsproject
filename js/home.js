@@ -10,11 +10,12 @@ const alert = document.querySelector("#alert");
 const postContainer = document.querySelector(".cont-post");
 // functions
 export const init = (check = false) => {
+  console.log("home", check);
   if (!check) {
     localStorage.setItem("currentUser", "");
   }
   Global.setInit();
-  Global.getUserPosts(check, 10, 0)
+  Global.getUserPosts(10, 0, check)
     .then((postObj) => {
       if (postObj.post) {
         if (postObj.post.length > 0) {
@@ -29,29 +30,6 @@ export const init = (check = false) => {
       }
     })
     .then(() => swiperSetting(loadFeedCnt));
-  // if (currentUser) {
-  //   console.log("마이마이", currentUser);
-  //   // currentUser의 게시글 불러오기
-  //   Global.getUserPosts(currentUser, 10, 0)
-  //     .then((postObj) => {
-  //       if (postObj.post.length > 0) {
-  //         setPostElements(postObj.post);
-  //       }
-  //     })
-  //     .then(() => swiperSetting(loadFeedCnt));
-  // } else {
-  //   console.log("피드피드", currentUser);
-  //   //팔로우한 사용자의 게시글 불러오기
-  //   Global.getFeed(10, 0)
-  //     .then((postObj) => {
-  //       if (postObj.posts.length > 0) {
-  //         setPostElements(postObj.posts);
-  //       } else {
-  //         location.href = "home-none.html";
-  //       }
-  //     })
-  //     .then(() => swiperSetting(loadFeedCnt));
-  // }
 };
 
 const swiperSetting = () => {
@@ -303,6 +281,7 @@ const postScrollHandler = () => {
 
   if (isEndReached) {
     loadFeedCnt += 1;
+
     Global.getUserPosts(10, 10 * loadFeedCnt)
       .then((postObj) => {
         if (postObj.post) {
@@ -326,7 +305,4 @@ alert.querySelector(".p-cancle").addEventListener("click", () => {
   postModal.classList.remove("show-modal");
 });
 postContainer.addEventListener("scroll", postScrollHandler);
-
 postModal.addEventListener("click", postModalClickHandler);
-
-init();

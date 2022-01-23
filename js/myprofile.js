@@ -1,5 +1,6 @@
 import { init } from "./home.js";
 
+localStorage.setItem("currentUser", localStorage.getItem("accountName"));
 // 뒤로가기
 const back = document.querySelector(".img-left-arrow");
 back.addEventListener("click", () => {
@@ -272,9 +273,13 @@ const album = async () => {
   homeAlbum.innerHTML = "";
   console.log(json);
   for (const data of json.post) {
-    homeAlbum.innerHTML += `
-            <li style="background: url(http://146.56.183.55:5050/${data.image}) no-repeat center center/cover"></li>
-        `;
+    if (data.image) {
+      homeAlbum.innerHTML += `
+              <li style="background: url(${
+                data.image.split(",")[0]
+              }) no-repeat center center/cover"></li>
+          `;
+    }
   }
 };
 
@@ -334,8 +339,8 @@ userinf();
 // home()
 
 // currentUser를 accountName으로 설정.
-(async function start() {
-  localStorage.setItem("currentUser", localStorage.getItem("currentUser"));
-  console.log("ddd", localStorage.getItem("currentUser"));
-})().then(() => init(true));
-// init(true);
+// (async function start() {
+//   localStorage.setItem("currentUser", localStorage.getItem("accountName"));
+//   console.log("ddd", localStorage.getItem("currentUser"));
+// })().then(() => init(true));
+init(true);

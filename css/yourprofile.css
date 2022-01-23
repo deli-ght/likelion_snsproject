@@ -265,6 +265,7 @@
   left: 0;
   border: none;
   border-top: 0.5px solid #c4c4c4;
+  z-index: 10;
 }
 
 /* 게시글 스크롤바 */

@@ -219,9 +219,13 @@ const album = async () => {
   homeAlbum.innerHTML = "";
   console.log(json);
   for (const data of json.post) {
-    homeAlbum.innerHTML += `
-            <li style="background: url(http://146.56.183.55:5050/${data.image}) no-repeat center center/cover"></li>
-        `;
+    if (data.image) {
+      homeAlbum.innerHTML += `
+              <li style="background: url(${
+                data.image.split(",")[0]
+              }) no-repeat center center/cover"></li>
+          `;
+    }
   }
 };
 

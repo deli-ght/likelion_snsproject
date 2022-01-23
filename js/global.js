@@ -3,7 +3,6 @@ export const URL = "http://146.56.183.55:5050";
 export let TOKEN = "";
 export let TEST_TOKEN = "";
 export let LOGIN_ACCOUNT_NAME = "";
-let CURRENT_USER = localStorage.getItem("currentUser");
 let HEADER = "";
 
 export const setInit = () => {
@@ -16,12 +15,6 @@ export const setInit = () => {
     "Content-type": "application/json",
   });
 };
-//ash__h: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
-//ash2: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
-//ash3: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTNhYWRkODQ4NDMxZTE5MWJjOTZjNCIsImV4cCI6MTY0NzQ5NDUxMiwiaWF0IjoxNjQyMzEwNTEyfQ.ddj-_v4UKQNMQOHPaFaNR8lExHwt_J1H4dZKeRUs2cg
-// export let TEST_TOKEN =
-//   "Bearer " +
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM";
 
 export const setLoginUser = () => {
   LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
@@ -103,17 +96,18 @@ export const postComment = async (postId, txtComment) => {
   }
 };
 
-export const getUserPosts = async (check, limit, skip) => {
+export const getUserPosts = async (limit, skip, check = false) => {
   try {
+    const currUser = localStorage.getItem("currentUser");
+    console.log("getUser", currUser);
+    console.log("check", check);
     let res = "";
-    console.log("getUserPosts", CURRENT_USER);
-    if (check && CURRENT_USER !== "") {
-      console.log("ddddd");
+    if (check && currUser !== "") {
       // GET /post/:accountname/userpost
       // // paging limit skip
       // GET /post/:accountname/userpost/?limit=Number&skip=Number
       res = await fetch(
-        `${URL}/post/${CURRENT_USER}/userpost?limit=${limit}&skip=${skip}`,
+        `${URL}/post/${currUser}/userpost?limit=${limit}&skip=${skip}`,
         {
           method: "GET",
           headers: HEADER,
