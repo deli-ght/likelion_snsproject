@@ -54,6 +54,10 @@ const userinf = async () => {
   followerBtn.addEventListener("click", () => {
     location.href = "followers.html";
   });
+  const followingBtn = document.querySelector(".followings");
+  followingBtn.addEventListener("click", () => {
+    location.href = "following.html";
+  });
 
   // 상품 등록 이동
   const addProduct = document.querySelector(".button-regist");
