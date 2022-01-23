@@ -6,21 +6,15 @@ export let LOGIN_ACCOUNT_NAME = "";
 let HEADER = "";
 
 export const setInit = () => {
+  console.log("setInit", localStorage.getItem("currentUser"));
   TOKEN = localStorage.getItem("token");
   TEST_TOKEN = "Bearer " + TOKEN;
   LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
-
   HEADER = new Headers({
     Authorization: TEST_TOKEN,
     "Content-type": "application/json",
   });
 };
-//ash__h: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3MjdjNmI4MjE2ZmM1NjY4NzZhOSIsImV4cCI6MTY0NjU2MjY4NCwiaWF0IjoxNjQxMzc4Njg0fQ.TBRQv7LmYSlN92I8ZYtf8ly1DomJ55MAIwc042YMv4g
-//ash2: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM
-//ash3: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZTNhYWRkODQ4NDMxZTE5MWJjOTZjNCIsImV4cCI6MTY0NzQ5NDUxMiwiaWF0IjoxNjQyMzEwNTEyfQ.ddj-_v4UKQNMQOHPaFaNR8lExHwt_J1H4dZKeRUs2cg
-// export let TEST_TOKEN =
-//   "Bearer " +
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZDU3ODMxNmI4MjE2ZmM1NjY4NzZlZCIsImV4cCI6MTY0NjU2Mzk2OSwiaWF0IjoxNjQxMzc5OTY5fQ.ugws0yLMbn0G4dKLwPSDTHPz-e3TmG7HeO_lXC8y-PM";
 
 export const setLoginUser = () => {
   LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
@@ -102,18 +96,29 @@ export const postComment = async (postId, txtComment) => {
   }
 };
 
-export const getMyPosts = async (limit, skip) => {
+export const getUserPosts = async (limit, skip, check = false) => {
   try {
-    // GET /post/:accountname/userpost
-    // // paging limit skip
-    // GET /post/:accountname/userpost/?limit=Number&skip=Number
-    const res = await fetch(
-      `${URL}/post/${LOGIN_ACCOUNT_NAME}/userpost?limit=${limit}&skip=${skip}`,
-      {
+    const currUser = localStorage.getItem("currentUser");
+    console.log("getUser", currUser);
+    console.log("check", check);
+    let res = "";
+    if (check && currUser !== "") {
+      // GET /post/:accountname/userpost
+      // // paging limit skip
+      // GET /post/:accountname/userpost/?limit=Number&skip=Number
+      res = await fetch(
+        `${URL}/post/${currUser}/userpost?limit=${limit}&skip=${skip}`,
+        {
+          method: "GET",
+          headers: HEADER,
+        }
+      );
+    } else {
+      res = await fetch(`${URL}/post/feed?limit=${limit}&skip=${skip}`, {
         method: "GET",
         headers: HEADER,
-      }
-    );
+      });
+    }
 
     // 포스트 정보 가져오기
     return await res.json();

@@ -8,26 +8,28 @@ let loadFeedCnt = 0;
 const postModal = document.querySelector("#post-modal");
 const alert = document.querySelector("#alert");
 const postContainer = document.querySelector(".cont-post");
-
 // functions
-const init = () => {
+export const init = (check = false) => {
+  console.log("home", check);
+  if (!check) {
+    localStorage.setItem("currentUser", "");
+  }
   Global.setInit();
-  Global.getFeed(10, 0)
+  Global.getUserPosts(10, 0, check)
     .then((postObj) => {
-      if (postObj.posts.length > 0) {
-        setPostElements(postObj.posts);
+      if (postObj.post) {
+        if (postObj.post.length > 0) {
+          setPostElements(postObj.post);
+        }
       } else {
-        location.href = "home-none.html";
+        if (postObj.posts.length > 0) {
+          setPostElements(postObj.posts);
+        } else {
+          location.href = "home-none.html";
+        }
       }
     })
     .then(() => swiperSetting(loadFeedCnt));
-  // Global.getMyPosts(10, 0)
-  //   .then((postObj) => {
-  //     if (postObj.post.length > 0) {
-  //       setPostElements(postObj.post);
-  //     }
-  //   })
-  //   .then(() => swiperSetting(loadFeedCnt));
 };
 
 const swiperSetting = () => {
@@ -279,20 +281,22 @@ const postScrollHandler = () => {
 
   if (isEndReached) {
     loadFeedCnt += 1;
-    Global.getFeed(10, 10 * loadFeedCnt)
+
+    Global.getUserPosts(10, 10 * loadFeedCnt)
       .then((postObj) => {
-        if (postObj.posts.length > 0) {
-          setPostElements(postObj.posts);
+        if (postObj.post) {
+          if (postObj.post.length > 0) {
+            setPostElements(postObj.post);
+          }
+        } else {
+          if (postObj.posts.length > 0) {
+            setPostElements(postObj.posts);
+          } else {
+            // location.href = "home-none.html";
+          }
         }
       })
       .then(() => swiperSetting(loadFeedCnt));
-    // Global.getMyPosts(10, 10 * loadFeedCnt)
-    //   .then((postObj) => {
-    //     if (postObj.post.length > 0) {
-    //       setPostElements(postObj.post);
-    //     }
-    //   })
-    //   .then(() => swiperSetting(loadFeedCnt));
   }
 };
 // event listeners
@@ -301,7 +305,4 @@ alert.querySelector(".p-cancle").addEventListener("click", () => {
   postModal.classList.remove("show-modal");
 });
 postContainer.addEventListener("scroll", postScrollHandler);
-
 postModal.addEventListener("click", postModalClickHandler);
-// start
-init();

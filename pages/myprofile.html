@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/component.css">
   <link rel="stylesheet" href="../css/myprofile.css">
@@ -48,21 +49,21 @@
 
 
   <!-- 게시글 -->
-  <div id="home-post">
+  <!-- <div id="home-post">
 
-  </div>
-
+  </div> -->
+  <main class="cont-post"></main>
 
 
 
   <!-- delete alert -->
-  <section id="alert">
+  <!-- <section id="alert">
     <p class="p-check">게시글을 삭제할까요?</p>
     <div class="div-choice">
       <p class="p-cancle">취소</p>
       <p class="p-delete">삭제</p>
     </div>
-  </section>
+  </section> -->
 
   <!-- 게시물 3x3 -->
   <ul id="posts">
@@ -80,7 +81,7 @@
   </section>
 
 
-  <ul class="ul-btns">
+  <!-- <ul class="ul-btns">
     <li class="li-btn">
       <button type="button" class="btn-likes"></button>
       <span class="txt-likes">50</span>
@@ -92,7 +93,7 @@
   </ul>
   <p class="txt-date">2021년 12월 21일</p>
   </div>
-  </article>
+  </article> -->
 
   <!-- tab-menu -->
   <section id="tab-menu">
@@ -112,11 +113,11 @@
     </button>
 
     <!-- updel modal -->
-    <section id="updel">
+    <!-- <section id="updel">
       <div class="div-first"><button class="updel-div-button"></button></div>
       <div class="div-delete">삭제</div>
       <div class="div-update">수정</div>
-    </section>
+    </section> -->
 
     <div class="loginfo">
       <section id="loginfo">
@@ -125,10 +126,28 @@
         <div class="div-logout">로그아웃</div>
       </section>
     </div>
-
   </section>
 
-  <script src="../js/myprofile.js"></script>
+  <div id="post-modal" class="post-modal">
+    <ul>
+      <li><button type="button" class="btn-report">신고</button></li>
+      <li><button type="button" class="btn-delete">삭제</button></li>
+      <li><button type="button" class="btn-modify">수정</button></li>
+    </ul>
+  </div>
+
+  <div class="cont-alert">
+    <section id="alert">
+      <p class="p-check"></p>
+      <div class="div-choice">
+        <p class="p-cancle">취소</p>
+        <p class="p-action"></p>
+      </div>
+    </section>
+    <div class="backdrop"></div>
+  </div>
+
+  <script type="module" src="../js/myprofile.js"></script>
 </body>
 
 </html>
