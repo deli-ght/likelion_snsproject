@@ -68,16 +68,16 @@ function check() {
 }
 
 // 이미지 업로드 및 보이기
-file.addEventListener("change", (e) => {
-  const selectedFile = e.target.files[0]
-  const reader = new FileReader()
-  reader.readAsDataURL(selectedFile)
-  reader.onload = () => {
-    const showImg = body.querySelector(".label-imgbox")
-    showImg.style = `background : url(${reader.result}) no-repeat center center;`
-    showImg.style.backgroundSize = "100% 40vh"
-  }
-  showImg = selectedFile
+file.addEventListener('change',(e) => {
+    const selectedFile=e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onload = () =>{
+        const showImg = body.querySelector('.div-imgbox');
+        showImg.style = `background : url(${reader.result}) no-repeat center center;`;
+        showImg.style.backgroundSize = "100% 40vh";
+    }
+    showImg=selectedFile
 })
 
 async function imgApi(showImg) {
