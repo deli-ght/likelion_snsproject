@@ -3,13 +3,14 @@ export const URL = "http://146.56.183.55:5050";
 export let TOKEN = "";
 export let TEST_TOKEN = "";
 export let LOGIN_ACCOUNT_NAME = "";
+let CURRENT_USER = localStorage.getItem("currentUser");
 let HEADER = "";
 
 export const setInit = () => {
+  console.log("setInit", localStorage.getItem("currentUser"));
   TOKEN = localStorage.getItem("token");
   TEST_TOKEN = "Bearer " + TOKEN;
   LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
-
   HEADER = new Headers({
     Authorization: TEST_TOKEN,
     "Content-type": "application/json",
@@ -102,18 +103,28 @@ export const postComment = async (postId, txtComment) => {
   }
 };
 
-export const getMyPosts = async (limit, skip) => {
+export const getUserPosts = async (check, limit, skip) => {
   try {
-    // GET /post/:accountname/userpost
-    // // paging limit skip
-    // GET /post/:accountname/userpost/?limit=Number&skip=Number
-    const res = await fetch(
-      `${URL}/post/${LOGIN_ACCOUNT_NAME}/userpost?limit=${limit}&skip=${skip}`,
-      {
+    let res = "";
+    console.log("getUserPosts", CURRENT_USER);
+    if (check && CURRENT_USER !== "") {
+      console.log("ddddd");
+      // GET /post/:accountname/userpost
+      // // paging limit skip
+      // GET /post/:accountname/userpost/?limit=Number&skip=Number
+      res = await fetch(
+        `${URL}/post/${CURRENT_USER}/userpost?limit=${limit}&skip=${skip}`,
+        {
+          method: "GET",
+          headers: HEADER,
+        }
+      );
+    } else {
+      res = await fetch(`${URL}/post/feed?limit=${limit}&skip=${skip}`, {
         method: "GET",
         headers: HEADER,
-      }
-    );
+      });
+    }
 
     // 포스트 정보 가져오기
     return await res.json();

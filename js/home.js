@@ -8,26 +8,50 @@ let loadFeedCnt = 0;
 const postModal = document.querySelector("#post-modal");
 const alert = document.querySelector("#alert");
 const postContainer = document.querySelector(".cont-post");
-
 // functions
-const init = () => {
+export const init = (check = false) => {
+  if (!check) {
+    localStorage.setItem("currentUser", "");
+  }
   Global.setInit();
-  Global.getFeed(10, 0)
+  Global.getUserPosts(check, 10, 0)
     .then((postObj) => {
-      if (postObj.posts.length > 0) {
-        setPostElements(postObj.posts);
+      if (postObj.post) {
+        if (postObj.post.length > 0) {
+          setPostElements(postObj.post);
+        }
       } else {
-        location.href = "home-none.html";
+        if (postObj.posts.length > 0) {
+          setPostElements(postObj.posts);
+        } else {
+          location.href = "home-none.html";
+        }
       }
     })
     .then(() => swiperSetting(loadFeedCnt));
-  // Global.getMyPosts(10, 0)
-  //   .then((postObj) => {
-  //     if (postObj.post.length > 0) {
-  //       setPostElements(postObj.post);
-  //     }
-  //   })
-  //   .then(() => swiperSetting(loadFeedCnt));
+  // if (currentUser) {
+  //   console.log("마이마이", currentUser);
+  //   // currentUser의 게시글 불러오기
+  //   Global.getUserPosts(currentUser, 10, 0)
+  //     .then((postObj) => {
+  //       if (postObj.post.length > 0) {
+  //         setPostElements(postObj.post);
+  //       }
+  //     })
+  //     .then(() => swiperSetting(loadFeedCnt));
+  // } else {
+  //   console.log("피드피드", currentUser);
+  //   //팔로우한 사용자의 게시글 불러오기
+  //   Global.getFeed(10, 0)
+  //     .then((postObj) => {
+  //       if (postObj.posts.length > 0) {
+  //         setPostElements(postObj.posts);
+  //       } else {
+  //         location.href = "home-none.html";
+  //       }
+  //     })
+  //     .then(() => swiperSetting(loadFeedCnt));
+  // }
 };
 
 const swiperSetting = () => {
@@ -279,20 +303,21 @@ const postScrollHandler = () => {
 
   if (isEndReached) {
     loadFeedCnt += 1;
-    Global.getFeed(10, 10 * loadFeedCnt)
+    Global.getUserPosts(10, 10 * loadFeedCnt)
       .then((postObj) => {
-        if (postObj.posts.length > 0) {
-          setPostElements(postObj.posts);
+        if (postObj.post) {
+          if (postObj.post.length > 0) {
+            setPostElements(postObj.post);
+          }
+        } else {
+          if (postObj.posts.length > 0) {
+            setPostElements(postObj.posts);
+          } else {
+            // location.href = "home-none.html";
+          }
         }
       })
       .then(() => swiperSetting(loadFeedCnt));
-    // Global.getMyPosts(10, 10 * loadFeedCnt)
-    //   .then((postObj) => {
-    //     if (postObj.post.length > 0) {
-    //       setPostElements(postObj.post);
-    //     }
-    //   })
-    //   .then(() => swiperSetting(loadFeedCnt));
   }
 };
 // event listeners
@@ -303,5 +328,5 @@ alert.querySelector(".p-cancle").addEventListener("click", () => {
 postContainer.addEventListener("scroll", postScrollHandler);
 
 postModal.addEventListener("click", postModalClickHandler);
-// start
+
 init();

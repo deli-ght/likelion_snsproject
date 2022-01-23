@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/component.css">
   <link rel="stylesheet" href="../css/yourprofile.css">
@@ -48,9 +49,10 @@
 
 
   <!-- 게시글 -->
-  <div id="home-post">
+  <!-- <div id="home-post">
 
-  </div>
+  </div> -->
+  <main class="cont-post"></main>
 
   <!-- 게시물 3x3 -->
   <ul id="posts">
@@ -96,6 +98,25 @@
     </div>
 
   </section>
+
+  <div id="post-modal" class="post-modal">
+    <ul>
+      <li><button type="button" class="btn-report">신고</button></li>
+      <li><button type="button" class="btn-delete">삭제</button></li>
+      <li><button type="button" class="btn-modify">수정</button></li>
+    </ul>
+  </div>
+
+  <div class="cont-alert">
+    <section id="alert">
+      <p class="p-check"></p>
+      <div class="div-choice">
+        <p class="p-cancle">취소</p>
+        <p class="p-action"></p>
+      </div>
+    </section>
+    <div class="backdrop"></div>
+  </div>
 
   <script type="module" src="../js/yourprofile.js"></script>
 </body>
