@@ -7,7 +7,7 @@ const imgUploadBtn = document.querySelector(".btn-img-upload");
 const inpImgs = document.querySelector(".inp-imgs");
 const previewContainer = document.querySelector(".cont-preview");
 const txtContent = document.querySelector("#upload .input-txt");
-const backBtn = document.querySelector(".img-left-arrow");
+const backBtn = document.querySelector(".btn-back");
 
 let imgAdded = false;
 let txtAdded = false;
@@ -98,8 +98,7 @@ const addImgOnPreview = () => {
 
     // 추가한 이미지가 있으므로 업로드 버튼 활성화
     imgAdded = true;
-    uploadBtn.classList.add("on")
-    uploadBtn.disabled = false;
+    uploadBtn.classList.add("on");
   }
 };
 
@@ -112,13 +111,13 @@ const checkByte = (obj) => {
   // 입력한 글이 없으면 업로드 버튼 활성화 되지 못함.
   if (str.length > 0) {
     txtAdded = true;
-    uploadBtn.disabled = false;
+    uploadBtn.classList.add("on");
   } else {
     txtAdded = false;
 
     // 텍스트는 없지만 이미지는 추가된 경우 업로드 버튼 활성화
     if (!imgAdded) {
-      uploadBtn.disabled = true;
+      uploadBtn.classList.remove("on");
     }
   }
 
@@ -171,7 +170,7 @@ const uploadBtnClickHandler = () => {
     })
     .then((filename) => {
       Global.uploadPost(txtContent.value, filename);
-      location.href = "home-feed.html";
+      location.href = "myprofile.html";
     })
     .catch(console.error);
 };
@@ -190,7 +189,7 @@ const imgRemoveHanlder = (e) => {
 
       // 이미지는 없지만 텍스트는 추가된 경우 업로드 버튼 활성화
       if (!txtAdded) {
-        uploadBtn.disabled = true;
+        uploadBtn.classList.remove("on");
       }
     }
   }
