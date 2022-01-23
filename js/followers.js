@@ -10,10 +10,13 @@ const GET_HEADER = new Headers({
 
 const getUserInfo = async () => {
   let username = localStorage.getItem("currentUser")
-  const response = await fetch(`${`${URL}/profile/${username}/follower`}`, {
-    method: "GET",
-    headers: GET_HEADER,
-  })
+  const response = await fetch(
+    `${URL}/profile/${username}/follower/?limit=1000`,
+    {
+      method: "GET",
+      headers: GET_HEADER,
+    }
+  )
 
   const data = await response.json()
   return data
@@ -57,7 +60,7 @@ const showFollowers = async () => {
 
 function movePage(accountName) {
   localStorage.setItem("currentUser", accountName)
-  location.href = "../pages/yourprofile_feed.html"
+  location.href = "../pages/yourprofile.html"
 }
 
 showFollowers()

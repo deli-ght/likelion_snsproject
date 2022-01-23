@@ -85,9 +85,7 @@
 | **김민주** | home(UI only), 검색, 채팅, 에러페이지, 팔로우   |
 | **정시찬** | user profile                                    |
 
-## 기능 구현
-
-[🔗 상세 기능 확인하기](https://github.com/deli-ght/likelion_snsproject/wiki/%EC%83%81%EC%84%B8-%EA%B8%B0%EB%8A%A5)
+## [🔗 상세 기능 확인하기](https://github.com/deli-ght/likelion_snsproject/wiki/%EC%83%81%EC%84%B8-%EA%B8%B0%EB%8A%A5)
 
 ### 로그인/로그아웃
 
