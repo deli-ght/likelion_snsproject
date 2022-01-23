@@ -57,7 +57,7 @@ const showFollowings = async () => {
 
 function movePage(accountName) {
   localStorage.setItem("currentUser", accountName)
-  location.href = "../pages/yourprofile_feed.html"
+  location.href = "../pages/yourprofile.html"
 }
 
 showFollowings()
