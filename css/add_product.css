@@ -1,0 +1,79 @@
+/* top menu */
+.top-basic-nav {
+  align-items: center;
+}
+.btn-button.btn-ms {
+  margin-right: 0.5em;
+}
+.img-left-arrow {
+  cursor: pointer;
+}
+
+/* 상품등록 */
+
+#product_regist {
+  box-sizing: border-box;
+  padding: 8%;
+  width: 100%;
+}
+
+.ul-products li {
+  margin-bottom: 1.5em;
+}
+
+.ul-products li:nth-child(1) {
+  position: relative;
+  z-index: 99;
+}
+
+.ul-products p {
+  font-size: var(--font-14px);
+  margin-bottom: 1.1em;
+  color: #767676;
+}
+
+.input-imgbox {
+  display: none;
+}
+
+.label-imgbox {
+  display: block;
+  width: 100%;
+  height: 40vh;
+  background: #f2f2f2;
+  background-size: cover;
+  border: 0.5px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.img-button {
+  position: absolute;
+  right: 1em;
+  bottom: 0.5em;
+  width: 36px;
+  height: 36px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.ul-products li input {
+  width: 100%;
+  border: transparent;
+  border-bottom: 0.5px solid #dbdbdb;
+  outline: none;
+}
+
+.ul-products li input::placeholder {
+  color: #dbdbdb;
+}
+
+.span-product,
+.span-price,
+.span-link {
+  color: #eb5757;
+  font-size: var(--font-12px);
+  font-weight: 400;
+}
