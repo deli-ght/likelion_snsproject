@@ -42,52 +42,37 @@ const userinf = async () => {
         </div>
 
         <p class="sub_title">${json.profile.intro}</p>
-        </div>
+
     `
-  const profileBtns = document.createElement("div")
-  profileBtns.classList.add("buttons")
+  const profileBtns = document.createElement("div") // <div></div>
+  profileBtns.classList.add("buttons") // <div class = "buttons"></div>
   profileBtns.innerHTML = `<img class="img-comment" src="../src/message-btn.png" alt="댓글 버튼">`
 
-  let followBtn = document.createElement("button")
-  followBtn.setAttribute("type", "button")
+  let followBtn = document.createElement("button") // <button/>
+  followBtn.setAttribute("type", "button") //<button type="button"/>
   followBtn.classList.add("btn-button", "btn-small", "btn-follow")
+
   if (json.profile.follower.includes(localStorage.getItem("id"))) {
     followBtn.classList.add("btn-disabled")
     followBtn.textContent = "언팔로우"
-    followBtn.addEventListener("click", (e) =>
+    followBtn.addEventListener("click", (e) => {
       Unfollow(e, json.profile.accountname)
-    )
+    })
   } else {
     followBtn.classList.remove("btn-disabled")
     followBtn.textContent = "팔로우"
-    followBtn.addEventListener("click", (e) =>
+    followBtn.addEventListener("click", (e) => {
       Follow(e, json.profile.accountname)
-    )
+    })
   }
   profileBtns.appendChild(followBtn)
 
-  profileBtns.innerHTML += `<img class="img-share" src="../src/share-btn.png" alt="공유 버튼">`
+  const shareBtn = document.createElement("img")
+  shareBtn.classList.add("img-share")
+  shareBtn.src = "../src/share-btn.png"
+  shareBtn.alt = "공유버튼"
+  profileBtns.appendChild(shareBtn)
   profiles.appendChild(profileBtns)
-
-  //   function ch() {
-  //     const fo = profiles.querySelector(".btn-follow")
-  //     fo.onclick = (e) => {
-  //       const btn = e.target
-  //       if (btn.textContent == "팔로우") {
-  //         btn.style.backgroundColor = "#fff"
-  //         btn.textContent = "언팔로우"
-  //         btn.style.color = "#767676"
-  //         btn.style.borderWidth = "0.5px"
-  //         btn.style.borderStyle = "solid"
-  //         btn.style.borderColor = "#767676"
-  //       } else {
-  //         btn.style.backgroundColor = "#F26E22"
-  //         btn.style.color = "#fff"
-  //         btn.textContent = "팔로우"
-  //         btn.style.borderColor = "#fff"
-  //       }
-  //     }
-  //   }
 
   // 팔로워 이동
   const followerBtn = document.querySelector(".followers")
@@ -105,6 +90,7 @@ const userinf = async () => {
 const selling = document.querySelector("#selling")
 const products = document.querySelector(".products")
 const url = "http://146.56.183.55:5050"
+
 const check = async () => {
   const res = await fetch(
     url + `/product/${localStorage.getItem("currentUser")}`,
@@ -146,7 +132,7 @@ listBtn.addEventListener("click", () => {
 
 const home = async () => {
   const res = await fetch(
-    url + `/product/${localStorage.getItem("currentUser")}/userpost`,
+    `${url}/post/${localStorage.getItem("currentUser")}/userpost`,
     {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -165,7 +151,6 @@ const home = async () => {
   homepost.innerHTML = ""
 
   for (const data of json.post) {
-    // console.log(data)
     const date = JSON.stringify(data.updatedAt).split("-")
     homepost.innerHTML += `
         <article class="home-post">
@@ -188,9 +173,7 @@ const home = async () => {
         </p>
         
         <div class="cont-preview">
-        <div class="cont-img"><img src="http://146.56.183.55:5050/${
-          data.image
-        }" class="img-preview"></div>
+        <div class="cont-img">${data.image ? `<img src=${data.image}/>` : ""}
         </div>
         
         <ul class="ul-btns">
@@ -280,6 +263,9 @@ const homeBtn = document.querySelector(".button-home")
 const chatBtn = document.querySelector(".button-circle1")
 const editBtn = document.querySelector(".button-edit")
 const profileBtn = document.querySelector(".button-profile")
+homeBtn.addEventListener("click", () => {
+  location.href = "home-feed.html"
+})
 
 chatBtn.addEventListener("click", () => {
   location.href = "chat-list.html"
