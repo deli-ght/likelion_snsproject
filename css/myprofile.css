@@ -230,7 +230,6 @@
 #posts {
   margin-bottom: 2em;
   width: 100%;
-  height: auto;
   overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -242,7 +241,7 @@
 }
 
 #posts li {
-  height: 110px;
+  padding-top: 100%;
   margin: 0.1em;
   cursor: pointer;
 }

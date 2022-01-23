@@ -98,6 +98,7 @@ const addImgOnPreview = () => {
 
     // 추가한 이미지가 있으므로 업로드 버튼 활성화
     imgAdded = true;
+    uploadBtn.classList.add("on")
     uploadBtn.disabled = false;
   }
 };

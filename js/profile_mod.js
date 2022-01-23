@@ -75,6 +75,8 @@ async function imageUpload(files) {
   })
   const data = await res.json()
   const productImgName = data["filename"]
+  uploadButton.disabled = false;
+  uploadButton.classList.add("on")
   return productImgName
 }
 
