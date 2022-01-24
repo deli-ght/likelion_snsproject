@@ -20,6 +20,7 @@ const userinf = async () => {
     }
   )
   const json = await res.json()
+  console.log(json.profile)
   profiles.innerHTML = `
     <div class="profile">
         <div class="followers">
