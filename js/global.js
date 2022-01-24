@@ -1,31 +1,31 @@
-export const URL = "http://146.56.183.55:5050";
+export const URL = "https://api.mandarin.cf"
 
-export let TOKEN = "";
-export let TEST_TOKEN = "";
-export let LOGIN_ACCOUNT_NAME = "";
-let HEADER = "";
+export let TOKEN = ""
+export let TEST_TOKEN = ""
+export let LOGIN_ACCOUNT_NAME = ""
+let HEADER = ""
 
 export const setInit = () => {
-  console.log("setInit", localStorage.getItem("currentUser"));
-  TOKEN = localStorage.getItem("token");
-  TEST_TOKEN = "Bearer " + TOKEN;
-  LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
+  console.log("setInit", localStorage.getItem("currentUser"))
+  TOKEN = localStorage.getItem("token")
+  TEST_TOKEN = "Bearer " + TOKEN
+  LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName")
   HEADER = new Headers({
     Authorization: TEST_TOKEN,
     "Content-type": "application/json",
-  });
-};
+  })
+}
 
 export const setLoginUser = () => {
-  LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName");
-};
+  LOGIN_ACCOUNT_NAME = localStorage.getItem("accountName")
+}
 export const getUser = async (accountname) => {
   // GET /profile/:accountname
   return await fetch(`${URL}/profile/${accountname}`, {
     method: "GET",
     headers: HEADER,
-  }).then((res) => res.json());
-};
+  }).then((res) => res.json())
+}
 
 export const getPost = async (postId) => {
   try {
@@ -33,37 +33,37 @@ export const getPost = async (postId) => {
     const res = await fetch(`${URL}/post/${postId}`, {
       method: "GET",
       headers: HEADER,
-    });
+    })
 
     // 포스트 정보 가져오기
-    return await res.json();
+    return await res.json()
   } catch (err) {
-    console.error;
+    console.error
   }
-};
+}
 
 export const postLike = async (postId, isLike) => {
-  let action, reqMethod;
+  let action, reqMethod
   if (isLike) {
     // like
-    action = "heart";
-    reqMethod = "POST";
+    action = "heart"
+    reqMethod = "POST"
   } else {
     // unlike
-    action = "unheart";
-    reqMethod = "DELETE";
+    action = "unheart"
+    reqMethod = "DELETE"
   }
   try {
     const res = await fetch(`${URL}/post/${postId}/${action}`, {
       method: reqMethod,
       headers: HEADER,
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-};
+}
 
 export const getComments = async (postId) => {
   try {
@@ -71,13 +71,13 @@ export const getComments = async (postId) => {
     const res = await fetch(`${URL}/post/${postId}/comments`, {
       method: "GET",
       headers: HEADER,
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   } catch (err) {
-    console.error;
+    console.error
   }
-};
+}
 
 export const postComment = async (postId, txtComment) => {
   try {
@@ -89,19 +89,19 @@ export const postComment = async (postId, txtComment) => {
           content: txtComment,
         },
       }),
-    });
+    })
     // console.log(await res.json());
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-};
+}
 
 export const getUserPosts = async (limit, skip, check = false) => {
   try {
-    const currUser = localStorage.getItem("currentUser");
-    console.log("getUser", currUser);
-    console.log("check", check);
-    let res = "";
+    const currUser = localStorage.getItem("currentUser")
+    console.log("getUser", currUser)
+    console.log("check", check)
+    let res = ""
     if (check && currUser !== "") {
       // GET /post/:accountname/userpost
       // // paging limit skip
@@ -112,20 +112,20 @@ export const getUserPosts = async (limit, skip, check = false) => {
           method: "GET",
           headers: HEADER,
         }
-      );
+      )
     } else {
       res = await fetch(`${URL}/post/feed?limit=${limit}&skip=${skip}`, {
         method: "GET",
         headers: HEADER,
-      });
+      })
     }
 
     // 포스트 정보 가져오기
-    return await res.json();
+    return await res.json()
   } catch (err) {
-    console.error;
+    console.error
   }
-};
+}
 
 export const getFeed = async (limit, skip) => {
   try {
@@ -135,27 +135,27 @@ export const getFeed = async (limit, skip) => {
     const res = await fetch(`${URL}/post/feed?limit=${limit}&skip=${skip}`, {
       method: "GET",
       headers: HEADER,
-    });
+    })
 
     // 포스트 정보 가져오기
-    return await res.json();
+    return await res.json()
   } catch (err) {
-    console.error;
+    console.error
   }
-};
+}
 
 export const uploadImgs = async (formData) => {
   try {
     const res = await fetch(`${URL}/image/uploadfiles`, {
       method: "POST",
       body: formData,
-    });
+    })
 
-    return res.json();
+    return res.json()
   } catch (err) {
-    console.error;
+    console.error
   }
-};
+}
 
 export const uploadPost = async (txtContent, filename) => {
   const response = await fetch(`${URL}/post`, {
@@ -167,26 +167,26 @@ export const uploadPost = async (txtContent, filename) => {
         image: filename,
       },
     }),
-  });
+  })
 
-  const data = await response.json();
-  console.log(data);
-};
+  const data = await response.json()
+  console.log(data)
+}
 // yyyy년 mm월 dd일
 export const formatDate = (dateStr) => {
-  const date = new Date(dateStr);
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
+  const date = new Date(dateStr)
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
 
-  if (month < 10) month = "0" + month;
-  if (day < 10) day = "0" + day;
+  if (month < 10) month = "0" + month
+  if (day < 10) day = "0" + day
 
-  return `${year}년 ${month}월 ${day}일`;
-};
+  return `${year}년 ${month}월 ${day}일`
+}
 
 export const sortDescByDate = (obj) => {
   return obj.sort((a, b) => {
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
-};
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  })
+}

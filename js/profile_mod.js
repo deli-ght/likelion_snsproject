@@ -69,13 +69,13 @@ primaryId.addEventListener("blur", toggleClassOn)
 async function imageUpload(files) {
   const formData = new FormData()
   formData.append("image", files[0])
-  const res = await fetch(`http://146.56.183.55:5050/image/uploadfile`, {
+  const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
     method: "POST",
     body: formData,
   })
   const data = await res.json()
   const productImgName = data["filename"]
-  uploadButton.disabled = false;
+  uploadButton.disabled = false
   uploadButton.classList.add("on")
   return productImgName
 }
@@ -83,7 +83,7 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
-  previewImage.src = "http://146.56.183.55:5050/" + result
+  previewImage.src = "https://api.mandarin.cf/" + result
 }
 
 inputImage.addEventListener("change", profileImage)
@@ -123,7 +123,7 @@ uploadButton.addEventListener("click", updateProfile)
 async function getProfile() {
   const token = localStorage.getItem("token")
   const accountName = localStorage.getItem("accountName")
-  const url = `http://146.56.183.55:5050/profile/${accountName}`
+  const url = `https://api.mandarin.cf/profile/${accountName}`
   const res = await fetch(url, {
     method: "GET",
     headers: {

@@ -1,7 +1,7 @@
 import { Follow, Unfollow } from "./follow.js"
 
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
-const URL = "http://146.56.183.55:5050"
+const URL = "https://api.mandarin.cf"
 
 const GET_HEADER = new Headers({
   Authorization: TEST_TOKEN,
@@ -10,10 +10,13 @@ const GET_HEADER = new Headers({
 
 const getUserInfo = async () => {
   let username = localStorage.getItem("currentUser")
-  const response = await fetch(`${`${URL}/profile/${username}/following`}`, {
-    method: "GET",
-    headers: GET_HEADER,
-  })
+  const response = await fetch(
+    `${URL}/profile/${username}/following?limit=1000`,
+    {
+      method: "GET",
+      headers: GET_HEADER,
+    }
+  )
 
   const data = await response.json()
   return data
