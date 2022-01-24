@@ -89,7 +89,7 @@ const userinf = async () => {
 // 판매중인 상품
 const selling = document.querySelector("#selling")
 const products = document.querySelector(".products")
-const url = "https://146.56.183.55:5050"
+const url = "https://146.56.183.55:5000"
 
 const check = async () => {
   const res = await fetch(

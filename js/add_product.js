@@ -1,4 +1,4 @@
-const URL = "https://146.56.183.55:5050"
+const URL = "https://146.56.183.55:5000"
 
 const btnBack = document.querySelector("img[src='../src/icon-arrow-left.png']")
 const file = document.querySelector(".input-imgbox")

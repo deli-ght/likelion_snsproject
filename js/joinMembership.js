@@ -70,7 +70,7 @@ function goUserInfo(json) {
 
 async function emailValid() {
   try {
-    const res = await fetch("https://146.56.183.55:5050/user/emailvalid", {
+    const res = await fetch("https://146.56.183.55:5000/user/emailvalid", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -155,7 +155,7 @@ primaryId.addEventListener("blur", toggleClassOn)
 async function imageUpload(files) {
   const formData = new FormData()
   formData.append("image", files[0])
-  const res = await fetch(`https://146.56.183.55:5050/image/uploadfile`, {
+  const res = await fetch(`https://146.56.183.55:5000/image/uploadfile`, {
     method: "POST",
     body: formData,
   })
@@ -167,14 +167,14 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
-  previewImage.src = "https://146.56.183.55:5050/" + result
+  previewImage.src = "https://146.56.183.55:5000/" + result
 }
 inputImage.addEventListener("change", profileImage)
 
 async function join() {
   const imageUrl = document.querySelector(".img-basic").src
   try {
-    const res = await fetch("https://146.56.183.55:5050/user", {
+    const res = await fetch("https://146.56.183.55:5000/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

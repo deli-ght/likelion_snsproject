@@ -1,5 +1,5 @@
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
-const URL = "https://146.56.183.55:5050"
+const URL = "https://146.56.183.55:5000"
 
 const GET_HEADER = new Headers({
   Authorization: TEST_TOKEN,

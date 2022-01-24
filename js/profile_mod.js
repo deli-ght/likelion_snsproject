@@ -69,7 +69,7 @@ primaryId.addEventListener("blur", toggleClassOn)
 async function imageUpload(files) {
   const formData = new FormData()
   formData.append("image", files[0])
-  const res = await fetch(`https://146.56.183.55:5050/image/uploadfile`, {
+  const res = await fetch(`https://146.56.183.55:5000/image/uploadfile`, {
     method: "POST",
     body: formData,
   })
@@ -83,7 +83,7 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
-  previewImage.src = "https://146.56.183.55:5050/" + result
+  previewImage.src = "https://146.56.183.55:5000/" + result
 }
 
 inputImage.addEventListener("change", profileImage)
@@ -91,7 +91,7 @@ inputImage.addEventListener("change", profileImage)
 async function updateProfile() {
   const imageUrl = document.querySelector(".img-basic").src
   const token = localStorage.getItem("token")
-  const res = await fetch(`https://146.56.183.55:5050/user`, {
+  const res = await fetch(`https://146.56.183.55:5000/user`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -122,7 +122,7 @@ uploadButton.addEventListener("click", updateProfile)
 async function getProfile() {
   const token = localStorage.getItem("token")
   const accountName = localStorage.getItem("accountName")
-  const url = `https://146.56.183.55:5050/profile/${accountName}`
+  const url = `https://146.56.183.55:5000/profile/${accountName}`
   const res = await fetch(url, {
     method: "GET",
     headers: {
