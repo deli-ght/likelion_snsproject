@@ -94,6 +94,32 @@ async function emailValid() {
   }
 }
 
+async function isCheckDuplicatedId() {
+  try {
+    const res = await fetch("https://api.mandarin.cf/user/accountnamevalid", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          accountname: primaryId.value,
+        },
+      }),
+    })
+    const json = await res.json()
+    console.log(json)
+    console.log(json.message)
+    if (json.message === "사용 가능한 계정ID 입니다.") {
+      join()
+    } else {
+      validpriIdText.textContent = "이미 가입된 계정ID 입니다."
+    }
+  } catch (err) {
+    alert(err)
+  }
+}
+
 function checkNameInput() {
   try {
     if (userName.value.length <= 0) {
@@ -200,4 +226,5 @@ async function join() {
     alert(err)
   }
 }
-startButton.addEventListener("click", join)
+
+startButton.addEventListener("click", isCheckDuplicatedId)
