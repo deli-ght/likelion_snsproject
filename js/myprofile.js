@@ -79,7 +79,7 @@ const userinf = async () => {
 // 판매중인 상품
 const selling = document.querySelector("#selling")
 const products = document.querySelector(".products")
-const url = "https://mandarin.cf"
+const url = "https://api.mandarin.cf"
 const check = async () => {
   const res = await fetch(
     url + "/product/" + localStorage.getItem("accountName"),
@@ -151,7 +151,7 @@ listBtn.addEventListener("click", () => {
 //         }" alt="사용자 프로필사진" class="img-profile">
 //         <div class="wrap-txt">
 //         <strong class="txt-title">${data.author.username}</strong>
-//         <span class="txt-nickname">@ weniv-Mandarin</span>
+//         <span class="txt-nickname">@ weniv-api.mandarin</span>
 //         </div>
 //         <button type="button" class="btn-more" value="더보기버튼" id="${
 //           data.id

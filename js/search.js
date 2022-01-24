@@ -1,5 +1,5 @@
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
-const URL = "https://mandarin.cf"
+const URL = "https://api.mandarin.cf"
 
 const GET_HEADER = new Headers({
   Authorization: TEST_TOKEN,

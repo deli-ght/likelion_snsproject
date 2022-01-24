@@ -1,4 +1,4 @@
-export const URL = "https://mandarin.cf"
+export const URL = "https://api.mandarin.cf"
 
 export let TOKEN = ""
 export let TEST_TOKEN = ""

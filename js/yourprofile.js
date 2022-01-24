@@ -89,7 +89,7 @@ const userinf = async () => {
 // 판매중인 상품
 const selling = document.querySelector("#selling")
 const products = document.querySelector(".products")
-const url = "https://mandarin.cf"
+const url = "https://api.mandarin.cf"
 
 const check = async () => {
   const res = await fetch(

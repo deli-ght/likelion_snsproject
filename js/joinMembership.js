@@ -70,7 +70,7 @@ function goUserInfo(json) {
 
 async function emailValid() {
   try {
-    const res = await fetch("https://mandarin.cf/user/emailvalid", {
+    const res = await fetch("https://api.mandarin.cf/user/emailvalid", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -155,7 +155,7 @@ primaryId.addEventListener("blur", toggleClassOn)
 async function imageUpload(files) {
   const formData = new FormData()
   formData.append("image", files[0])
-  const res = await fetch(`https://mandarin.cf/image/uploadfile`, {
+  const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
     method: "POST",
     body: formData,
   })
@@ -167,14 +167,14 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
-  previewImage.src = "https://mandarin.cf/" + result
+  previewImage.src = "https://api.mandarin.cf/" + result
 }
 inputImage.addEventListener("change", profileImage)
 
 async function join() {
   const imageUrl = document.querySelector(".img-basic").src
   try {
-    const res = await fetch("https://mandarin.cf/user", {
+    const res = await fetch("https://api.mandarin.cf/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
