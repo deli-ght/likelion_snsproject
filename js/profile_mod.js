@@ -91,7 +91,8 @@ inputImage.addEventListener("change", profileImage)
 async function updateProfile() {
   const imageUrl = document.querySelector(".img-basic").src
   const token = localStorage.getItem("token")
-  const res = await fetch(`https://api.mandarin.cf/user`, {
+  localStorage.setItem("accountName", primaryId.value);
+  const res = await fetch(`http://146.56.183.55:5050/user`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
