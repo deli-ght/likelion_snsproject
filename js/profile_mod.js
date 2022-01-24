@@ -92,7 +92,7 @@ async function updateProfile() {
   const imageUrl = document.querySelector(".img-basic").src
   const token = localStorage.getItem("token")
   localStorage.setItem("accountName", primaryId.value);
-  const res = await fetch(`http://146.56.183.55:5050/user`, {
+  const res = await fetch(`https://api.mandarin.cf/user`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -112,12 +112,39 @@ async function updateProfile() {
   console.log("11111", userName.value)
 }
 
+// accoutname 중복 검증
+async function isCheckDuplicatedId() {
+  try {
+    const res = await fetch("https://api.mandarin.cf/user/accountnamevalid", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          accountname: primaryId.value,
+        },
+      }),
+    })
+    const json = await res.json()
+    console.log(json)
+    console.log(json.message)
+    if (json.message === "사용 가능한 계정ID 입니다.") {
+      updateProfile()
+    } else {
+      validpriIdText.textContent = "이미 가입된 계정ID 입니다."
+    }
+  } catch (err) {
+    alert(err)
+  }
+}
+
 function backPage() {
   location.href = "./myprofile.html"
 }
 
 backButton.addEventListener("click", backPage)
-uploadButton.addEventListener("click", updateProfile)
+uploadButton.addEventListener("click", isCheckDuplicatedId)
 
 // 프로필 정보 가져오기
 async function getProfile() {
