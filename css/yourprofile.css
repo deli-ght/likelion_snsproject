@@ -217,6 +217,7 @@
 }
 
 .img-post-album {
+  margin-right: 0.5em;
   width: 1.625rem;
   height: 1.625rem;
   cursor: pointer;

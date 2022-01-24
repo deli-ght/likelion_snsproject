@@ -91,6 +91,7 @@ inputImage.addEventListener("change", profileImage)
 async function updateProfile() {
   const imageUrl = document.querySelector(".img-basic").src
   const token = localStorage.getItem("token")
+  localStorage.setItem("accountName", primaryId.value);
   const res = await fetch(`http://146.56.183.55:5050/user`, {
     method: "PUT",
     headers: {
