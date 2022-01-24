@@ -20,7 +20,7 @@ function toggleClassOn() {
 }
 
 async function login() {
-  const res = await fetch("https://146.56.183.55:5000/user/login", {
+  const res = await fetch("https://mandarin.cf/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
