@@ -5,11 +5,15 @@ import Swiper from "https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js"
 let clickCnt = 0,
   clickTimer;
 let loadFeedCnt = 0;
+let clickPostId = "";
 const postModal = document.querySelector("#post-modal");
 const alert = document.querySelector("#alert");
 const postContainer = document.querySelector(".cont-post");
+let fromOther;
+
 // functions
 export const init = (check = false) => {
+  fromOther = check;
   console.log("home", check);
   if (!check) {
     localStorage.setItem("currentUser", "");
@@ -152,16 +156,17 @@ const setPostElements = (posts) => {
     article.addEventListener("click", (e) => {
       const currentTarget = e.currentTarget;
       const target = e.target;
+      clickPostId = hiddenId.value;
       clickCnt += 1;
       if (clickCnt === 1) {
         clickTimer = setTimeout(() => {
           clickCnt = 0;
-          postClickHandler(target, currentTarget, hiddenId.value);
+          postClickHandler(target, currentTarget, clickPostId);
         }, 400);
       } else if (clickCnt === 2) {
         clearTimeout(clickTimer);
         clickCnt = 0;
-        postDblClickHandler(target, currentTarget, hiddenId.value);
+        postDblClickHandler(target, currentTarget, clickPostId);
       }
     });
 
@@ -261,10 +266,10 @@ const postModalClickHandler = (e) => {
   }
 
   if (e.target.classList.contains("btn-delete")) {
-    console.log("삭제");
     alert.classList.add("show");
     title.textContent = "게시물을 삭제 하시겠습니까?";
     action.textContent = "삭제";
+    action.addEventListener("click", postDeleteClickHandler);
   }
   if (e.target.classList.contains("btn-report")) {
     console.log("신고");
@@ -275,14 +280,27 @@ const postModalClickHandler = (e) => {
 };
 
 const postScrollHandler = () => {
-  const isEndReached =
-    parseInt(postContainer.scrollHeight - postContainer.scrollTop) <=
-    parseInt(postContainer.clientHeight);
+  let isEndReached = false;
+  if (fromOther) {
+    if (
+      window.innerHeight + parseInt(window.scrollY) >=
+      document.body.scrollHeight + 31
+    ) {
+      isEndReached = true;
+    }
+  } else {
+    if (
+      parseInt(postContainer.scrollHeight - postContainer.scrollTop) <=
+      parseInt(postContainer.clientHeight)
+    ) {
+      isEndReached = true;
+    }
+  }
 
   if (isEndReached) {
     loadFeedCnt += 1;
 
-    Global.getUserPosts(10, 10 * loadFeedCnt)
+    Global.getUserPosts(10, 10 * loadFeedCnt, fromOther)
       .then((postObj) => {
         if (postObj.post) {
           if (postObj.post.length > 0) {
@@ -291,18 +309,31 @@ const postScrollHandler = () => {
         } else {
           if (postObj.posts.length > 0) {
             setPostElements(postObj.posts);
-          } else {
-            // location.href = "home-none.html";
           }
         }
       })
       .then(() => swiperSetting(loadFeedCnt));
   }
 };
+
+const postDeleteClickHandler = (e) => {
+  console.log(clickPostId);
+
+  Global.deletePost(clickPostId)
+    .then((data) => {
+      alert.querySelector(".p-cancle").click();
+      location.reload();
+    })
+    .catch(console.error);
+};
+
 // event listeners
 alert.querySelector(".p-cancle").addEventListener("click", () => {
   alert.classList.remove("show");
   postModal.classList.remove("show-modal");
 });
+
 postContainer.addEventListener("scroll", postScrollHandler);
+window.addEventListener("scroll", postScrollHandler);
+
 postModal.addEventListener("click", postModalClickHandler);
