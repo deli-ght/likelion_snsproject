@@ -483,6 +483,10 @@
   color: var(--orange);
 }
 
+main {
+  margin-bottom: 55px;
+}
+
 .post-modal {
   position: fixed;
   width: 100%;
