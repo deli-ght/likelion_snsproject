@@ -9,9 +9,11 @@ let clickPostId = "";
 const postModal = document.querySelector("#post-modal");
 const alert = document.querySelector("#alert");
 const postContainer = document.querySelector(".cont-post");
+let fromOther;
 
 // functions
 export const init = (check = false) => {
+  fromOther = check;
   console.log("home", check);
   if (!check) {
     localStorage.setItem("currentUser", "");
@@ -278,14 +280,27 @@ const postModalClickHandler = (e) => {
 };
 
 const postScrollHandler = () => {
-  const isEndReached =
-    parseInt(postContainer.scrollHeight - postContainer.scrollTop) <=
-    parseInt(postContainer.clientHeight);
+  let isEndReached = false;
+  if (fromOther) {
+    if (
+      window.innerHeight + parseInt(window.scrollY) >=
+      document.body.scrollHeight + 31
+    ) {
+      isEndReached = true;
+    }
+  } else {
+    if (
+      parseInt(postContainer.scrollHeight - postContainer.scrollTop) <=
+      parseInt(postContainer.clientHeight)
+    ) {
+      isEndReached = true;
+    }
+  }
 
   if (isEndReached) {
     loadFeedCnt += 1;
 
-    Global.getUserPosts(10, 10 * loadFeedCnt)
+    Global.getUserPosts(10, 10 * loadFeedCnt, fromOther)
       .then((postObj) => {
         if (postObj.post) {
           if (postObj.post.length > 0) {
@@ -294,8 +309,6 @@ const postScrollHandler = () => {
         } else {
           if (postObj.posts.length > 0) {
             setPostElements(postObj.posts);
-          } else {
-            // location.href = "home-none.html";
           }
         }
       })
@@ -319,5 +332,8 @@ alert.querySelector(".p-cancle").addEventListener("click", () => {
   alert.classList.remove("show");
   postModal.classList.remove("show-modal");
 });
+
 postContainer.addEventListener("scroll", postScrollHandler);
+window.addEventListener("scroll", postScrollHandler);
+
 postModal.addEventListener("click", postModalClickHandler);
