@@ -5,9 +5,11 @@ import Swiper from "https://unpkg.com/swiper@7/swiper-bundle.esm.browser.min.js"
 let clickCnt = 0,
   clickTimer;
 let loadFeedCnt = 0;
+let clickPostId = "";
 const postModal = document.querySelector("#post-modal");
 const alert = document.querySelector("#alert");
 const postContainer = document.querySelector(".cont-post");
+
 // functions
 export const init = (check = false) => {
   console.log("home", check);
@@ -152,16 +154,17 @@ const setPostElements = (posts) => {
     article.addEventListener("click", (e) => {
       const currentTarget = e.currentTarget;
       const target = e.target;
+      clickPostId = hiddenId.value;
       clickCnt += 1;
       if (clickCnt === 1) {
         clickTimer = setTimeout(() => {
           clickCnt = 0;
-          postClickHandler(target, currentTarget, hiddenId.value);
+          postClickHandler(target, currentTarget, clickPostId);
         }, 400);
       } else if (clickCnt === 2) {
         clearTimeout(clickTimer);
         clickCnt = 0;
-        postDblClickHandler(target, currentTarget, hiddenId.value);
+        postDblClickHandler(target, currentTarget, clickPostId);
       }
     });
 
@@ -261,10 +264,10 @@ const postModalClickHandler = (e) => {
   }
 
   if (e.target.classList.contains("btn-delete")) {
-    console.log("삭제");
     alert.classList.add("show");
     title.textContent = "게시물을 삭제 하시겠습니까?";
     action.textContent = "삭제";
+    action.addEventListener("click", postDeleteClickHandler);
   }
   if (e.target.classList.contains("btn-report")) {
     console.log("신고");
@@ -299,6 +302,18 @@ const postScrollHandler = () => {
       .then(() => swiperSetting(loadFeedCnt));
   }
 };
+
+const postDeleteClickHandler = (e) => {
+  console.log(clickPostId);
+
+  Global.deletePost(clickPostId)
+    .then((data) => {
+      alert.querySelector(".p-cancle").click();
+      location.reload();
+    })
+    .catch(console.error);
+};
+
 // event listeners
 alert.querySelector(".p-cancle").addEventListener("click", () => {
   alert.classList.remove("show");
