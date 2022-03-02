@@ -302,14 +302,29 @@ const postScrollHandler = () => {
 
     Global.getUserPosts(10, 10 * loadFeedCnt, fromOther)
       .then((postObj) => {
-        if (postObj.post) {
-          if (postObj.post.length > 0) {
+        if (postObj.hasOwnProperty("post")) {
+          if (postObj?.post.length > 0) {
             setPostElements(postObj.post);
+            if (postObj.post.length < 10)
+              window.removeEventListener("scroll", postScrollHandler);
+          } else {
+            window.removeEventListener("scroll", postScrollHandler);
           }
-        } else {
+
+          return;
+        }
+
+        if (postObj.hasOwnProperty("posts")) {
           if (postObj.posts.length > 0) {
             setPostElements(postObj.posts);
+            if (postObj.posts.length < 10) {
+              postContainer.removeEventListener("scroll", postScrollHandler);
+            }
+          } else {
+            postContainer.removeEventListener("scroll", postScrollHandler);
           }
+
+          return;
         }
       })
       .then(() => swiperSetting(loadFeedCnt));
