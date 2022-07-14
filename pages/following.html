@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/userlist.css">
+  <title>Following</title>
+</head>
+
+<body>
+  <!-- class : tag-function -->
+  <section id="app">
+    <header>
+      <div class="top-follow-nav">
+        <button onclick="window.history.back()">
+          <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+        </button>
+        
+        <strong class="txt-chat-nav">Following</strong>
+      </div>
+    </header>
+    <main class="main-result">
+    </main>
+    <footer>
+      <section id="tab-menu">
+        <button class="button-home" onclick="location.href='home-feed.html'">
+          <p class="p-home">홈</p>
+        </button>
+        <button class="button-circle1" onclick="location.href='chat-list.html'">
+          <p class="p-circle1">채팅</p>
+        </button>
+        <button class="button-edit" onclick="location.href='upload.html'">
+          <p class="p-edit">게시물 작성</p>
+        </button>
+        <button class="button-profile" onclick="location.href='myprofile.html'">
+          <p class="p-user">프로필</p>
+        </button>
+
+      </section>
+    </footer>
+  </section>
+  <script type="module" src="../js/following.js"></script>
+</body>
+
+</html>

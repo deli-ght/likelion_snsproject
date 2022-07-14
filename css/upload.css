@@ -1,0 +1,133 @@
+@import url(./component.css);
+.top-upload-nav {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#upload {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  height: 100%;
+  padding: 1.25em 0 0 1em;
+}
+
+#upload .img-basic-profile {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin-right: 0.75em;
+  border-radius: 50%;
+}
+
+#upload .cont-content {
+  flex-grow: 1;
+  min-width: 304px;
+}
+
+#upload .input-txt {
+  box-sizing: border-box;
+  display: block;
+  margin-top: 0.857em;
+  padding-right: 0.857em;
+  width: 100%;
+  min-height: 50px;
+  max-height: 300px;
+  overflow-y: scroll;
+  resize: none;
+  font-size: var(--font-14px);
+  border: transparent;
+  background-color: transparent;
+}
+
+#upload .input-txt::-webkit-scrollbar {
+  display: none;
+}
+
+#upload .input-txt:focus {
+  outline: none;
+}
+
+#upload .cont-preview {
+  max-width: 100%;
+  margin-top: 0.75em;
+}
+
+#upload .cont-preview .cont-img:only-child {
+  width: 304px;
+  height: 228px;
+}
+#upload .cont-preview .cont-img {
+  position: relative;
+  width: 168px;
+  height: 126px;
+}
+
+#upload .cont-preview .cont-img button {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  background: url(../src/icon-delete.png) no-repeat;
+  background-size: cover;
+}
+
+#upload .cont-preview .cont-img:hover button {
+  background-color: var(--light-gray);
+}
+
+.btn-img-upload {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: url(../src/icon-image.png) no-repeat center;
+  background-size: 28px 28px;
+  background-color: #f26e22;
+}
+
+.btn-img-upload .inp-imgs {
+  display: none;
+}
+
+.cont-preview {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.cont-preview::-webkit-scrollbar {
+  display: none;
+}
+
+.cont-preview {
+  width: 100%;
+}
+.cont-preview .cont-img {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-right: 0.5em;
+}
+
+.cont-preview .cont-img .img-preview {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-preview {
+  display: block;
+  border-radius: 10px;
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+}

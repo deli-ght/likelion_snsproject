@@ -1,0 +1,246 @@
+@import url(./component.css);
+
+#app {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
+main .home-post {
+  flex-grow: 1;
+}
+.top-basic-nav {
+  border-bottom: 1px solid #dbdbdb;
+}
+.cont-reply {
+  border-top: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  padding: 0 1em;
+  height: 236px;
+}
+
+.cont-reply.off {
+  display: none;
+}
+.cont-reply ul {
+  height: 100%;
+  overflow-y: scroll;
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
+}
+
+.cont-reply ul::-webkit-scrollbar {
+  display: none;
+}
+
+.cont-reply li {
+  margin: 1em 0;
+}
+.cont-reply li .user-reply {
+  position: relative;
+  --user-reply-profile: 36px;
+}
+
+.cont-reply li .user-reply .img-profile {
+  width: var(--user-reply-profile);
+  height: var(--user-reply-profile);
+  margin-right: 0.75em;
+  border-radius: 50%;
+}
+
+.cont-reply li .user-reply .wrap-txt {
+  display: inline;
+  position: absolute;
+  top: 6px;
+}
+
+.cont-reply li .user-reply .wrap-txt .txt-after,
+.cont-reply li .user-reply .wrap-txt .txt-nickname {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
+.cont-reply li .user-reply .wrap-txt .txt-nickname {
+  font-size: var(--font-14px);
+}
+
+.cont-reply li .user-reply .wrap-txt .txt-after {
+  font-size: var(--font-10px);
+  color: var(--gray);
+}
+
+.cont-reply li .user-reply .wrap-txt .txt-after::before {
+  content: "· ";
+}
+
+.cont-reply li .user-reply .btn-more {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: url(../src/s-icon-more-vertical.png) no-repeat;
+  background-size: cover;
+}
+
+.cont-reply li .user-reply .img-more {
+  width: 100%;
+}
+
+.cont-reply li .user-reply .txt-reply {
+  padding: 0.286em 0.286em 0 3.429em;
+  font-size: var(--font-14px);
+  color: #333333;
+}
+
+#comment {
+  border-top: 1px solid #dbdbdb;
+}
+
+/* ash 수정 */
+#comment {
+  box-sizing: border-box;
+  padding: 0.813em 1em;
+  width: 100%;
+  height: 61px;
+  display: flex;
+  align-items: center;
+}
+.img-basic-profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 1.125em;
+}
+
+.input-text {
+  flex-grow: 1;
+  font-size: var(--font-14px);
+  height: 18px;
+  border: transparent;
+  margin-right: 1.286em;
+  overflow-y: scroll;
+  resize: none;
+}
+
+/* .input-text::-webkit-scrollbar {
+  display: none;
+} */
+.input-text::placeholder {
+  color: #c4c4c4;
+}
+
+.input-text:focus {
+  outline: none;
+}
+
+/* .p-submit {
+  position: absolute;
+  top: 23px;
+  left: 348px;
+  width: 30px;
+  height: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #c4c4c4;
+  cursor: pointer;
+} */
+
+/* ash 수정: p-submit -> btn-submit*/
+.btn-submit {
+  width: 30px;
+  font-size: var(--font-14px);
+  font-weight: 500;
+  color: var(--orange);
+}
+
+/* ash 추가 */
+.btn-submit:disabled {
+  color: #c4c4c4;
+}
+
+.post-modal {
+  position: fixed;
+  width: 100%;
+  max-height: 0;
+  bottom: 0;
+  padding: 0;
+  border-radius: 10px 10px 0 0;
+  z-index: 20;
+  background-color: var(--white);
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+}
+
+.post-modal::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 50px;
+  height: 4px;
+  transform: translateX(-50%);
+  background-color: var(--light-gray);
+  border-radius: 5px;
+}
+
+.post-modal button {
+  width: 100%;
+  height: 100%;
+  padding: 26px 14px;
+  color: var(--gray);
+  text-align: left;
+}
+
+.post-modal button.off {
+  display: none;
+}
+
+.show-modal {
+  display: block;
+  padding: 36px 0 5px 0;
+  max-height: 300px;
+}
+
+.cont-alert {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.cont-alert #alert.show + .backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 20;
+}
+
+#alert.show {
+  display: block;
+}

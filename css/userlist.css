@@ -1,0 +1,18 @@
+@import url(component.css);
+@import url(home.css);
+
+main {
+  padding: 4px 16px;
+}
+
+main .user-search {
+  margin: 16px auto;
+}
+
+main .span_search {
+  color: var(--orange);
+}
+
+main .btn-small {
+  width: 20%;
+}

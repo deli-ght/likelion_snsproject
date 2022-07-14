@@ -17,7 +17,7 @@
     <img src="../src/basic-profile.png" alt="" class="img-profile">
     <div class="wrap-txt">
       <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-      <span class="txt-nickname">@ weniv-Mandarin</span>
+      <span class="txt-nickname">@ weniv-api.mandarin</span>
     </div>
   </div>
 
@@ -26,11 +26,9 @@
     <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
     <div class="wrap-txt">
       <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-      <span class="txt-nickname">@ weniv-Mandarin</span>
+      <span class="txt-nickname">@ weniv-api.mandarin</span>
     </div>
-    <button type="button" class="btn-more">
-      <img src="../src/s-icon-more-vertical.png" alt="더보기버튼" class="img-more">
-    </button>
+    <button type="button" class="btn-more" value="더보기버튼"></button>
   </div>
 
   <!-- user-search-follow -->
@@ -38,7 +36,7 @@
     <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
     <div class="wrap-txt">
       <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-      <span class="txt-nickname">@ weniv-Mandarin</span>
+      <span class="txt-nickname">@ weniv-api.mandarin</span>
     </div>
     <button type="button" class="btn-follow btn-button btn-small">팔로우</button>
   </div>
@@ -51,34 +49,32 @@
       <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
       <div class="wrap-txt">
         <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-        <span class="txt-nickname">@ weniv-Mandarin</span>
+        <span class="txt-nickname">@ weniv-api.mandarin</span>
       </div>
-      <button type="button" class="btn-more">
-        <img src="../src/s-icon-more-vertical.png" alt="더보기버튼" class="img-more">
-      </button>
+      <button type="button" class="btn-more" value="더보기버튼"></button>
     </div>
 
     <div class="wrap-content">
       <p class="txt-content">
         옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.
       </p>
-      <img src="../src/img-post-sample.png" alt="" class="img-content">
+
+      <div class="cont-preview">
+        <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
+        <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
+        <div class="cont-img"><img src="../src/img-post-sample.png" class="img-preview"></div>
+      </div>
 
       <ul class="ul-btns">
         <li class="li-btn">
-          <button type="button" class="btn-likes">
-            <img src="../src/icon-heart.png" alt="좋아요 버튼" class="img-likes">
-          </button>
+          <button type="button" class="btn-likes"></button>
           <span class="txt-likes">50</span>
         </li>
         <li class="li-btn">
-          <button type="button" class="btn-comments">
-            <img src="../src/icon-message-circle.png" alt="댓글 버튼" class="img-comments">
-          </button>
+          <button type="button" class="btn-comments"></button>
           <span class="txt-comments">12</span>
         </li>
       </ul>
-
       <p class="txt-date">2021년 12월 21일</p>
     </div>
   </article>
@@ -89,7 +85,7 @@
       <img src="../src/basic-profile.png" alt="사용자 프로필사진" class="img-profile">
       <div class="wrap-txt">
         <strong class="txt-title">애월읍 위니브 감귤농장</strong>
-        <span class="txt-nickname">@ weniv-Mandarin</span>
+        <span class="txt-nickname">@ weniv-api.mandarin</span>
       </div>
       <button type="button" class="btn-more">
         <img src="../src/s-icon-more-vertical.png" alt="더보기버튼" class="img-more">
@@ -123,25 +119,40 @@
 
   <!-- top -->
   <div class="top-basic-nav">
-    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
-    <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    <button>
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    </button>
+    <button>
+      <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    </button>
   </div>
   <div class="top-search-nav">
-    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    <button>
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    </button>
     <input type="text" placeholder="계정 검색" class="inp-search">
   </div>
   <div class="top-main-nav">
     <strong class="txt-main-nav">감귤마켓 피드</strong>
-    <img src="../src/icon-search.png" alt="검색 이미지" class="img-search">
+    <button>
+      <img src="../src/icon-search.png" alt="검색 이미지" class="img-search">
+    </button>
   </div>
   <div class="top-upload-nav">
-    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    <button>
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    </button>
     <button class="btn-upload btn-button btn-ms">저장</button>
   </div>
   <div class="top-chat-nav">
-    <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    <button>
+      <img src="../src/icon-arrow-left.png" alt="뒤로가기" class="img-left-arrow">
+    </button>
     <strong class="txt-chat-nav">애월읍 위니브 감귤농장</strong>
-    <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    <span class="space"></span>
+    <button>
+      <img src="../src/s-icon-more-vertical.png" alt="기타이미지" class="img-vertical">
+    </button>
   </div>
   <!-- end: top -->
 
@@ -171,39 +182,29 @@
 
   <br /><br /><br />
 
-  <!-- tab-menu -->
-  <section id="tab-menu">
-
-    <div class="div-home">
-      <img class="img-home" src="../src/icon-home.png" alt="icon-home">
-      <p class="p-home">홈</p>
-    </div>
-
-    <div class="div-circle1">
-      <img class="img-circle1" src="../src/icon-message-circle-1.png" alt="icon-home">
-      <p class="p-circle1">채팅</p>
-    </div>
-
-    <div class="div-edit">
-      <img class="img-edit" src="../src/icon-edit.png" alt="icon-edit">
-      <p class="p-edit">게시물 작성</p>
-    </div>
-
-    <div class="div-user">
-      <img class="img-user" src="../src/icon-user.png" alt="icon-user">
-      <p class="p-user">프로필</p>
-    </div>
-
-  </section>
-
-  <br /><br /><br />
-
   <!-- comment -->
   <section id="comment">
     <img class="img-basic-profile" src="./../src/basic-profile.png" alt="basic-profile">
-    <input type="text" class="input-text" placeholder="댓글 입력하기...">
+    <textarea class="input-text" placeholder="댓글 입력하기..."></textarea>
     <p class="p-submit">게시</p>
   </section>
+
+  <!-- tab-menu -->
+  <section id="tab-menu">
+    <button class="button-home">
+      <p class="p-home">홈</p>
+    </button>
+    <button class="button-circle1" onclick="location.href='chat-list.html'">
+      <p class="p-circle1">채팅</p>
+    </button>
+    <button class="button-edit">
+      <p class="p-edit">게시물 작성</p>
+    </button>
+    <button class="button-profile">
+      <p class="p-user">프로필</p>
+    </button>
+  </section>
+
 
   <br><br><br>
 

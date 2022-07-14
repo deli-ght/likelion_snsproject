@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/join.css">
+    <title>Login-email</title>
+</head>
+<body>
+    <div class="container">
+        <header class="flex-center">
+            <h1 class="txt-login">로그인</h1>
+        </header>
+        <form method="POST" class="form-wrap">
+            <label for="inp-id">이메일</label>
+            <input type="text" maxlength="20" id="inp-id" class="input inp-login-email" onkeyup="toggleClassOn()">
+            <label for="inp-pw" class="label-mt5">비밀번호</label>
+            <input type="password" maxlength="20" id=inp-pw class="input inp-login-pw" onkeyup="toggleClassOn()">
+            <span class="txt-validation"></span>
+            <button type="button" class="btn-button btn-large btn-login">로그인</button>
+        </form>
+        <div class="login-txt-wrap">
+            <span><a href="./join_membership.html">이메일로 회원가입</a></span>
+        </div>
+    </div>
+    <script src="../js/login.js"></script>
+</body>
+</html>

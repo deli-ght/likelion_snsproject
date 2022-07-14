@@ -1,0 +1,270 @@
+/* class : tag-function */
+/* global하게 사용할 것들. */
+/* util */
+.blind {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* 한줄 말줄임 */
+.sl-ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 두 줄 말줄임 */
+.multi-ellipsis {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  padding-bottom: 3px;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.hide-off {
+  display: flex;
+}
+
+.hide-on {
+  display: none;
+}
+
+.bg {
+  background-color: pink;
+}
+
+/* 첫 화면 */
+.img-logo {
+  width: 200px;
+  height: 200px;
+}
+
+/* 로그인 화면 */
+.login-bg {
+  background-color: #ea7f42;
+  text-align: center;
+}
+
+.img-login-logo {
+  width: 144px;
+  height: 144px;
+  margin-top: 204px;
+}
+
+.login-wrap {
+  width: 100%;
+  margin-top: 177px;
+  background-color: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.btn-login-kakao,
+.btn-login-google,
+.btn-login-facebook {
+  color: #767676;
+  border-radius: 44px;
+  font-size: 0.825rem;
+  margin-bottom: 0.71em;
+  background-color: #fff;
+  letter-spacing: -1px;
+}
+
+.btn-login-kakao {
+  border: 1px solid #f2c942;
+  background: url("../src/message-circle.png") no-repeat 5% center;
+  background-size: 24px 24px;
+  margin-top: 50px;
+  padding: 13px 87px;
+}
+
+.btn-login-google {
+  border: 1px solid #767676;
+  background: url("../src/Google__G__Logo\ 1.png") no-repeat 5% center;
+  background-size: 24px 24px;
+  padding: 13px 100px;
+}
+
+.btn-login-facebook {
+  border: 1px solid #2d9cdb;
+  background: url("../src/facebook.png") no-repeat 5% center;
+  background-size: 24px 24px;
+  margin-bottom: 1.25em;
+  padding: 13px 87px;
+}
+
+.login-txt-wrap {
+  display: inline-block;
+  color: #767676;
+  font-size: 0.75rem;
+  margin: 0 auto 7.3em;
+}
+
+.login-email {
+    margin-right: 0.4em;
+}
+
+.login-email::after {
+    content: '|';
+    margin-left: 0.75em;
+}
+
+/* 로그인 사용자 입력 페이지, 이메일 회원가입 페이지 */
+.txt-login {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: 2.25em 0 1.66em;
+}
+
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2.215em;
+  color: #767676;
+  font-size: 0.75rem;
+}
+
+.input {
+  outline: none;
+  border-width: 0 0 1px;
+  border-color: #dbdbdb;
+  padding: 0.71em 0 0.57em;
+  font-size: 0.875rem;
+}
+
+input:focus {
+  border-color: #f26e22;
+}
+
+.label-mt5 {
+  margin-top: 1.3em;
+}
+
+button {
+  border: none;
+  padding: 0;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-button {
+  background-color: #ffc7a7;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-large {
+  width: 100%;
+  padding: 0.91em 0;
+  margin-top: 2.14em;
+  border-radius: 44px;
+}
+
+.login-txt-wrap {
+  width: 100%;
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 1.66em;
+}
+
+.login-txt-wrap a {
+  color: #767676;
+}
+
+.txt-validation,
+.txt-email-validation,
+.txt-pw-validation,
+.txt-pri-validation,
+.txt-name-validation,
+.txt-intro-validation {
+  font-size: 0.75rem;
+  color: #eb5757;
+  margin-top: 0.5em;
+}
+
+.valid-on {
+  border-color: #eb5757;
+}
+
+.on {
+  background-color: #f26e22;
+}
+
+/* 프로필 설정 페이지 */
+.txt-profile {
+  display: inline-block;
+  font-size: 1.5rem;
+  margin-top: 2.25em;
+}
+
+.txt-change {
+  font-size: 0.875rem;
+  color: #767676;
+  margin-top: 0.85em;
+}
+
+.profile-wrap {
+  width: 110px;
+  height: 110px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.img-basic {
+  border-radius: 50%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+input[type="file"] + label {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: url("../src/upload-file.png") no-repeat center center;
+  background-size: 2.25em 2.25em;
+  cursor: pointer;
+} 
+
+.form-join-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2.215em;
+  color: #767676;
+  font-size: 0.75rem;
+}
+
+@media screen and (min-width: 700px) {
+  .login-btn-wrap {
+    padding: 3.125em 0 7em;
+  }
+}

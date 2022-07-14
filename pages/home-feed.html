@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <title>Home</title>
+</head>
+
+<body>
+  <section id="app">
+    <!-- class : tag-function -->
+    <header>
+      <div class="top-main-nav">
+        <strong class="txt-main-nav">감귤마켓 피드</strong>
+        <button type="button" onclick="location.href='search.html'"> <img src="../src/icon-search.png" alt="검색 이미지"
+            class="img-search"></button>
+      </div>
+    </header>
+    <main class="cont-post"></main>
+    <footer>
+      <section id="tab-menu">
+
+        <button class="button-home active">
+          <p class="p-home">홈</p>
+        </button>
+
+        <button class="button-circle1" onclick="location.href='chat-list.html'">
+          <p class="p-circle1">채팅</p>
+        </button>
+        <button class="button-edit" onclick="location.href='upload.html'">
+          <p class="p-edit">게시물 작성</p>
+        </button>
+        <button class="button-profile" onclick="location.href='myprofile.html'">
+          <p class="p-user">프로필</p>
+        </button>
+      </section>
+    </footer>
+  </section>
+
+  <div id="post-modal" class="post-modal">
+    <ul>
+      <li><button type="button" class="btn-report">신고</button></li>
+      <li><button type="button" class="btn-delete">삭제</button></li>
+      <li><button type="button" class="btn-modify">수정</button></li>
+    </ul>
+  </div>
+
+  <div class="cont-alert">
+    <section id="alert">
+      <p class="p-check"></p>
+      <div class="div-choice">
+        <p class="p-cancle">취소</p>
+        <p class="p-action"></p>
+      </div>
+    </section>
+    <div class="backdrop"></div>
+  </div>
+  <script type="module" src="../js/init.js"></script>
+</body>
+
+</html>

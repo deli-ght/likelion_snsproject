@@ -12,6 +12,14 @@
   --white-gray: #f2f2f2;
   --white: #ffffff;
   --black: #000000;
+
+  /* font-size */
+  --font-10px: 0.625rem;
+  --font-12px: 0.75rem;
+  --font-14px: 0.875rem;
+  --font-16px: 1rem;
+  --font-18px: 1.125rem;
+  --swiper-theme-color: white;
 }
 
 /* global settings */
@@ -21,7 +29,7 @@
 
 /* 흰배경을 확인하기 위해 색을 바꿔놓았습니다. */
 body {
-  background-color: rgb(194, 238, 245);
+  /* background-color: rgb(194, 238, 245); */
 }
 
 button {
@@ -35,99 +43,193 @@ button {
 /* user */
 /* user-search */
 .user-search {
-  position: relative;
   --user-search-profile: 50px;
+  position: relative;
+  margin: 1.25em 1em 0 1em;
 }
 
 .user-search .img-profile {
+  display: relative;
   width: var(--user-search-profile);
   height: var(--user-search-profile);
-  margin-right: 12px;
+  border-radius: 50%;
+  margin-right: 0.75em;
 }
 
 .user-search .wrap-txt {
-  display: inline-block;
-  position: absolute;
-  top: 5px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: fit-content;
+  height: var(--user-search-profile);
 }
 
 .user-search .wrap-txt .txt-title,
 .user-search .wrap-txt .txt-nickname {
-  display: block;
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 .user-search .wrap-txt .txt-title {
-  font-size: 14px;
-  line-height: 18px;
-  margin-bottom: 6px;
+  font-size: var(--font-14px);
 }
 
 .user-search .wrap-txt .txt-nickname {
-  font-size: 12px;
-  line-height: 15px;
+  font-size: var(--font-12px);
   color: var(--gray);
 }
 
 /* user-search-more */
 .user-search .btn-more {
-  position: absolute;
-  top: 5px;
-  right: 0;
   width: 18px;
   height: 18px;
+  background: url(../src/s-icon-more-vertical.png) no-repeat;
+  background-size: cover;
+  float: right;
+  margin-top: 0.313em;
 }
-
-.user-search .img-more {
-  width: 100%;
-}
-
 /* end: user */
 
 /* home */
 /* home-post */
 .home-post {
   --home-post-profile: 42px;
+  margin: 1.25em 1em;
+  max-height: calc(100% - 48px - 61px);
+  display: flex;
+  flex-direction: column;
 }
 
 .home-post .img-profile {
   width: var(--home-post-profile);
   height: var(--home-post-profile);
+  border-radius: 50%;
+}
+.home-post .user-search {
+  margin: 0;
+}
+
+.home-post .wrap-txt {
+  height: var(--home-post-profile);
 }
 
 .home-post .wrap-content {
-  margin-top: 16px;
-  padding-left: calc(var(--home-post-profile) + 12px);
+  margin-top: 1em;
+  padding-left: calc(var(--home-post-profile) + 0.75em);
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.home-post .wrap-content::-webkit-scrollbar {
+  display: none;
 }
 
 .home-post .wrap-content .txt-content {
-  margin-bottom: 16px;
-  font-size: 14px;
-  line-height: 18px;
+  margin-bottom: 1.143em;
+  font-size: var(--font-14px);
+  line-height: 1.125rem;
 }
 
+.swiper {
+  margin: 0;
+  width: 304px;
+}
+.swiper-wrapper {
+  display: -webkit-inline-box;
+  transform: translate3d(0, 0px, 0px);
+}
+
+.swiper-slide {
+  width: 304px;
+  height: 228px;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* .cont-preview {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+} */
+
+/* .cont-preview::-webkit-scrollbar {
+  display: none;
+} */
+
+/* .cont-preview {
+  width: 100%;
+  height: 100%;
+}
+.cont-preview .cont-img {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  margin-right: 0.5em;
+} */
+
+/* .cont-preview .cont-img .img-preview {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+/* .img-preview {
+  display: block;
+  border-radius: 10px;
+  width: 304px;
+  height: 228px;
+  object-fit: cover;
+} */
+
 .home-post .wrap-content .ul-btns {
-  margin-top: 16px;
+  margin-top: 1.333em;
   display: flex;
   color: var(--gray);
-  font-size: 12px;
-  line-height: 12px;
+  font-size: var(--font-12px);
 }
 
 .home-post .wrap-content .ul-btns .li-btn {
-  margin-right: 16px;
+  margin-right: 1em;
+  display: flex;
+  align-items: center;
 }
 
-.home-post .wrap-content .ul-btns .li-btn img {
+.home-post .wrap-content .ul-btns .li-btn button {
   width: 20px;
   height: 20px;
+  margin-right: 0.375em;
 }
 
-.home-post .wrap-content .txt-date {
-  margin-top: 16px;
+.home-post .wrap-content .ul-btns .li-btn .btn-likes {
+  background: url(../src/icon-heart.png);
+  background-size: cover;
+}
+
+.home-post .wrap-content .ul-btns .li-btn .btn-likes.on {
+  background: url(../src/icon-heart-active.png);
+  background-size: cover;
+}
+
+.home-post .wrap-content .ul-btns .li-btn .btn-comments {
+  background: url(../src/icon-message-circle.png);
+  background-size: cover;
+}
+
+.home-post .wrap-content .ul-btns .li-btn span {
+  display: inline-block;
+  font-size: var(--font-12px);
   color: var(--gray);
-  font-size: 10px;
-  line-height: 12px;
+}
+.home-post .wrap-content .txt-date {
+  margin-top: 1.6em;
+  font-size: var(--font-10px);
+  color: var(--gray);
 }
 /* end: home */
 
@@ -138,95 +240,95 @@ button {
 .top-upload-nav,
 .top-chat-nav {
   width: 100%;
-  height: 48px;
-  position: relative;
+  height: 3rem;
   color: var(--white);
   background-color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.top-follow-nav {
+  width: 100%;
+  height: 3rem;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--light-gray);
 }
 
 .img-left-arrow {
   width: 22px;
   height: 22px;
-  position: absolute;
-  top: 13px;
-  left: 16px;
-  cursor: pointer;
+  margin: 0 0.875em;
 }
 
 .img-vertical {
   width: 24px;
   height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  cursor: pointer;
+  margin: 0.75em 0.75em 0.75em 0;
 }
 
 .top-search-nav .inp-search {
-  width: 316px;
-  position: absolute;
-  top: 8px;
-  right: 19px;
-  box-sizing: border-box;
-  padding: 7px 0 7px 16px;
   background-color: var(--white-gray);
   color: var(--light-gray);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 17px;
+  font-size: 0.875rem;
+  padding: 0.5em 0 0.5em 0.875em;
+  margin: 0.57em 0.875em 0.57em 2em;
+  flex: 1;
+  box-sizing: border-box;
   border: none;
   border-radius: 32px;
 }
 
 .txt-main-nav {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 22px;
+  display: inline-block;
+  font-size: 1.125rem;
+  margin: 0.72em 0 0.72em 0.88em;
+  line-height: 1.5;
   color: var(--black);
-  position: absolute;
-  top: 13px;
-  left: 16px;
 }
 
 .top-main-nav .img-search {
   width: 24px;
   height: 24px;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  cursor: pointer;
+  margin: 0.75em 1em 0.75em 0;
+}
+
+.btn-upload {
+  margin: 0.5em 1em 0.5em 0;
 }
 
 .txt-chat-nav {
-  position: absolute;
-  top: 15px;
-  left: 48px;
-  font-size: 14px;
-  line-height: 18px;
+  display: inline-block;
+  margin: 3px 1rem 0 0;
+  font-size: 1rem;
   color: var(--black);
-  font-weight: 500;
+}
+
+.space {
+  flex: 1;
 }
 /* end: top */
 
 /* buttons */
 .btn-button {
   background-color: var(--orange);
-  font-size: 14px;
+  font-size: var(--font-14px);
   font-weight: 500;
 }
 
-.btn-button:disabled {
+.btn-disabled {
   background-color: var(--light-orange);
 }
 
 .btn-large {
-  width: 322px;
   height: 44px;
   border-radius: 44px;
 }
 
 .btn-medium {
-  width: 120px;
   height: 34px;
   border-radius: 30px;
 }
@@ -243,18 +345,10 @@ button {
 }
 
 .btn-small {
-  width: 56px;
   height: 28px;
   border-radius: 26px;
-  font-size: 12px;
+  font-size: var(--font-12px);
   font-weight: 400;
-}
-
-/* 업로드 버튼 */
-.btn-upload {
-  position: absolute;
-  top: 8px;
-  right: 16px;
 }
 
 /* 팔로우 버튼 */
@@ -278,14 +372,14 @@ button {
 }
 
 .input-container label {
-  font-size: 12px;
+  font-size: var(--font-12px);
   font-weight: 500;
   line-height: 15.02px;
   color: var(--gray);
 }
 
 .input-container .input-info {
-  font-size: 14px;
+  font-size: var(--font-14px);
   border: none;
   height: 33px;
 }
@@ -301,7 +395,7 @@ button {
   left: 0;
   bottom: -18px;
   color: var(--red);
-  font-size: 12px;
+  font-size: var(--font-12px);
 }
 
 /* end:text-Active-input */
@@ -332,7 +426,7 @@ button {
   top: 96px;
   font-weight: 400;
   font-style: normal;
-  font-size: 14px;
+  font-size: var(--font-14px);
   line-height: 17.53px;
 }
 .p-price {
@@ -343,87 +437,117 @@ button {
   color: var(--orange);
   font-weight: 700;
   font-style: normal;
-  font-size: 12px;
+  font-size: var(--font-12px);
   line-height: 15.02px;
 }
 
-/* tab-menu */
-#tab-menu {
-  display: flex;
-  width: 390px;
-  height: 60px;
-  justify-content: space-evenly;
-  align-items: center;
-  border: 0.5px solid #c4c4c4;
-}
-
-#tab-menu div {
-  width: 84px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.img-home,
-.img-circle1,
-.img-edit,
-.img-user {
-  width: 18px;
-  height: 18px;
-}
-
-.p-home,
-.p-circle1,
-.p-edit,
-.p-user {
-  font-family: "Spoqa Han Sans Neo", "sans-serif";
-  color: var(--gray);
-  font-style: normal;
-  font-weight: normal;
-  font-size: 10px;
-  line-height: 14px;
-}
-
 /* comment */
+
 #comment {
-  position: relative;
-  width: 390px;
-  height: 61px;
+  width: 100%;
+  height: 60px;
+  padding: 0 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .img-basic-profile {
-  position: absolute;
-  top: 13px;
-  left: 16px;
   width: 36px;
   height: 36px;
 }
 
 .input-text {
-  position: absolute;
-  top: 23px;
-  left: 70px;
-  width: 120px;
-  height: 18px;
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  width: calc(100% - 126px);
+  height: 40%;
+  font-size: 0.875rem;
+  color: #767676;
   border: transparent;
+  outline: none;
+  border: none;
+  line-height: 10px;
+  padding: 0.2em;
+  margin-top: 0.5em;
+  resize: none;
+  line-height: 1rem;
 }
 
 .input-text::placeholder {
   color: #c4c4c4;
-  line-height: 17.53px;
+  line-height: rem;
 }
 
 .p-submit {
-  position: absolute;
-  top: 23px;
-  left: 348px;
-  width: 30px;
-  height: 18px;
-  font-size: 14px;
+  width: 50px;
+  font-size: var(--font-14px);
   font-weight: 500;
-  line-height: 17.53px;
+  line-height: 1.5;
   color: #c4c4c4;
   cursor: pointer;
+  text-align: center;
+}
+
+/* tab-menu */
+#tab-menu {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 0.5px solid #c4c4c4;
+}
+
+#tab-menu button {
+  width: 20%;
+  height: 100%;
+  background-size: 1.25rem;
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.button-home {
+  background: url("../src/icon-home.png") no-repeat center;
+}
+.button-circle1 {
+  background: url("../src/icon-message-circle-1.png") no-repeat center;
+}
+.button-edit {
+  background: url("../src/icon-edit.png") no-repeat center;
+}
+.button-profile {
+  background: url("../src/icon-user.png") no-repeat center;
+}
+
+.button-home.active {
+  background: url("../src/icon-home-fill.png") no-repeat center;
+}
+.button-circle1.active {
+  background: url("../src/icon-message-circle-fill.png") no-repeat center;
+}
+
+.button-profile.active {
+  background: url("../src/icon-user-fill.png") no-repeat center;
+}
+
+#tab-menu button.active p {
+  color: #f26e22;
+}
+
+#tab-menu button p {
+  position: absolute;
+  bottom: -0.5em;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #767676;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.625rem;
+  line-height: 14px;
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 /* delete alert */
@@ -439,7 +563,7 @@ button {
 .p-check {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   text-align: center;
-  font-size: 16px;
+  font-size: var(--font-16px);
   font-weight: 500;
   width: 100%;
   border-bottom: 0.5px solid #dbdbdb;
@@ -450,7 +574,8 @@ button {
 }
 
 .p-cancle,
-.p-delete {
+.p-delete,
+.p-action {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   font-weight: 400;
   text-align: center;
@@ -459,6 +584,7 @@ button {
   cursor: pointer;
 }
 
+.p-action,
 .p-delete {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
   border-left: 0.5px solid #dbdbdb;
