@@ -69,7 +69,7 @@ primaryId.addEventListener("blur", toggleClassOn)
 async function imageUpload(files) {
   const formData = new FormData()
   formData.append("image", files[0])
-  const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
+  const res = await fetch(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
     method: "POST",
     body: formData,
   })
@@ -83,7 +83,7 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
-  previewImage.src = "https://api.mandarin.cf/" + result
+  previewImage.src = "https://mandarin.api.weniv.co.kr/" + result
 }
 
 inputImage.addEventListener("change", profileImage)
@@ -91,8 +91,8 @@ inputImage.addEventListener("change", profileImage)
 async function updateProfile() {
   const imageUrl = document.querySelector(".img-basic").src
   const token = localStorage.getItem("token")
-  localStorage.setItem("accountName", primaryId.value);
-  const res = await fetch(`https://api.mandarin.cf/user`, {
+  localStorage.setItem("accountName", primaryId.value)
+  const res = await fetch(`https://mandarin.api.weniv.co.kr/user`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -118,17 +118,20 @@ async function isCheckDuplicatedId() {
   const accountName = localStorage.getItem("accountName")
   if (primaryId.value !== accountName) {
     try {
-      const res = await fetch("https://api.mandarin.cf/user/accountnamevalid", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: {
-            accountname: primaryId.value,
+      const res = await fetch(
+        "https://mandarin.api.weniv.co.kr/user/accountnamevalid",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      })
+          body: JSON.stringify({
+            user: {
+              accountname: primaryId.value,
+            },
+          }),
+        },
+      )
       const json = await res.json()
       console.log(json)
       console.log(json.message)
@@ -156,7 +159,7 @@ uploadButton.addEventListener("click", isCheckDuplicatedId)
 async function getProfile() {
   const token = localStorage.getItem("token")
   const accountName = localStorage.getItem("accountName")
-  const url = `https://api.mandarin.cf/profile/${accountName}`
+  const url = `https://mandarin.api.weniv.co.kr/profile/${accountName}`
   const res = await fetch(url, {
     method: "GET",
     headers: {

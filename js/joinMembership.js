@@ -70,17 +70,20 @@ function goUserInfo(json) {
 
 async function emailValid() {
   try {
-    const res = await fetch("https://api.mandarin.cf/user/emailvalid", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          email: getEmailValue.value,
+    const res = await fetch(
+      "https://mandarin.api.weniv.co.kr/user/emailvalid",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-    })
+        body: JSON.stringify({
+          user: {
+            email: getEmailValue.value,
+          },
+        }),
+      },
+    )
     const json = await res.json()
     console.log(json)
     console.log(json.message)
@@ -96,17 +99,20 @@ async function emailValid() {
 
 async function isCheckDuplicatedId() {
   try {
-    const res = await fetch("https://api.mandarin.cf/user/accountnamevalid", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          accountname: primaryId.value,
+    const res = await fetch(
+      "https://mandarin.api.weniv.co.kr/user/accountnamevalid",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-    })
+        body: JSON.stringify({
+          user: {
+            accountname: primaryId.value,
+          },
+        }),
+      },
+    )
     const json = await res.json()
     console.log(json)
     console.log(json.message)
@@ -181,7 +187,7 @@ primaryId.addEventListener("blur", toggleClassOn)
 async function imageUpload(files) {
   const formData = new FormData()
   formData.append("image", files[0])
-  const res = await fetch(`https://api.mandarin.cf/image/uploadfile`, {
+  const res = await fetch(`https://mandarin.api.weniv.co.kr/image/uploadfile`, {
     method: "POST",
     body: formData,
   })
@@ -193,14 +199,14 @@ async function imageUpload(files) {
 async function profileImage(e) {
   const files = e.target.files
   const result = await imageUpload(files)
-  previewImage.src = "https://api.mandarin.cf/" + result
+  previewImage.src = "https://mandarin.api.weniv.co.kr/" + result
 }
 inputImage.addEventListener("change", profileImage)
 
 async function join() {
   const imageUrl = document.querySelector(".img-basic").src
   try {
-    const res = await fetch("https://api.mandarin.cf/user", {
+    const res = await fetch("https://mandarin.api.weniv.co.kr/user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

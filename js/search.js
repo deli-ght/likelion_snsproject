@@ -1,5 +1,5 @@
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
-const URL = "https://api.mandarin.cf"
+const URL = "https://mandarin.api.weniv.co.kr"
 
 const GET_HEADER = new Headers({
   Authorization: TEST_TOKEN,
@@ -35,7 +35,7 @@ const showResult = async (event) => {
       <strong class="txt-title">${r.username}</strong>
       <span class="txt-nickname">@ ${r.accountname.replace(
         event.target.value,
-        `<span class="span_search">${event.target.value}</span>`
+        `<span class="span_search">${event.target.value}</span>`,
       )}</span>
     </div>`
     main.appendChild(newResult)

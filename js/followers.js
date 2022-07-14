@@ -1,7 +1,7 @@
 import { Follow, Unfollow } from "./follow.js"
 
 const TEST_TOKEN = "Bearer " + localStorage.getItem("token")
-const URL = "https://api.mandarin.cf"
+const URL = "https://mandarin.api.weniv.co.kr"
 
 const GET_HEADER = new Headers({
   Authorization: TEST_TOKEN,
@@ -15,7 +15,7 @@ const getUserInfo = async () => {
     {
       method: "GET",
       headers: GET_HEADER,
-    }
+    },
   )
 
   const data = await response.json()

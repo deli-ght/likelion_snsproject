@@ -1,4 +1,4 @@
-const URL = "https://api.mandarin.cf"
+const URL = "https://mandarin.api.weniv.co.kr"
 
 const btnBack = document.querySelector("img[src='../src/icon-arrow-left.png']")
 const file = document.querySelector(".input-imgbox")

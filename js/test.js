@@ -20,7 +20,7 @@ function toggleClassOn() {
 }
 
 async function login() {
-  const res = await fetch("https://api.mandarin.cf/user/login", {
+  const res = await fetch("https://mandarin.api.weniv.co.kr/user/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

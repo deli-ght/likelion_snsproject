@@ -17,7 +17,7 @@ const userinf = async () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
-    }
+    },
   )
   const json = await res.json()
   console.log(json.profile)
@@ -43,7 +43,7 @@ const userinf = async () => {
         </div>
 
         <p class="sub_title">${json.profile.intro}</p>
-        
+
         <div class="buttons">
             <button type="button" class="button-profileupdate">프로필 수정</button>
             <button type="button" class="button-regist">상품 등록</button>
@@ -80,7 +80,7 @@ const userinf = async () => {
 // 판매중인 상품
 const selling = document.querySelector("#selling")
 const products = document.querySelector(".products")
-const url = "https://api.mandarin.cf"
+const url = "https://mandarin.api.weniv.co.kr"
 const check = async () => {
   const res = await fetch(
     url + "/product/" + localStorage.getItem("accountName"),
@@ -90,7 +90,7 @@ const check = async () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
-    }
+    },
   )
   const json = await res.json()
   if (json.product.length === 0) {
@@ -272,7 +272,7 @@ const album = async () => {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "application/json",
       },
-    }
+    },
   )
   const json = await res.json()
   homeAlbum.innerHTML = ""
